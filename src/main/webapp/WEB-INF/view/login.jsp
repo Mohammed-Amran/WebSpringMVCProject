@@ -75,7 +75,7 @@
   
   
 <!-- If the user logged out! the 'Logout-alert' pop-up window will be shown -->  
-<c:if test="${not empty requestScope.logOutMessage}">
+<c:if test="${not empty logOutMessage}">
   
   <script type="text/javascript">
  
@@ -103,11 +103,11 @@
 
 		<div class="card">
 
-			<form name="loginForm" action="login" method="post">
+			<form name="loginForm" action="loginngIn" method="post">
 
 
 				<label for="email"> <b>Email</b> </label> 
-				<input type="email" id="email" name="email" placeholder="Enter your email" required> 
+				<input type="email" id="email" name="email" placeholder="Enter your email" value="${email}" required> 
 				
 				<label for="password"> <b>Password</b> </label>
 				<input type="password" id="password" name="password" placeholder="Enter your password" required>
@@ -224,7 +224,7 @@
 
 				<div class="modal-body">
 					
-					<p> <c:out value="${requestScope.logOutMessage}" /> </p>
+					<p> <c:out value="${logOutMessage}" /> </p>
 				
 				</div>
 

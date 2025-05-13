@@ -27,7 +27,7 @@ public class LoginController {
 	} //closing brace of the 'accessLoginPage()' method.
 	
 	
-	@PostMapping("/login")
+	@PostMapping("/loginngIn")
 	protected String loginController(@RequestParam Map<String,String> req, Model model, HttpServletRequest request) {
 		
 		    String destination = "";
@@ -66,6 +66,8 @@ public class LoginController {
 				
 				//So, if the user hasn't registered.
 				model.addAttribute("loginError", "Login failed! Please check your email and password");
+				model.addAttribute("email", email);
+				
 				
 				destination = "view/login";
 					
@@ -79,6 +81,15 @@ public class LoginController {
 	}//closing brace of the 'loginController()' method.
 	
 	
+	@GetMapping("/login")
+	public String showLoginPage(@RequestParam(value = "logOutMessage", required = false) String logOutMessage,
+	                            Model model) {
+	    if (logOutMessage != null) {
+	        model.addAttribute("logOutMessage", logOutMessage);
+	    }
+	    return "view/login"; 
+	}
+
 	
 	@GetMapping("/backToView")
 	protected String backToView() {

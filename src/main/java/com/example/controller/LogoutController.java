@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 import com.example.DAO.*;
 import com.example.DAO.daoCart;
 
@@ -16,7 +17,7 @@ public class LogoutController {
 	@GetMapping("/logout")
 	protected String logOutUser(HttpServletRequest req, HttpServletRequest resp, Model model) {
 		
-		String destination = "";
+		
 		
         HttpSession session = req.getSession(false); //That false within the 'getSession(false)' is to not create session if it already exists
 		
@@ -51,13 +52,15 @@ public class LogoutController {
             
             model.addAttribute("logOutMessage", logOutMessage);
             
-            destination = "view/viewerOnly";
+           
         }
 
        
 		
        
-	  return destination;
+        
+        return "redirect:/login?logOutMessage=You+have+been+logged+out!";
+
 		
 		
 	}//closing brace of the 'logOutUser()' method.
