@@ -185,7 +185,7 @@ transition: transform 0.2s ease;
     
     <div class="carousel-item" data-bs-interval="3000">
     
-      <img src="${pageContext.request.contextPath}/images/c2.png" class="d-block" alt="Croissant">
+      <img src="${pageContext.request.contextPath}/images/newC2.jpg" class="d-block" alt="Croissant">
       
     </div>
     
@@ -209,13 +209,13 @@ transition: transform 0.2s ease;
     
     <div class="carousel-item">
     
-      <img src="${pageContext.request.contextPath}/images/candyShop1.jpeg" class="d-block" alt="Pastry">
+      <img src="${pageContext.request.contextPath}/images/newC1.JPG" class="d-block" alt="Pastry">
       
     </div>
     
     <div class="carousel-item">
     
-      <img src="${pageContext.request.contextPath}/images/candy.jpg" class="d-block" alt="Pastry">
+      <img src="${pageContext.request.contextPath}/images/newC4.jpg" class="d-block" alt="Pastry">
       
     </div>
     
