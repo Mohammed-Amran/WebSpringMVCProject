@@ -33,5 +33,16 @@ public class InitializationController {
 		  
 	  }//closing brace of the 'CategoryController()' method.
 	  
+	  
+	  
+	  @RequestMapping("/accessAboutUsPage")
+	  protected String forwardToAboutUs() {
+		  
+		  return "view/aboutUs";
+		  
+	  }//closing brace of the 'forwardToAboutUs()' method.
+	  
+	  
+	  
 	
 }//closing brace of the class.

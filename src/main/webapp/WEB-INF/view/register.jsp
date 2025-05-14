@@ -75,7 +75,7 @@
                 
                       <button type="submit" name="register" value="signup" class="btn">Sign Up</button>
                     
-                      <button type="button" class="cancel" onclick="window.location.href='${pageContext.request.contextPath}/backTologinFromRegistration'"> Cancel </button>
+                      <button type="button" class="cancel" onclick="window.location.href='${pageContext.request.contextPath}/backToViewOnlyFromRegistration'"> Cancel </button>
               
                 </div>
 

@@ -125,31 +125,7 @@ body {
 
 
 /* ===== MODAL STYLES ===== */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  background-color: #F5F5DD;
-  padding: 30px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
 
 .modal-header {
   margin-bottom: 20px;
@@ -785,7 +761,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/baguette-bread-july222020-min-e1595406425983.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Baguette Bread</h1>
+				<h1 >Baguette Bread</h1>
 				
 			</div>
 			
@@ -804,7 +780,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/brioche-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Brioche Bread</h1>
+				<h1>Brioche Bread</h1>
 				
 			</div>
 			
@@ -826,7 +802,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Ciabatta Bread</h1>
+				<h1>Ciabatta Bread</h1>
 				
 			</div>
 			
@@ -847,7 +823,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/multigrain-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Multigrain Bread</h1>
+				<h1 >Multigrain Bread</h1>
 				
 			</div>
 			
@@ -867,7 +843,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/whole-wheat-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Whole Wheat</h1>
+				<h1>Whole Wheat</h1>
 				
 			</div>
 			
@@ -886,7 +862,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/lavash-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Lavash Bread</h1>
+				<h1>Lavash Bread</h1>
 				
 			</div>
 			
@@ -905,7 +881,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/matzo-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Thin Bread</h1>
+				<h1>Thin Bread</h1>
 				
 			</div>
 			
@@ -924,7 +900,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/naan-bread-july222020-min.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Naan Bread</h1>
+				<h1>Naan Bread</h1>
 				
 			</div>
 			
@@ -943,7 +919,7 @@ body {
 			
 				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/tortilla-bread-july222020-min-e1595407483238.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Tortilla</h1>
+				<h1>Tortilla</h1>
 				
 			</div>
 			
@@ -962,7 +938,7 @@ body {
 			
 				<img src="${pageContext.request.contextPath}/images/crispyBread.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Crispy Bread</h1>
+				<h1>Crispy Bread</h1>
 				
 			</div>
 			
@@ -981,7 +957,7 @@ body {
 			
 				<img src="${pageContext.request.contextPath}/images/kurdishBread.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Kurdish Bread</h1>
+				<h1>Kurdish Bread</h1>
 				
 			</div>
 			
@@ -1024,7 +1000,7 @@ body {
 			
 				<img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Kunafa</h1>
+				<h1>Kunafa</h1>
 				
 			</div>
 			

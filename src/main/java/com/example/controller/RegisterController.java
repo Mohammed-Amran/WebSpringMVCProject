@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.DAO.*;
@@ -27,10 +28,17 @@ public class RegisterController {
 	}//closing brace of the 'goToRegister()' method.
 	
 	
-	@GetMapping("/backTologinFromRegistration")
+	@RequestMapping("/accessRegisterPage")
+	protected String accessLoginPage() {
+		
+		return "view/register";
+		
+	} //closing brace of the 'accessLoginPage()' method.
+	
+	@GetMapping("/backToViewOnlyFromRegistration")
 	protected String backToLogin() {
 		
-		return "view/login";
+		return "view/viewerOnly";
 		
 	}
 	

@@ -23,32 +23,11 @@
 <!-- link to the css file -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/indexStyle.css">
 
-<title>Viewer Only Page</title>
+<title>Menu & Gallery Page</title>
 
  <style>
     
-    .carousel {
-      width: 100%;
-      max-width: 1200px; /* Adjust as needed */
-      margin: 20px auto;
-    }
-    
-    .carousel-inner {
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-    }
-    
-    .carousel-item img {
-      width: 100%;
-      height: 500px; /* Adjust height as needed */
-      object-fit: cover;
-    }
-    
-    .hero-content {
-  text-align: center;
-  padding: 20px;
-}
+  
 
 
 
@@ -140,28 +119,11 @@ transition: transform 0.2s ease;
     
     <div class="appbar-actions">
    
-     <!-- Controller for this button is in 'InitializationCOntroller' file. -->
-     <form method="get" action="accessAboutUsPage">  
-     
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold; margin-right: 20px;" >       
-             About Us        
-        </button>
-        
-     </form>
-     
-    
-     <form method="get" action="accessRegisterPage">  
+     <!-- Controller for this button is in '' file. -->      
+     <form method="get" action="getBackToViewPage">  
      
         <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
-             Register         
-        </button>
-        
-     </form>
-             
-     <form method="get" action="accessLoginPage">  
-     
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
-             Login         
+             Back         
         </button>
         
      </form>
@@ -172,95 +134,7 @@ transition: transform 0.2s ease;
 </nav>
 
 
-<!-- Hero Section with Gallery -->
-<section class="hero">
 
-  <div class="hero-content">
-  
-        <h2>Fresh from the Bakery</h2>
-        <p>Savor the aroma of our oven-baked delights, made with love and the finest ingredients</p>
-
-        
-    </div>
-
-  <div style="display: flex; justify-content: center;">
-
-    <!-- Carousel inserted here -->
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-  
-  
-  
-  <div class="carousel-inner">
-  
-    <div class="carousel-item active" data-bs-interval="5000">
-    
-      <img src="${pageContext.request.contextPath}/images/c1.jpg" class="d-block" alt="Bread 1">
-      
-    </div>
-    
-    <div class="carousel-item" data-bs-interval="3000">
-    
-      <img src="${pageContext.request.contextPath}/images/newC2.jpg" class="d-block" alt="Croissant">
-      
-    </div>
-    
-    <div class="carousel-item">
-    
-      <img src="${pageContext.request.contextPath}/images/c3.jpg" class="d-block" alt="Pastry">
-      
-    </div>
-    
-    <div class="carousel-item">
-    
-      <img src="${pageContext.request.contextPath}/images/baklavaStore1.jpg" class="d-block" alt="Pastry">
-      
-    </div>
-    
-    <div class="carousel-item">
-    
-      <img src="${pageContext.request.contextPath}/images/c4.jpg" class="d-block" alt="Pastry">
-      
-    </div>
-    
-    <div class="carousel-item">
-    
-      <img src="${pageContext.request.contextPath}/images/newC1.JPG" class="d-block" alt="Pastry">
-      
-    </div>
-    
-    <div class="carousel-item">
-    
-      <img src="${pageContext.request.contextPath}/images/newC4.jpg" class="d-block" alt="Pastry">
-      
-    </div>
-    
-    
-    
-   
-    
-    
-    
-  </div>
-  
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-  
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-    
-  </button>
-  
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-  
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-    
-  </button>
-  
-</div>
-
-</div>
-    
-</section>
 
 
 
