@@ -60,11 +60,7 @@
 }
 
 
-.menu-title, 
-.menu-items {
-  position: relative;
-  z-index: 1;
-}
+
 
 .login-btn{
 
@@ -118,6 +114,59 @@ transition: transform 0.2s ease;
 	
   transform: scale(1.08);
 } 
+ 
+ 
+h3:hover {
+  color: #FFFFFF;
+  text-shadow: 0 0 8px #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+
+.paragraphs:hover {
+	
+  color: #FFFFFF;
+  text-shadow: 0 0 8px #FFFFFF;
+  transition: all 0.3s ease;
+} 
+ 
+ 
+/* Glowing text and button styles */
+.carousel-caption h5, .carousel-caption p, .carousel-control-prev, .carousel-control-next {
+    color: black !important; /* Black text color */
+    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 50px white, 0 0 75px white; /* White glowing effect */
+    
+}
+
+.carousel-caption h5, .carousel-caption p{
+font-weight: bold;
+font-size: 21px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: drop-shadow(0 0 10px white) drop-shadow(0 0 20px white); /* White glowing effect for carousel icons */
+}
+
+/* Ensure buttons are visible */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better visibility */
+}
+
+
+#seeMoreBtn{
+
+background-color: #A57A5A; 
+ border: 1px solid #A57A5A;
+font-size: 30px;
+transition: transform 0.3s ease, text-shadow 0.3s ease;
+
+} 
+
+#seeMoreBtn:hover {
+	
+	text-shadow: 0 0 5px #F2F3F1, 0 0 10px #F2F3F1, 0 0 15px #F2F3F1;
+	 transform: scale(1.1);
+}
  
     
 </style>
@@ -263,367 +312,159 @@ transition: transform 0.2s ease;
 </section>
 
 
+<!-- 2nd Hero section -->
+<div id="carouselExampleCaptions" class="carousel slide">
+
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  
+  
+  <div class="carousel-inner">
+  
+    <!-- Img-1 -->
+    <div class="carousel-item active">
+     
+      <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="d-block w-100" alt="...">
+      
+      <div class="carousel-caption d-none d-md-block">
+       
+        <h5>Frequent Ordered Bread</h5>
+       
+        <p>Ciabatta bread is a rustic Italian loaf with a crisp crust and a light, chewy interior full of airy holes.</p>
+    
+      </div>
+      
+    </div>
+   
+    <!-- Img-2 -->
+    <div class="carousel-item">
+     
+      <img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="d-block w-100" alt="...">
+     
+      <div class="carousel-caption d-none d-md-block">
+       
+        <h5>Frequent Ordered Desert</h5>
+       
+        <p>kanafa is a rich, golden-crisp dessert made with shredded phyllo dough, filled with melted cheese</p>
+     
+      </div>
+      
+    </div>
+    
+    <!-- Img-3 -->
+    <div class="carousel-item">
+    
+      <img src="${pageContext.request.contextPath}/images/cakes/chocoloateCake.jpeg" class="d-block w-100" alt="...">
+      
+      <div class="carousel-caption d-none d-md-block">
+       
+        <h5>Customers favourite Cake</h5>
+        
+        <p>Chocolate cake is a moist, decadent dessert layered with rich, velvety chocolate goodness.</p>
+     
+      </div>
+      
+    </div>
+    
+    
+  </div> <!-- closing brace of the 'carousel-inner' -->
+  
+  
+  
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  
+  
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  
+  
+</div> <!-- closing tag of the 2nd carousel -->
+
+
+
+<div class="menu-container" style="text-align: center; margin-top: 60px; margin-bottom: 30px; background-color: #A57A5A; color: #F2EAD5; padding: 40px; box-sizing: border-box;">
+
+   <button type="button" id="seeMoreBtn" class="cancel" onclick="window.location.href='${pageContext.request.contextPath}/gotToMenuAndGalleryPage'">
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+    
+         <h3 style="margin: 0; color: #F2EAD5;">See more Breads and Cakes..</h3>
+     
+         <img src="${pageContext.request.contextPath}/images/plus.png" width="32" height="32">
+
+      </div>
+
+        
+   </button>
+              
+</div>
 
 
 <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A;">
+<main class="menu-container" style="background-color: #A57A5A; color: #F2EAD5; padding: 40px; box-sizing: border-box; margin-top: 75px;">
 
- <div >
+   <div style="margin: 20px 0; width: 100%; max-width: 600px; text-align: left;">
+   
+     <div style="display: flex; align-items: center; gap: 10px;">
+    
+        <h3 style="margin: 0;">Date of Establishment</h3>
+     
+        <img src="${pageContext.request.contextPath}/images/bakery-shop.png" width="32" height="32">
+
+     </div>
+   
+    <p class="paragraphs" style="margin: 5px 0;">Our bakery was founded in 1986, born from a small family kitchen.</p>
+    <p class="paragraphs"  style="margin: 5px 0;">We started with a passion for homemade recipes and heartfelt service.</p>
+    <p class="paragraphs"  style="margin: 5px 0;">Through the years, we’ve grown while keeping our traditional touch alive.</p>
+    <p class="paragraphs" style="margin: 5px 0;">Today, we proudly serve generations of loyal customers every day.</p>
  
-    <h2 class="menu-title" style="font-weight: bold; font-size: 46px; ">  Our Menu </h2>
+  </div>
+  
+  
+  <div style="margin: 20px 0; width: 100%; max-width: 600px; text-align: left; margin-top: 35px;">
+   
+   
+      <div style="display: flex; align-items: center; gap: 10px;">
     
-    
-    
-    
-    <!-- Category Buttons -->
-     <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 8px;">
-               
-           <form method="get" action="categoryController">    
-            
-                <input type="hidden" name="category" value="Breads">
-                
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px;  font-size: 18px; font-weight: bold; cursor: pointer;">
-                        
-                    Breads
-                                    
-                </button>
-                
-           </form>     
-            
-              <form method="post" action="categoryController">  
-                  
-                <input type="hidden" name="category" value="Cakes">
-                
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px;  font-size: 18px;  font-weight: bold; cursor: pointer;">
-                        
-                    Cakes
-                    
-                </button>
-                
-              </form>  
+         <h3 style="margin: 0;">Our Location</h3>
+     
+         <img src="${pageContext.request.contextPath}/images/windmill.png" width="32" height="32">
+
       </div>
-    
-    
-    <div class="menu-items" style="background-color: #F2F3F1">
-       
-       
-       <div class="menu-grid" style="margin-top: 40px;">
-       
-    <c:choose>
-    
-       <c:when test="${showCategory == 'Breads' || empty showCategory }">
-        
-       <!-- Item 1 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/baguette-bread-july222020-min-e1595406425983.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Baguette Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 2 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/brioche-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Brioche Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 3 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Ciabatta Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 4 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/multigrain-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Multigrain Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 5 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/whole-wheat-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Whole Wheat</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 6 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/lavash-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Lavash Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-       
-        <!-- Item 7 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/matzo-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Thin Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 8 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/naan-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Naan Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 9 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/tortilla-bread-july222020-min-e1595407483238.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Tortilla</h1>
-				
-			</div>
-			
-			
-		</div>
 
-         <!-- Item 10 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/crispyBread.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Crispy Bread</h1>
-				
-			</div>
-			
-			
-		</div>       
-      
-      </c:when>
-      
-      
-      <c:when test="${showCategory == 'Cakes'}">
-      
-       <!-- Item 1 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Kunafa</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 2 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/cherryCake.jpeg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Cherry Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 3 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/lemonCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Lemon Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 4 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/strawberyCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Strawberry Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 5 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/donut.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Donut</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 6 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/criossant.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Criossant</h1>
-				
-			</div>
-			
-			
-		</div>
-       
-        <!-- Item 7 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/baklava.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Baklava</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 8 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/appleCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Apple Cake</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 9 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/caramel.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Caramel candy</h1>
-				
-			</div>
-			
-			
-		</div>
-
-
-         <!-- Item 10 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/chocoloateCake.jpeg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Chocoloate Cake</h1>
-				
-			</div>
-			
-			
-		</div>
-              
-        
-      </c:when>
-      
-      </c:choose>
-       
-       </div>
-       
-       
-    </div>
     
-    </div>
+   
+     <p class="paragraphs" style="margin: 5px 0;">Nestled in the heart of Rotterdam, our bakery brings warmth to every street corner.</p>
+     <p class="paragraphs" style="margin: 5px 0;">We're just a short stroll from the bustling Markthal, inviting locals and visitors alike.</p>
+     <p class="paragraphs" style="margin: 5px 0;">Come enjoy fresh bakes in a city where tradition meets modern charm.</p>
+ 
+     <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
     
+          <img src="${pageContext.request.contextPath}/images/location.png" width="28" height="28">
+          
+         <p class="paragraphs" style="margin: 0; font-weight: bold;"> Nieuwe Binnenweg 322, 3023 ES Rotterdam, Netherlands </p>  
+
+      </div>
+ 
+  </div>
+  
+  
+  
+  
+ 
+  
+  
+
 </main>
+
 
 
 <!-- Footer -->

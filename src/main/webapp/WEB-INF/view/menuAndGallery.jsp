@@ -140,7 +140,7 @@ transition: transform 0.2s ease;
 
 
 <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A;">
+<main class="menu-container" style="background-color: #A57A5A; margin-top: 50px;">
 
  <div >
  

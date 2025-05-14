@@ -25,7 +25,7 @@ public class InitializationController {
 		  
 		  String category = req.get("category");
 		  
-		  ModelAndView model = new ModelAndView("view/viewerOnly");
+		  ModelAndView model = new ModelAndView("view/menuAndGallery");
 		  
 		  model.addObject("showCategory", category);
 		  
