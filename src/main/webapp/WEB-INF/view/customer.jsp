@@ -179,7 +179,7 @@ body {
 .card {
     flex: 1 1 calc(33.33% - 20px);
     background-color: #F2F3F1;
-    border: 2px solid #8EA58C;
+    border: 2px solid #A57A5A;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -192,13 +192,15 @@ body {
 
 .card:has(.card-action button:hover) {
 	
-    background-color: #BFCFBB;
+    background-color: #A57A5A;
 }
 
 .card-content {
     overflow: hidden; 
     flex-grow: 1; 
 }
+
+
 
 .card-content img {
     width: 100%;
@@ -220,8 +222,8 @@ body {
 }
 
 .card-action button {
-    background-color: #8EA58C;
-    color: #344C3D;
+    background-color: #A57A5A;
+    color: #F2EAD5;
     border: none;
     padding: 10px 20px;
     font-size: 22px;
@@ -230,12 +232,14 @@ body {
 }
 
 .card-action button:hover {
-    background-color: #F2F3F1;
-    color: #344C3D;
+    background-color: white;
+    color: #A57A5A;
     
     
     
 }
+
+
 
 
 /*=======================================================================*/
@@ -950,7 +954,7 @@ body {
 			
 		</div>  
 		
-		 <!-- Item 11 -->
+		 <!-- Item 21 -->
 		<div class="card">
 		
 			<div class="card-content">
@@ -969,14 +973,14 @@ body {
 			
 		</div>
 		
-		 <!-- Item 12 -->
+		 <!-- Item 22 -->
 		<div class="card">
 		
 			<div class="card-content">
 			
 				<img src="${pageContext.request.contextPath}/images/Kulera.jpg" class="item-img">
 				
-				<h1 style="margin-top: 78px;">Kulera</h1>
+				<h1>Kulera</h1>
 				
 			</div>
 			
@@ -1202,12 +1206,7 @@ body {
     
    
    
-   
-   
-   
     </div> <!-- Closing brace of the main -->
-
-
 
 
 
@@ -1485,6 +1484,62 @@ body {
         </div>
     </div>
 </div>
+
+<!-- Modal 21 -->
+<div class="modal fade" id="itemModal21" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemModalLabel"></h5>
+            </div>
+            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm21" autocomplete="off">
+                <div class="modal-body">
+                    <p id="itemDescription"></p>
+                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        <option value="2">2 pieces ~ 250iqd</option>
+                        <option value="4">4 pieces ~ 500iqd</option>
+                        <option value="8">8 pieces ~ 1000iqd</option>
+                        <option value="12">12 pieces ~ 1500iqd</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="itemName" value="Kurdish Bread">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 22 -->
+<div class="modal fade" id="itemModal22" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemModalLabel"></h5>
+            </div>
+            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm22" autocomplete="off">
+                <div class="modal-body">
+                    <p id="itemDescription"></p>
+                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        <option value="2">2 pieces ~ 250iqd</option>
+                        <option value="4">4 pieces ~ 500iqd</option>
+                        <option value="8">8 pieces ~ 1000iqd</option>
+                        <option value="12">12 pieces ~ 1500iqd</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="itemName" value="Kulera">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 
 <!-- Cake Modals -->
