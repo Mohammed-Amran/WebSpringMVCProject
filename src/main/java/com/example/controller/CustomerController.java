@@ -23,35 +23,30 @@ public class CustomerController {
 		
 		ModelAndView model = new ModelAndView("view/customer");
 		
-		model.addObject("showCategory",showCategory);		
-		
-		return model;
-	}//closing brace of the 'customerCategoryController'.
-	
-	
-	@GetMapping("/getBreads")
-	public String getBreadsController(Model model) {
-		
-			
 		DaoBreads breadsObj = new DaoBreads();
 		
-		try {
+        try {
 			
 			List<breads> retrievedBread = breadsObj.getBreads();
 			
-			model.addAttribute("retrievedBreads" , retrievedBread);
+			model.addObject("retrievedBreads" , retrievedBread);
 			
 			
 		} 
 		catch (Exception e) {
 		   
-			model.addAttribute("ErrorMessage", e);
+			model.addObject("ErrorMessage", e);
 		}
 		
 		
-		return "view/customer";
+		model.addObject("showCategory",showCategory);		
 		
-	}//closing brace of the 'getBreadsController()' method.
+		return model;
+		
+	}//closing brace of the 'customerCategoryController'.
+	
+	
+	
 	
 	
 	
