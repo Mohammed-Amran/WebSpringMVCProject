@@ -204,52 +204,9 @@ body {
 
 
 
-/* Card Styles */
-.card {
-    flex: 1 1 calc(33.33% - 20px);
-    background-color: white;
-    border: 2px solid #cb997e;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 350px; /* Adjusted for consistent layout */
-    padding: 10px;
-}
 
-.card-content img {
-    width: 100%;
-    border-radius: 5px;
-    object-fit: cover; /* Ensures the image fits well */
-}
 
-.card-content h1 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: #4a403a;
-}
 
-.card-action {
-    margin-top: auto; /* Ensures the button is always at the bottom */
-    text-align: center;
-}
-
-.card-action button {
-    background-color: #cb997e;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.card-action button:hover {
-    background-color: #7f5539;
-    color: white;
-}
 
 
 

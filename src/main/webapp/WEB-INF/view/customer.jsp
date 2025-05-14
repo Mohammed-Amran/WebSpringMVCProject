@@ -91,6 +91,9 @@ body {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
+/*=======================================================================*/
+
+
 /* ===== CATEGORY BUTTONS ===== */
 .category-buttons {
   display: flex;
@@ -117,77 +120,9 @@ body {
   transform: translateY(-3px);
 }
 
-/* ===== MENU ITEMS GRID ===== */
-.menu-items {
-  background: #F2F3F1;
-  padding: 30px;
-  border-radius: 8px;
-}
+/*=======================================================================*/
 
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
 
-/* ===== CARD STYLES (FIXED FOR BUTTONS) ===== */
-.card {
-  background: #F5F5DD;
-  border: 2px solid #885539;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 420px; /* Increased height */
-}
-
-.card-content {
-  padding: 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-content img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.card-content h1 {
-  color: #885539;
-  font-size: 24px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-/* ===== SELECT BUTTON (NOW VISIBLE) ===== */
-.card-action {
-  padding: 0 20px 20px;
-  text-align: center;
-  margin-top: auto; /* Critical for button placement */
-}
-
-.btn {
-  display: inline-block;
-  background: #885539;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 200px;
-}
-
-.btn:hover {
-  background: #6d442c;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
 
 /* ===== MODAL STYLES ===== */
 .modal {
@@ -230,13 +165,7 @@ body {
   margin-bottom: 20px;
 }
 
-.price-dropdown {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #885539;
-  border-radius: 4px;
-  font-size: 16px;
-}
+
 
 .modal-footer {
   display: flex;
@@ -244,29 +173,96 @@ body {
   gap: 10px;
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .category-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .card {
-    height: auto;
-    min-height: 380px;
-  }
-  
-  .menu-title {
-    font-size: 36px;
-  }
+
+/*=======================================================================*/
+
+.menu-items {
+	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+ 
+}
+
+
+
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
 }
 	
 
+/* Card Styles */
+.card {
+    flex: 1 1 calc(33.33% - 20px);
+    background-color: #F2F3F1;
+    border: 2px solid #8EA58C;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px; 
+    padding: 10px;
+}
 
+.card:has(.card-action button:hover) {
+	
+    background-color: #BFCFBB;
+}
+
+.card-content {
+    overflow: hidden; 
+    flex-grow: 1; 
+}
+
+.card-content img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 5px;
+    display: block; 
+}
+
+.card-content h1 {
+    font-size: 30px;
+    margin: 10px 0;
+    color: #4a403a;
+}
+
+.card-action {
+    margin-top: auto; 
+    text-align: center;
+}
+
+.card-action button {
+    background-color: #8EA58C;
+    color: #344C3D;
+    border: none;
+    padding: 10px 20px;
+    font-size: 22px;
+    border-radius: 5px solid #344C3D;
+    cursor: pointer;
+}
+
+.card-action button:hover {
+    background-color: #F2F3F1;
+    color: #344C3D;
+    
+    
+    
+}
+
+
+/*=======================================================================*/
 
 
 </style>
@@ -278,13 +274,15 @@ body {
 
 <!--=========================-- Body of the WebPage --========================-->
 
-<body style="
-  background: linear-gradient(rgba(255, 255, 255, 0.5)), 
-              url('${pageContext.request.contextPath}/images/newImg3.JPG') no-repeat center center fixed;
-  background-size: cover;
-  margin: 0;
-  height: 100vh;
-">
+<body style="background: linear-gradient(rgba(255, 255, 255, 0.5)), 
+             
+             url('${pageContext.request.contextPath}/images/newImg3.JPG') no-repeat center center fixed;
+  
+             background-size: cover;
+     
+             margin: 0;
+  
+             height: 100vh; ">
 
 
 
@@ -730,294 +728,508 @@ body {
 
 	<div id="main" style="margin-top: 40px;">
 
-    <!-- Main Content - Menu Section -->
-    <div class="menu-container" style="background-color: #A57A5A; padding: 20px 0;">
+   <!-- Main Content - Menu Section -->
+<main class="menu-container" style="background-color: #A57A5A;">
 
-        <h2 class="menu-title" style="font-weight: bold; font-size: 46px; text-align: center; color: white;">Our Menu</h2>
-        
-        <!-- Category Buttons -->
-        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 8px;">
-            
-            <form method="get" action="customerViewCategoryController">    
+ <div >
+ 
+    <h2 class="menu-title" style="font-weight: bold; font-size: 46px; ">  Our Menu </h2>
+    
+    
+    
+    
+    <!-- Category Buttons -->
+     <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 8px;">
                
+           <form method="get" action="customerViewCategoryController">    
+            
                 <input type="hidden" name="category" value="Breads">
-               
+                
                 <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px; font-size: 18px; font-weight: bold; cursor: pointer;">
+                        padding: 8px 20px;  font-size: 18px; font-weight: bold; cursor: pointer;">
+                        
                     Breads
+                                    
                 </button>
                 
-            </form>     
+           </form>     
             
-           
-            <form method="get" action="customerViewCategoryController">  
-               
-                <input type="hidden" name="category" value="Cakes">
-              
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px; font-size: 18px; font-weight: bold; cursor: pointer;">
-                    Cakes
-                </button>
-                
-            </form>
-              
-        </div>
-        
-        <div class="menu-items" style="background-color: #F2F3F1; padding: 20px;">
-            <div class="menu-grid" style="margin-top: 20px;">
-            
-                <c:choose>
-                
-                    <c:when test="${showCategory == 'Breads' || empty showCategory}">
-                        <!-- Bread Items -->
-                        
-                        <!-- Item 1 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/baguette-bread-july222020-min-e1595406425983.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Baguette Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('1', 'Baguette Bread', 'Savour the taste of French sticks; made from flour, water, yeast and salt!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/brioche-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Brioche Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('2', 'Brioche Bread', 'Unique French bread made with butter and eggs!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Ciabatta Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('3', 'Ciabatta Bread', 'Perfect for paninis and sandwiches; consists of water, yeast, salt and flour!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/multigrain-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Multigrain Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('4', 'Multigrain Bread', 'Specially for fitness freaks-contains oats, barley, flax, millet, and more!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 5 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/whole-wheat-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Whole Wheat</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('5', 'Whole Wheat', 'Nutritious and has more fibre than regular bread!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 6 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/lavash-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Lavash Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('6', 'Lavash Bread', 'Low in fat and made with flour, salt and water!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 7 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/matzo-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Thin Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('7', 'Thin Bread', 'Tasty jewish bread made from wheat, barley, rice, oats and spelt!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 8 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/naan-bread-july222020-min.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Naan Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('8', 'Naan Bread', 'Delicious naan that uses yogurt as its main ingredient!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 9 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/tortilla-bread-july222020-min-e1595407483238.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Tortilla</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('9', 'Tortilla', 'Soft, thin flatbreads utilised in various Mexican dishes, wraps and tacos!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 10 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/crispyBread.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Crispy Bread</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('10', 'Crispy Bread', 'Delicious crispy bread perfect for any occasion!')">Select</button>
-                            </div>
-                        </div>
-                        
-                    </c:when>
+              <form method="get" action="customerViewCategoryController">  
                   
-                    
-                    <c:when test="${showCategory == 'Cakes'}">
-                       
-                        <!-- Cake Items -->
-                        
-                        <!-- Item 1 -->
-                        <div class="card">
-                            <div class="card-content">
-                              
-                                <img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="item-img">
-                               
-                                <h1 style="margin-top: 78px;">Kunafa</h1>
-                           
-                            </div>
-                          
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('11', 'Kunafa', 'Delicious Middle Eastern dessert made with shredded pastry!')">Select</button>
-                            </div>
-                            
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/cherryCake.jpeg" class="item-img">
-                                <h1 style="margin-top: 78px;">Cherry Cake</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('12', 'Cherry Cake', 'Sweet and tangy cake with fresh cherries!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/lemonCake.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Lemon Cake</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('13', 'Lemon Cake', 'Zesty and refreshing lemon-flavored cake!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/strawberyCake.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Strawberry Cake</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('14', 'Strawberry Cake', 'Delicious cake with fresh strawberries!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 5 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/donut.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Donut</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('15', 'Donut', 'Sweet, fried dough pastry popular in many countries!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 6 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/criossant.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Croissant</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('16', 'Croissant', 'Buttery, flaky, viennoiserie pastry!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 7 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/baklava.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Baklava</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('17', 'Baklava', 'Rich, sweet dessert pastry made of layers of filo!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 8 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/appleCake.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Apple Cake</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('18', 'Apple Cake', 'Delicious cake with fresh apples and cinnamon!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 9 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/caramel.jpg" class="item-img">
-                                <h1 style="margin-top: 78px;">Caramel Candy</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('19', 'Caramel Candy', 'Sweet and chewy caramel treats!')">Select</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 10 -->
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="${pageContext.request.contextPath}/images/cakes/chocoloateCake.jpeg" class="item-img">
-                                <h1 style="margin-top: 78px;">Chocolate Cake</h1>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn btn-primary" onclick="openModal('20', 'Chocolate Cake', 'Rich and moist chocolate cake!')">Select</button>
-                            </div>
-                        </div>
-                        
-                        
-                    </c:when>
-                    
-                </c:choose>
+                <input type="hidden" name="category" value="Cakes">
                 
-            </div>
-            
-        </div>
+                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
+                        padding: 8px 20px;  font-size: 18px;  font-weight: bold; cursor: pointer;">
+                        
+                    Cakes
+                    
+                </button>
+                
+              </form>  
+      </div>
+    
+    
+    <div class="menu-items" style="background-color: #F2F3F1">
+       
+       
+       <div class="menu-grid" style="margin-top: 40px;">
+       
+    <c:choose>
+    
+       <c:when test="${showCategory == 'Breads' || empty showCategory }">
         
+       <!-- Item 1 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/baguette-bread-july222020-min-e1595406425983.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Baguette Bread</h1>
+				
+			</div>
+			
+			 <div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('1', 'Baguette Bread', 'Savour the taste of French sticks; made from flour, water, yeast and salt!')"> Select </button>
+			
+			</div>
+			
+		</div>
+		   
+       <!-- Item 2 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/brioche-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Brioche Bread</h1>
+				
+			</div>
+			
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('2', 'Brioche Bread', 'Unique French bread made with butter and eggs!')"> Select </button>
+			
+			</div>
+			
+			
+			
+		</div>
+       
+        <!-- Item 3 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Ciabatta Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('3', 'Ciabatta Bread', 'Perfect for paninis and sandwiches; consists of water, yeast, salt and flour!')"> Select </button>
+			
+			</div>
+			
+			
+			
+		</div>
+       
+       <!-- Item 4 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/multigrain-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Multigrain Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('4', 'Multigrain Bread', 'Specially for fitness freaks-contains oats, barley, flax, millet, and more!')"> Select </button>
+			
+			</div>
+			
+			
+		</div>
+       
+       <!-- Item 5 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/whole-wheat-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Whole Wheat</h1>
+				
+			</div>
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('5', 'Whole Wheat', 'Nutritious and has more fibre than regular bread!')"> Select </button>
+			
+			</div>
+			
+		</div>
+       
+        <!-- Item 6 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/lavash-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Lavash Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary"	onclick="openModal('6', 'Lavash Bread', 'Low in fat and made with flour, salt and water!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+        <!-- Item 7 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/matzo-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Thin Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('7', 'Thin Bread', 'Tasty jewish bread made from wheat, barley, rice, oats and spelt!')"> Select </button>
+			
+			</div>
+			
+		</div>
+		
+		 <!-- Item 8 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/naan-bread-july222020-min.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Naan Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+			
+				<button class="btn btn-primary" onclick="openModal('8', 'Naan Bread', 'Delicious naan that uses yogurt as its main ingredient!')"> Select</button>
+			
+			</div>
+			
+		</div>
+		
+		 <!-- Item 9 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/tortilla-bread-july222020-min-e1595407483238.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Tortilla</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('9', 'Tortilla', 'Soft, thin flatbreads utilised in various Mexican dishes, wraps and tacos!')"> Select</button>
+			
+			</div>
+			
+		</div>
+
+         <!-- Item 10 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/crispyBread.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Crispy Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('10', 'Crispy Bread', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>  
+		
+		 <!-- Item 11 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/kurdishBread.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Kurdish Bread</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('21', 'Kurdish Bread', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+		
+		 <!-- Item 12 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/Kulera.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Kulera</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('22', 'Kulera', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>       
+      
+      </c:when>
+      
+      
+      <c:when test="${showCategory == 'Cakes'}">
+      
+       <!-- Item 11 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Kunafa</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('11', 'Kunafa', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+			
+		</div>
+       
+       <!-- Item 12 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/cherryCake.jpeg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Cherry Cake</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('12', 'Cherry Cake', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+        <!-- Item 13 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/lemonCake.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Lemon Cake</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('13', 'Lemon Cake', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+       <!-- Item 14 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/strawberyCake.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Strawberry Cake</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('14', 'Strawberry', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+       <!-- Item 15 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/donut.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Donut</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('15', 'Donut', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+        <!-- Item 16 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/criossant.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Croissant</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('16', 'Croissant', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+       
+        <!-- Item 17 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/baklava.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Baklava</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('17', 'Baklava', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+		
+		 <!-- Item 18 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/appleCake.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Apple Cake</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('18', 'Apple Cake', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+		
+		 <!-- Item 19 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/caramel.jpg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Caramel Candy</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('19', 'Caramel Candy', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+
+
+         <!-- Item 20 -->
+		<div class="card">
+		
+			<div class="card-content">
+			
+				<img src="${pageContext.request.contextPath}/images/cakes/chocoloateCake.jpeg" class="item-img">
+				
+				<h1 style="margin-top: 78px;">Chocoloate Cake</h1>
+				
+			</div>
+			
+			<div class="card-action">
+				
+				<button class="btn btn-primary" onclick="openModal('20', 'Chocolate Cake', 'Crispy, golden bread often used for bruschetta, croutons, or as a crunchy base for savory toppings!')"> Select</button>
+			
+			</div>
+			
+		</div>
+              
+        
+      </c:when>
+      
+      </c:choose>
+       
+       </div>
+       
+       
     </div>
     
+    </div>
+    
+</main>
+
+    
+   
+   
+   
+   
+   
     </div> <!-- Closing brace of the main -->
-
-
-
 
 
 
@@ -1027,6 +1239,7 @@ body {
 <!-- All Modals (placed at the bottom of the page) -->
 
 <!-- Bread Modals -->
+
 <!-- Modal 1 -->
 <div class="modal fade" id="itemModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
