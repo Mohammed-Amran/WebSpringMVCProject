@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.example.DAO.DaoBreads;
 import com.example.DAO.DaoUsers;
+import com.example.model.breads;
 
 
 @Controller
@@ -60,6 +62,22 @@ public class LoginController {
 				
 		    	
 		    	destination = "view/customer";
+		    	
+		    	try {
+					
+		    		 DaoBreads breadsObj = new DaoBreads();
+		        		
+		        		List<breads> retrievedBread = breadsObj.getBreads();
+		    			
+		    			model.addAttribute("retrievedBreads" , retrievedBread);
+		    		
+				} catch (Exception e) {
+					
+					System.out.print(e);
+				}
+		    	
+               
+		    	
 		    	
 			}
 			else {
