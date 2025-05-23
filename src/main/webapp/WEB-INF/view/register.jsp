@@ -16,7 +16,9 @@
 
 </head>
 
-<body>
+<body style=" background: url('https://img.freepik.com/free-vector/hand-drawn-pattern-background_23-2150820517.jpg') no-repeat center center fixed;
+              background-size: cover;  
+            ">
 
 <!-- If the user couldn't be Inserted into DB -->
  <c:if test="${not empty insertingError}">

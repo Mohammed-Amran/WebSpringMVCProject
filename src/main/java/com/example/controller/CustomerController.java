@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.DAO.*;
 import com.example.model.breads;
+import com.example.model.cakes;
 
 @Controller
 public class CustomerController {
@@ -23,13 +24,31 @@ public class CustomerController {
 		
 		ModelAndView model = new ModelAndView("view/customer");
 		
-		DaoBreads breadsObj = new DaoBreads();
+		
+		
 		
         try {
+        	
+        	if("Breads".equals(showCategory)) {
+        		
+        		DaoBreads breadsObj = new DaoBreads();
+        		
+        		List<breads> retrievedBread = breadsObj.getBreads();
+    			
+    			model.addObject("retrievedBreads" , retrievedBread);
+    			
+        	}
+        	else if("Cakes".equals(showCategory)) {
+        		
+        		
+                DaoCakes cakesObj = new DaoCakes();
+        		
+        		List<cakes> retrievedDeserts = cakesObj.getDesert();
+    			
+    			model.addObject("retrievedDeserts" , retrievedDeserts);
+        		
+        	}
 			
-			List<breads> retrievedBread = breadsObj.getBreads();
-			
-			model.addObject("retrievedBreads" , retrievedBread);
 			
 			
 		} 
@@ -38,6 +57,9 @@ public class CustomerController {
 			model.addObject("ErrorMessage", e);
 		}
 		
+        
+        
+        
 		
 		model.addObject("showCategory",showCategory);		
 		

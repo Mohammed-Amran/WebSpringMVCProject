@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 * {
-    font-family: "Poppins", serif;
+    font-family: "Pacifico", cursive;
+    font-style: normal;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -146,7 +147,6 @@ body {
 /* Navigation Styles */
 .navtop {
     overflow: hidden;
-    background-color: #cb997e;
     padding: 10px;
 }
 
@@ -155,15 +155,11 @@ body {
     font-weight: 400;
     text-decoration: none;
     padding: 14px 16px;
-    color: black;
+   
     display: inline-block;
 }
 
-.navtop a:hover {
-    background-color: #7f5539;
-    color: white;
-    font-weight: 500;
-}
+
 
 
 /* Modal Styling */

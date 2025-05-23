@@ -45,7 +45,7 @@ if(session == null || session.getAttribute("fullName") == null){
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Delius&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 	
 	
 <link rel = "shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -67,11 +67,48 @@ if(session == null || session.getAttribute("fullName") == null){
 	
 /* ===== BASE STYLES ===== */
 body {
-  font-family: "Delius", cursive;
+  font-family: "Pacifico", cursive;
+  font-style: normal;
   margin: 0;
   
   color: #885539;
+  
+  
+ 
+  
+  
 }
+
+
+
+#heading-title:hover{
+
+text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+
+}
+
+
+
+
+#person:hover{
+
+background-color: #C9B194;
+
+}
+
+#cart:hover{
+
+background-color: #C9B194;
+
+}
+
+#box:hover{
+
+background-color: #C9B194;
+
+}
+
+
 
 /* ===== MENU CONTAINER ===== */
 .menu-container {
@@ -84,11 +121,17 @@ body {
 
 .menu-title {
   text-align: center;
-  color: #F2EAD5;
   font-size: 46px;
   font-weight: bold;
   margin-bottom: 30px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+   transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.menu-title:hover {
+
+  transform: translateY(-10px) scale(1.05);
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
 }
 
 /*=======================================================================*/
@@ -178,8 +221,8 @@ body {
 /* Card Styles */
 .card {
     flex: 1 1 calc(33.33% - 20px);
-    background-color: #F2F3F1;
-    border: 2px solid #A57A5A;
+    background-color: #C9B194;
+    border: 2px solid #A08963;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -190,15 +233,7 @@ body {
     padding: 10px;
 }
 
-.card:has(.card-action button:hover) {
-	
-    background-color: #A57A5A;
-}
 
-.card-content {
-    overflow: hidden; 
-    flex-grow: 1; 
-}
 
 
 
@@ -211,19 +246,23 @@ body {
 }
 
 .card-content h1 {
+    font-family: 'Pacifico', cursive; 
+    font-style: normal;
     font-size: 30px;
     margin: 10px 0;
     color: #4a403a;
 }
 
 .card-action {
+    font-family: 'Pacifico', cursive; 
+    font-style: normal;
     margin-top: auto; 
     text-align: center;
 }
 
 .card-action button {
-    background-color: #A57A5A;
-    color: #F2EAD5;
+    background-color: #A08963;
+    color: #DBDBDB;
     border: none;
     padding: 10px 20px;
     font-size: 22px;
@@ -234,9 +273,7 @@ body {
 .card-action button:hover {
     background-color: white;
     color: #A57A5A;
-    
-    
-    
+      
 }
 
 
@@ -254,9 +291,13 @@ body {
 
 <!--=========================-- Body of the WebPage --========================-->
 
-<body style="background: linear-gradient(rgba(255, 255, 255, 0.5)), 
+<body style="font-family: ''Pacifico', cursive;
+
+             font-style: normal;
+
+             background: linear-gradient(rgba(255, 255, 255, 0.5)), 
              
-             url('${pageContext.request.contextPath}/images/newImg3.JPG') no-repeat center center fixed;
+             url('https://hicaps.com.ph/wp-content/uploads/2022/12/bakery-products.jpg') no-repeat center center fixed;
   
              background-size: cover;
      
@@ -293,13 +334,13 @@ body {
 	<div class="topnav" id="myTopnav">
 
 
-		<div class="navtop" id="mynavTop">
+		<div class="navtop" id="mynavTop" style="background-color: #C9B194;">
 
-            <a href="" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user"></i> </a> 
+            <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
 			
-            <a href="" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
+            <a href="" id="cart" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
-            <a href="" style="float: right;" data-toggle="modal" data-target="#Inbox"> <i class="fas fa-box-open"></i> <span class="inbox-items"> ( 0 ) </span> </a>
+            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox"> <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( 0 ) </span> </a>
 
 		</div>
 
@@ -699,7 +740,7 @@ body {
 
 	<div id="heading">
 
-		<h1 id="heading-title" style="margin-top: 40px;">Suly Bakery</h1>
+		<h1 id="heading-title" style="font-family: 'Pacifico', cursive; font-style: normal; margin-top: 40px; color: #4a403a;"> Suly Bakery</h1>
 
 	</div>
 
@@ -709,11 +750,11 @@ body {
 	<div id="main" style="margin-top: 40px;">
 
    <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A;">
+<main class="menu-container" style="background-color: #C9B194;">
 
  <div >
  
-    <h2 class="menu-title" style="font-weight: bold; font-size: 46px; ">  Our Menu </h2>
+    <h2 class="menu-title" style="font-family: 'Pacifico', cursive; font-style: normal; font-weight: bold; font-size: 46px; color: #4a403a;">  Our Menu </h2>
     
     
     
@@ -725,8 +766,9 @@ body {
             
                 <input type="hidden" name="category" value="Breads">
                 
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px;  font-size: 18px; font-weight: bold; cursor: pointer;">
+                <button type="submit" class="category-btn" style="font-family: 'Pacifico', cursive; font-style: normal;
+                                                                  background-color: white; color: #4a403a; border: 2px solid white; 
+                                                                  padding: 8px 20px;  font-size: 18px; font-weight: bold; cursor: pointer;">
                         
                     Breads
                                     
@@ -738,8 +780,9 @@ body {
                   
                 <input type="hidden" name="category" value="Cakes">
                 
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
-                        padding: 8px 20px;  font-size: 18px;  font-weight: bold; cursor: pointer;">
+                <button type="submit" class="category-btn" style="font-family: 'Pacifico', cursive; font-style: normal;
+                                                                  background-color: white; color: #4a403a; border: 2px solid white; 
+                                                                  padding: 8px 20px;  font-size: 18px;  font-weight: bold; cursor: pointer;">
                         
                     Cakes
                     
@@ -786,6 +829,35 @@ body {
        </c:when>
        
         <c:when test="${showCategory == 'Cakes'}">
+       
+       
+        <c:forEach var="desert" items="${retrievedDeserts}">
+      
+            <div class="card" >
+       
+                <div class="card-content" >
+           
+                   <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+            
+                   <h1>${desert.itemName}</h1>
+               
+                </div>
+       
+                <div class="card-action" style="background-color: #A08963;">
+          
+                    <button class="btn btn-primary" onclick="openModal('${desert.itemPrice}', '${desert.itemName}', '${desert.itemDesc}')">
+                       Select
+                    </button>
+            
+                </div>
+        
+            </div>
+     
+     </c:forEach>
+       
+       
+       
+       
        
        </c:when>
        
@@ -1455,12 +1527,12 @@ body {
 
 
 	<!-- Footer -->
-	<div id="footer" style="margin-top: 40px;">
+	<div id="footer" style="margin-top: 40px; background-color: #C9B194;" >
 
 		<!-- Phone Numbers -->
 		<div class="footer__contact">
 		
-			<i>+964 750 141 8006</i> <br> <i>+964 771 152 8011</i>
+			<i style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">+964 750 141 8006</i> <br> <i style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">+964 771 152 8011</i>
 			
 		</div>
 
@@ -1470,13 +1542,13 @@ body {
 			<ul class="horizontal-list text-center social-icons">
 			
 				<!-- Instagram Icon -->
-				<li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
+				<li style="color: #4a403a;"> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
 				
 				<!-- YouTube Icon -->
-				<li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
+				<li style="color: #4a403a;"> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
 				
 				<!-- Facebook Icon -->
-				<li> <a href="#"> <i class="fab fa-facebook"></i> </a> </li>
+				<li style="color: #4a403a;"> <a href="#"> <i class="fab fa-facebook"></i> </a> </li>
 				
 			</ul>
 			
@@ -1485,7 +1557,7 @@ body {
 		<!-- Email -->
 		<div class="footer__mail">
 		
-			<i>SulyBakery@gmail.com</i>
+			<i style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">SulyBakery@gmail.com</i>
 			
 		</div>
 
