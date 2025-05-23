@@ -843,7 +843,7 @@ background-color: #C9B194;
                
                 </div>
        
-                <div class="card-action" style="background-color: #A08963;">
+                <div class="card-action" >
           
                     <button class="btn btn-primary" onclick="openModal('${desert.itemPrice}', '${desert.itemName}', '${desert.itemDesc}')">
                        Select
