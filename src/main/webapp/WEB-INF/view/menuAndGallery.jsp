@@ -27,9 +27,16 @@
 
  <style>
     
-  
 
+.card-content{
 
+background-color: #C9B194;
+}
+
+.card-content h1{
+
+color: #4a403a;
+}
 
 
 .menu-container {
@@ -104,15 +111,27 @@ transition: transform 0.2s ease;
 
 </head>
 
-<body>
+<body style="font-family: ''Pacifico', cursive;
+
+             font-style: normal;
+
+             background: linear-gradient(rgba(255, 255, 255, 0.5)), 
+             
+             url('https://hicaps.com.ph/wp-content/uploads/2022/12/bakery-products.jpg') no-repeat center center fixed;
+  
+             background-size: cover;
+     
+             margin: 0;
+  
+             height: 100vh; ">
 
 
 <!-- APP bar -->
-<nav class="appbar">
+<nav class="appbar" style="background-color: #C9B194;">
 
     <div class="appbar-brand">
     
-        <h1>Suly Bakery</h1> 
+        <h1 style="color: #4a403a;">Suly Bakery</h1> 
         
     </div>
     
@@ -122,7 +141,7 @@ transition: transform 0.2s ease;
      <!-- Controller for this button is in '' file. -->      
      <form method="get" action="getBackToViewPage">  
      
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
+        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a;; font-weight: bold;" >       
              Back         
         </button>
         
@@ -140,11 +159,11 @@ transition: transform 0.2s ease;
 
 
 <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A; margin-top: 50px;">
+<main class="menu-container" style="background-color: #C9B194; margin-top: 50px;">
 
  <div >
  
-    <h2 class="menu-title" style="font-weight: bold; font-size: 46px; ">  Our Menu </h2>
+    <h2 class="menu-title" style="font-weight: bold; font-size: 46px; color: #4a403a;">  Our Menu </h2>
     
     
     
@@ -156,7 +175,7 @@ transition: transform 0.2s ease;
             
                 <input type="hidden" name="category" value="Breads">
                 
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
+                <button type="submit" class="category-btn" style="background-color: #DBDBDB; color: #4a403a; border: 2px solid #C9B194; border-radius: 8px; 
                         padding: 8px 20px;  font-size: 18px; font-weight: bold; cursor: pointer;">
                         
                     Breads
@@ -169,7 +188,7 @@ transition: transform 0.2s ease;
                   
                 <input type="hidden" name="category" value="Cakes">
                 
-                <button type="submit" class="category-btn" style="background-color: #F5F5DD; color: #885539; border: 2px solid #F5F5DD; 
+                <button type="submit" class="category-btn" style="background-color: #DBDBDB; color: #4a403a;; border: 2px solid #C9B194; border-radius: 8px; 
                         padding: 8px 20px;  font-size: 18px;  font-weight: bold; cursor: pointer;">
                         
                     Cakes

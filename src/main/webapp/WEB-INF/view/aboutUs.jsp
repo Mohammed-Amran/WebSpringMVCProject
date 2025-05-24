@@ -96,7 +96,7 @@ transition: transform 0.2s ease;
      <!-- Controller for this button is in 'AboutUsController' file. -->       
      <form method="get" action="getBackToViewOnlyFromAboutUs">  
      
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
+        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;" >       
              Back         
         </button>
         

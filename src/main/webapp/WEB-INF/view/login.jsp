@@ -37,6 +37,75 @@
 }
 
 
+/*Animation and glowing of the login & cancel buttons - and the email & pass inputs.*/
+
+.login-btn {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1; /* maintain the width behavior inside .button-row */
+}
+
+.login-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px 5px white;
+}
+
+
+
+.cancel-btn {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1; 
+}
+
+.cancel-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px 5px white;
+}
+
+
+
+
+input[type="email"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="email"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px 5px white;
+}
+
+
+input[type="password"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="password"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px 5px white;
+}
 
 
 </style>
@@ -92,34 +161,34 @@
 
 	<div id="main">
 
-		<div id="heading">
+		<div id="heading" style="background-color: #C9B194;">
 		
-			<h1>Suli Bakery</h1>
+			<h1 style="color: #4a403a; font-weight: bold;">Suli Bakery</h1>
 			
-			<h4 style="font-weight: bold;" >Please log in to continue</h4>
+			<h4 style="font-weight: bold; color: #DBDBDB;" >Please log in to continue</h4>
 			
 		</div>
 
 
 
 
-		<div class="card">
+		<div class="card" style="background-color: #C9B194;">
 
 			<form name="loginForm" action="loginngIn" method="post">
 
 
-				<label for="email"> <b>Email</b> </label> 
-				<input type="email" id="email" name="email" placeholder="Enter your email" value="${email}" required> 
+				<label for="email" style="color: #4a403a;"> <b>Email</b> </label> 
+				<input type="email" id="email" name="email" style="background-color: #DBDBDB;" placeholder="Enter your email" value="${email}" required> 
 				
-				<label for="password"> <b>Password</b> </label>
-				<input type="password" id="password" name="password" placeholder="Enter your password" required>
+				<label for="password" style="color: #4a403a;"> <b>Password</b> </label>
+				<input type="password" id="password" name="password" style="background-color: #DBDBDB;" placeholder="Enter your password" required>
 
 
 				<div class="button-row">
                    
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="login-btn" style="background-color: #DBDBDB; color: #4a403a;">Login</button>
    
-                    <button type="button" class="btn secondary-btn" onclick="window.location.href='${pageContext.request.contextPath}/backToView'">Cancel</button>
+                    <button type="button" class="cancel-btn" style="background-color: #DBDBDB; color: #4a403a;" onclick="window.location.href='${pageContext.request.contextPath}/backToView'">Cancel</button>
             
                 </div>
 
@@ -130,7 +199,7 @@
 
 			<div class="signup-link">
 		
-               <p>Don't have an account? <a href="<%= request.getContextPath() %>/goToRegister">Sign Up</a></p>
+               <p style="color: #4a403a;">Don't have an account? <a href="<%= request.getContextPath() %>/goToRegister" style="color: #AF3E3E;">Sign Up</a></p>
 
 			</div>
 
