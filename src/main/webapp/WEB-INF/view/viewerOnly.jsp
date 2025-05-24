@@ -93,9 +93,15 @@ transition: transform 0.2s ease;
    transform: scale(1.08);
 }
     
+  
+.appbar{
+
+background-color: #C9B194;
+}  
     
 .appbar-brand h1{
 
+color: #4a403a;
 transition: transform 0.2s ease;
 }    
 
@@ -115,6 +121,10 @@ transition: transform 0.2s ease;
   transform: scale(1.08);
 } 
  
+h3{
+
+color: #4a403a;
+} 
  
 h3:hover {
   color: #FFFFFF;
@@ -122,6 +132,11 @@ h3:hover {
   transition: all 0.3s ease;
 }
 
+.paragraphs{
+
+color: #4a403a;
+font-weight: bold;
+}
 
 .paragraphs:hover {
 	
@@ -153,14 +168,16 @@ font-size: 21px;
 }
 
 
-#seeMoreBtn{
+#seeMoreBtn {
+  background-color: #C9B194; 
+  border: 1px solid #C9B194; 
+  padding: 0; 
+  margin: 0;
+  font-size: 30px;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  outline: none;
+}
 
-background-color: #A57A5A; 
- border: 1px solid #A57A5A;
-font-size: 30px;
-transition: transform 0.3s ease, text-shadow 0.3s ease;
-
-} 
 
 #seeMoreBtn:hover {
 	
@@ -174,7 +191,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 
 </head>
 
-<body>
+<body style="background-color: #DBDBDB;">
 
 
 <!-- APP bar -->
@@ -192,7 +209,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
      <!-- Controller for this button is in 'InitializationCOntroller' file. -->
      <form method="get" action="accessAboutUsPage">  
      
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold; margin-right: 20px;" >       
+        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold; margin-right: 20px;" >       
              About Us        
         </button>
         
@@ -201,7 +218,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
     
      <form method="get" action="accessRegisterPage">  
      
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
+        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;" >       
              Register         
         </button>
         
@@ -209,7 +226,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
              
      <form method="get" action="accessLoginPage">  
      
-        <button class="btn login-btn" type="submit" style="background-color: #F5F5DD; color: #885539; font-weight: bold;" >       
+        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;" >       
              Login         
         </button>
         
@@ -222,12 +239,12 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 
 
 <!-- Hero Section with Gallery -->
-<section class="hero">
+<section class="hero" style="background-color: #DBDBDB;">
 
   <div class="hero-content">
   
-        <h2>Fresh from the Bakery</h2>
-        <p>Savor the aroma of our oven-baked delights, made with love and the finest ingredients</p>
+        <h2 style="color: #4a403a;">Fresh from the Bakery</h2>
+        <p style="color: #4a403a;">Savor the aroma of our oven-baked delights, made with love and the finest ingredients</p>
 
         
     </div>
@@ -390,13 +407,13 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 
 
 
-<div class="menu-container" style="text-align: center; margin-top: 60px; margin-bottom: 30px; background-color: #A57A5A; color: #F2EAD5; padding: 40px; box-sizing: border-box;">
+<div class="menu-container" style="text-align: center; margin-top: 60px; margin-bottom: 30px; background-color: #C9B194;  color: #F2EAD5; padding: 40px; box-sizing: border-box;">
 
-   <button type="button" id="seeMoreBtn" class="cancel" onclick="window.location.href='${pageContext.request.contextPath}/gotToMenuAndGalleryPage'">
+   <button type="button" id="seeMoreBtn"  class="cancel" onclick="window.location.href='${pageContext.request.contextPath}/gotToMenuAndGalleryPage'">
 
-      <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px; background-color: #C9B194;">
     
-         <h3 style="margin: 0; color: #F2EAD5;">See more Breads and Cakes..</h3>
+         <h3 style="margin: 0; color: #4a403a; font-weight: bold;">See more Breads and Cakes..</h3>
      
          <img src="${pageContext.request.contextPath}/images/plus.png" width="32" height="32">
 
@@ -409,7 +426,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 
 
 <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A; color: #F2EAD5; padding: 40px; box-sizing: border-box; margin-top: 75px;">
+<main class="menu-container" style="background-color: #C9B194; color: #F2EAD5; padding: 40px; box-sizing: border-box; margin-top: 75px;">
 
    <div style="margin: 20px 0; width: 100%; max-width: 600px; text-align: left;">
    
@@ -468,12 +485,12 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 
 
 <!-- Footer -->
-	<div class="footer" style="margin-top: 40px;">
+	<div class="footer" style="background-color: #C9B194; margin-top: 40px;">
 
 		<!-- Phone Numbers -->
 		<div class="footer__contact">
 		
-			<i>+964 750 141 8006</i> <br> <i>+964 771 152 8011</i>
+			<i style="color: #4a403a; font-weight: bold;">+964 750 141 8006</i> <br> <i style="color: #4a403a; font-weight: bold;">+964 771 152 8011</i>
 			
 		</div>
 
@@ -483,13 +500,13 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 			<ul class="horizontal-list text-center social-icons">
 			
 				<!-- Instagram Icon -->
-				<li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
+				<li > <a href="#"> <i class="fab fa-instagram" style="color: #4a403a;"></i> </a> </li>
 				
 				<!-- YouTube Icon -->
-				<li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
+				<li > <a href="#"> <i class="fab fa-youtube" style="color: #4a403a;"></i> </a> </li>
 				
 				<!-- Facebook Icon -->
-				<li> <a href="#"> <i class="fab fa-facebook"></i> </a> </li>
+				<li > <a href="#"> <i class="fab fa-facebook" style="color: #4a403a;"></i> </a> </li>
 				
 			</ul>
 			
@@ -498,7 +515,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 		<!-- Email -->
 		<div class="footer__mail">
 		
-			<i>SulyBakery@gmail.com</i>
+			<i style="color: #4a403a; font-weight: bold;">SulyBakery@gmail.com</i>
 			
 		</div>
 

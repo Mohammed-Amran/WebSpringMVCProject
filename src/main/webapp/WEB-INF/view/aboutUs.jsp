@@ -21,6 +21,11 @@
 
 <style type="text/css">
 
+.paragraphs{
+
+color: #4a403a;
+}
+
 .paragraphs:hover {
 	
   color: #FFFFFF;
@@ -28,6 +33,17 @@
   transition: all 0.3s ease;
 }
 
+h3{
+ color: #4a403a;
+}
+
+h3:hover{
+
+ color: #FFFFFF;
+  text-shadow: 0 0 8px #FFFFFF;
+  transition: all 0.3s ease;
+
+}
 
 .appbar-brand h1{
 
@@ -62,15 +78,15 @@ transition: transform 0.2s ease;
 
 </head>
 
-<body>
+<body style="background-color: #DBDBDB;">
 
 
 <!-- APP bar -->
-<nav class="appbar">
+<nav class="appbar" style="background-color: #C9B194;">
 
     <div class="appbar-brand">
     
-        <h1>Suly Bakery</h1> 
+        <h1 style="color: #4a403a">Suly Bakery</h1> 
         
     </div>
     
@@ -95,7 +111,7 @@ transition: transform 0.2s ease;
 
 
 <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #A57A5A; color: #F2EAD5; padding: 40px; box-sizing: border-box; margin-top: 75px;">
+<main class="menu-container" style="background-color: #C9B194; color: #F2EAD5; padding: 40px; box-sizing: border-box; margin-top: 75px;">
 
    <div style="margin: 20px 0; width: 100%; max-width: 600px; text-align: left;">
    
