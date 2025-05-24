@@ -261,7 +261,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
     
     <div class="carousel-item">
     
-      <img src="https://media.istockphoto.com/id/1349253844/photo/baklava-varieties-on-dessert-store-turkish-baklava-on-tray.jpg?s=612x612&w=0&k=20&c=zgIkmQNiRU_cYXRAwH7kl2FwhECrMdSKOV4RNZRo92M=" class="d-block" alt="Pastry">
+      <img src="https://t3.ftcdn.net/jpg/02/15/97/76/360_F_215977651_ckAFK1elBF7SRMBbTe0RS9YTOVrxtsOL.jpg" class="d-block" alt="Pastry">
       
     </div>
     

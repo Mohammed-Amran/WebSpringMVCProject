@@ -70,16 +70,8 @@ body {
   font-family: "Pacifico", cursive;
   font-style: normal;
   margin: 0;
-  
   color: #885539;
-  
-  
- 
-  
-  
 }
-
-
 
 #heading-title:hover{
 
@@ -87,26 +79,38 @@ text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
 
 }
 
+#person{
 
-
+ color: #4a403a;
+}
 
 #person:hover{
 
-background-color: #C9B194;
+color: #DBDBDB;
+}
 
+
+#cart{
+
+color: #4a403a;
 }
 
 #cart:hover{
 
-background-color: #C9B194;
+color: #DBDBDB;
+}
 
+
+#box{
+
+color: #4a403a;
 }
 
 #box:hover{
 
-background-color: #C9B194;
-
+color: #DBDBDB;
 }
+
 
 
 
