@@ -119,6 +119,7 @@ transition: transform 0.2s ease;
 .hero-content h2:hover {
 	
   transform: scale(1.08);
+
 } 
  
 h3{

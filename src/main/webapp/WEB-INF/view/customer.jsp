@@ -361,13 +361,13 @@ color: #DBDBDB;
 	<!-- Modal(pop-up window) for the User Info -->
 	<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
 
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" >
 
 			<div class="modal-content">
 
-				<div class="modal-header">
+				<div class="modal-header" style="background: #C9B194;">
 
-					<h5 class="modal-title" id="userModalLabel">User Information</h5>
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a;">User Information</h5>
 
 				</div>
 
@@ -379,18 +379,18 @@ color: #DBDBDB;
 					<c:when test="${not empty sessionScope.fullName && not empty sessionScope.email && not empty sessionScope.phoneNo }">
 					
 					<p>
-						<strong>Name:</strong>
-					    <span style="font-weight: 600; color: #000;"> <c:out value="${sessionScope.fullName}" /> </span>
+						<strong style="color: #4a403a;">Name:</strong>
+					    <span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.fullName}" /> </span>
 					</p>
 					
 					<p>
-						<strong>Email:</strong>
-						<span style="font-weight: 600; color: #000;"> <c:out value="${sessionScope.email}" /> </span>
+						<strong style="color: #4a403a;">Email:</strong>
+						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.email}" /> </span>
 					</p>
 					
 					<p>
-						<strong>Phone:</strong>
-						<span style="font-weight: 600; color: #000;"> <c:out value="${sessionScope.phoneNo}" /> </span>
+						<strong style="color: #4a403a;">Phone:</strong>
+						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.phoneNo}" /> </span>
 					</p>
 					
 					</c:when>
@@ -803,72 +803,79 @@ color: #DBDBDB;
        
         <c:choose>
     
+          
            <c:when test="${showCategory == 'Breads' || empty showCategory }">
        
-  
-       <c:forEach var="bread" items="${retrievedBreads}">
+               <c:forEach var="bread" items="${retrievedBreads}">
       
-            <div class="card">
+                  <div class="card">
        
-                <div class="card-content">
+                       <div class="card-content">
            
-                   <img src="${bread.imgURL}" class="item-img" />
+                            <img src="${bread.imgURL}" class="item-img" />
             
-                   <h1>${bread.itemName}</h1>
+                            <h1>${bread.itemName}</h1>
                
-                </div>
+                       </div>
        
-                <div class="card-action">
+       
+                       <div class="card-action">
           
-                    <button class="btn btn-primary" onclick="openModal('${bread.itemPrice}', '${bread.itemName}', '${bread.itemDesc}')">
-                       Select
-                    </button>
+                           <button class="btn btn-primary" onclick="openModal('${bread.id}','${bread.itemPrice}', '${bread.itemName}', '${bread.itemDesc}')">
+                              
+                              Select
+                   
+                           </button>
             
-                </div>
+                       </div>
         
-            </div>
+                   </div>
      
-     </c:forEach>
+                 </c:forEach>
   
-       </c:when>
-       
-        <c:when test="${showCategory == 'Cakes'}">
+          </c:when>
        
        
-        <c:forEach var="desert" items="${retrievedDeserts}">
-      
-            <div class="card" >
-       
-                <div class="card-content" >
-           
-                   <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
-            
-                   <h1>${desert.itemName}</h1>
-               
-                </div>
-       
-                <div class="card-action" >
           
-                    <button class="btn btn-primary" onclick="openModal('${desert.itemPrice}', '${desert.itemName}', '${desert.itemDesc}')">
-                       Select
-                    </button>
+          <c:when test="${showCategory == 'Cakes'}">
+       
+       
+                 <c:forEach var="desert" items="${retrievedDeserts}">
+      
+                      <div class="card" >
+       
+       
+                            <div class="card-content" >
+           
+                                <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
             
-                </div>
+                                <h1>${desert.itemName}</h1>
+               
+                            </div>
+       
+       
+                            <div class="card-action" >
+          
+                                 <button class="btn btn-primary" onclick="openModal('${desert.id}','${desert.itemPrice}', '${desert.itemName}', '${desert.itemDesc}')">
+                      
+                                        Select
+                    
+                                 </button>
+            
+                            </div>
         
-            </div>
+        
+                      </div>
      
-     </c:forEach>
+                 </c:forEach>
        
        
+         </c:when>
        
        
+      </c:choose>
        
-       </c:when>
-       
-       
-       </c:choose>
-       
-       </div>
+   </div>
        
        
     </div>

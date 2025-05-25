@@ -49,7 +49,7 @@ public class DaoCakes {
 
        ArrayList<cakes> itemsList = new ArrayList<>();
 
-       String sql = "SELECT itemName, itemPrice, imgURL, itemDesc FROM deserts";
+       String sql = "SELECT id,itemName, itemPrice, imgURL, itemDesc FROM deserts";
 
        try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -58,6 +58,7 @@ public class DaoCakes {
            while (rs.next()) {
                cakes item = new cakes();
 
+               item.setId(rs.getInt("id"));
                item.setItemName(rs.getString("itemName"));
                item.setItemPrice(rs.getDouble("itemPrice"));
                item.setImgURL(rs.getString("imgURL"));

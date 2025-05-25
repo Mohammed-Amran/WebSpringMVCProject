@@ -47,7 +47,7 @@ public class DaoBreads {
 
 	        ArrayList<breads> itemsList = new ArrayList<>();
 
-	        String sql = "SELECT itemName, itemPrice, imgURL, itemDesc FROM breads";
+	        String sql = "SELECT id, itemName, itemPrice, imgURL, itemDesc FROM breads";
 
 	        try (Connection conn = getConnection();
 	             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -56,6 +56,7 @@ public class DaoBreads {
 	            while (rs.next()) {
 	                breads item = new breads();
 
+	                item.setId(rs.getInt("id"));
 	                item.setItemName(rs.getString("itemName"));
 	                item.setItemPrice(rs.getDouble("itemPrice"));
 	                item.setImgURL(rs.getString("imgURL"));
