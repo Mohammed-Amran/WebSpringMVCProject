@@ -176,16 +176,31 @@ color: #DBDBDB;
 
 .modal-header {
   margin-bottom: 20px;
+  background-color: #C9B194;
+  
 }
+
+
+
+
 
 .modal-title {
   font-size: 24px;
-  color: #885539;
+  color: #4a403a;
   margin: 0;
+  
+
+  
+  
 }
 
 .modal-body {
   margin-bottom: 20px;
+}
+
+.modal-body p{
+
+font-size:19px; 
 }
 
 
@@ -195,6 +210,9 @@ color: #DBDBDB;
   justify-content: flex-end;
   gap: 10px;
 }
+
+
+
 
 
 /*=======================================================================*/
@@ -280,7 +298,12 @@ color: #DBDBDB;
       
 }
 
-
+#itemDropdown {
+    width: 250px;          
+    height: 45px;        
+    font-size: 16px;    
+    padding: 8px 12px;   
+}
 
 
 /*=======================================================================*/
@@ -367,7 +390,7 @@ color: #DBDBDB;
 
 				<div class="modal-header" style="background: #C9B194;">
 
-					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a;">User Information</h5>
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">User Information</h5>
 
 				</div>
 
@@ -379,17 +402,17 @@ color: #DBDBDB;
 					<c:when test="${not empty sessionScope.fullName && not empty sessionScope.email && not empty sessionScope.phoneNo }">
 					
 					<p>
-						<strong style="color: #4a403a;">Name:</strong>
+						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Name:</strong>
 					    <span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.fullName}" /> </span>
 					</p>
 					
 					<p>
-						<strong style="color: #4a403a;">Email:</strong>
+						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Email:</strong>
 						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.email}" /> </span>
 					</p>
 					
 					<p>
-						<strong style="color: #4a403a;">Phone:</strong>
+						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Phone:</strong>
 						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.phoneNo}" /> </span>
 					</p>
 					
@@ -508,13 +531,13 @@ color: #DBDBDB;
 <!-- Cart Modal -->
 	<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-hidden="true">
 		
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog modal-lg" role="document" >
 			
 			<div class="modal-content">
 				
-				<div class="modal-header">
+				<div class="modal-header" style="background-color: #C9B194;">
 					
-					<h3 class="modal-title" style="font-weight: bold;">Your Cart</h3>
+					<h3 class="modal-title" style="font-weight: bold; color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Cart</h3>
 				
 				</div>
 				
@@ -530,13 +553,13 @@ color: #DBDBDB;
 					  <c:when test="${not empty sessionScope.retrievedCartItems}">
 					
 					
-					       <div class="cart-item-header">
+					       <div class="cart-item-header" style="background-color: #C9B194;">
                              
-                              <span class="item-name"> <strong> Item Name </strong> </span>
+                              <span class="item-name"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Item Name </strong> </span>
  
-                              <span class="item-quantity"> <strong> Quantity </strong> </span>
+                              <span class="item-quantity"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Quantity </strong> </span>
  
-                              <span class="item-price"> <strong> Price </strong> </span>
+                              <span class="item-price"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Price </strong> </span>
                            
                            </div>
 					   
@@ -549,11 +572,11 @@ color: #DBDBDB;
 					          
 					           <div class="cart-item-row">
                                   
-                                   <span class="item-name"> <strong> <c:out value="${x.itemName}" /> </strong> </span>
+                                   <span class="item-name"> <strong style="color: #A08963; font-size: 22px; font-family: 'Pacifico', cursive; font-style: normal;"> <c:out value="${x.itemName}" /> </strong> </span>
   
-                                   <span class="item-quantity"> <c:out value="${x.selectedQuantity}" /> </span>
+                                   <span class="item-quantity" style="color: #4a403a; font-size: 22px;"> <c:out  value="${x.selectedQuantity}" /> </span>
  
-                                   <span class="item-price"> <c:out value="${x.selectedQuantity * 125}" /> IQD </span>
+                                   <span class="item-price" style="color: #D5451B; font-size: 22px;"> <c:out value="${x.selectedQuantity * 125}" /> IQD </span>
               
                                </div>
 
@@ -589,9 +612,9 @@ color: #DBDBDB;
                        
                        <div class="total-line">
                          
-                         <strong>Total:</strong>
+                         <strong style="color: #4a403a; font-size: 24px; font-family: 'Pacifico', cursive; font-style: normal;">Total:</strong>
         
-                           <span id="totalPrice">
+                           <span id="totalPrice" style="color: #D5451B; font-size: 22px;">
                                  
                                   <c:if test="${not empty sessionScope.retrievedCartItems}">
                 
@@ -905,7 +928,7 @@ color: #DBDBDB;
         
             <div class="modal-header">
             
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
                 
             </div>
             
@@ -949,7 +972,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm2" autocomplete="off">
                 <div class="modal-body">
@@ -976,7 +999,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm3" autocomplete="off">
                 <div class="modal-body">
@@ -1003,7 +1026,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm4" autocomplete="off">
                 <div class="modal-body">
@@ -1030,7 +1053,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm5" autocomplete="off">
                 <div class="modal-body">
@@ -1057,7 +1080,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm6" autocomplete="off">
                 <div class="modal-body">
@@ -1084,7 +1107,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm7" autocomplete="off">
                 <div class="modal-body">
@@ -1111,7 +1134,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm8" autocomplete="off">
                 <div class="modal-body">
@@ -1138,7 +1161,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm9" autocomplete="off">
                 <div class="modal-body">
@@ -1165,7 +1188,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm10" autocomplete="off">
                 <div class="modal-body">
@@ -1192,7 +1215,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm21" autocomplete="off">
                 <div class="modal-body">
@@ -1219,7 +1242,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm22" autocomplete="off">
                 <div class="modal-body">
@@ -1250,7 +1273,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm11" autocomplete="off">
                 <div class="modal-body">
@@ -1277,7 +1300,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm12" autocomplete="off">
                 <div class="modal-body">
@@ -1304,7 +1327,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm13" autocomplete="off">
                 <div class="modal-body">
@@ -1331,7 +1354,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm14" autocomplete="off">
                 <div class="modal-body">
@@ -1358,7 +1381,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm15" autocomplete="off">
                 <div class="modal-body">
@@ -1385,7 +1408,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm16" autocomplete="off">
                 <div class="modal-body">
@@ -1412,7 +1435,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm17" autocomplete="off">
                 <div class="modal-body">
@@ -1439,7 +1462,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm18" autocomplete="off">
                 <div class="modal-body">
@@ -1466,7 +1489,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
                 <div class="modal-body">
@@ -1493,7 +1516,7 @@ color: #DBDBDB;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm20" autocomplete="off">
                 <div class="modal-body">
