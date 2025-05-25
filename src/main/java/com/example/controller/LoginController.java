@@ -70,35 +70,59 @@ public class LoginController {
 		    	
 		    	try {
 		    		
-		    		//1st: Retrieving the id of the user:
+		    		
+		    	//1st: Retrieving the id of the user:
+		    		
+		    		 //1-I: getting the id based on the users email via the 'retrieveId()' method.
 		    		 String strId =  daoObj.retrieveId(email);
 		   		     
-		    		 //parsing the Stringed id into INT.
+		    		 //1-II: parsing the string id into Integer.
 		    		 int intId = Integer.parseInt(strId);
-		    		
-		    		
 		    		 
-		    		//2nd: retrieving the items number in the 'cartItems' table.	    		
+		    		 
+		   //================================================================================================
+		    		
+		    		 	    		 
+		    	//2nd: retrieving the items-number in the 'cartItems' table.	
+		    		
+		    		//2-I: Instantiating an object from the 'daoCart' class.
 		    		daoCart daoCartObj = new daoCart();
 		    		
+		    		//2-II: getting the items-numbers via the 'getCartItemCount()' method.
 					int itemsCount = daoCartObj.getCartItemCount(intId);
 					
+					//2-III: saving the itemsCount into session Scope.
 					session.setAttribute("cartCounter", itemsCount); 
 		    		
-		    		
-					//3rd: retrieving the items in the cart:
+		    	
+			//================================================================================================		
+					
+					
+					
+			  //3rd: retrieving the items in the cart:
+					
+					//3-I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
 					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(intId);
 			    	
+					//3-II: saving the retrieved items into session scope.
 			    	session.setAttribute("retrievedCartItems", retrievedItems);
 					
 		    		
-		    		
-					//4th: retrieving the 
+			//================================================================================================
+			    	
+			    	
+				//4th: retrieving the breads items from the 'breads' tables.
+			    	
+			    	 //4-I: Instantiating an object from the 'DaoBreads' class.
 		    		 DaoBreads breadsObj = new DaoBreads();
-		        		
-		        	List<breads> retrievedBread = breadsObj.getBreads();
+		        	
+		    		 //4-II: getting the breads items via the 'getBreads()' method.
+		        	 List<breads> retrievedBread = breadsObj.getBreads();
 		    			
-		    		model.addAttribute("retrievedBreads" , retrievedBread);
+		        	 //4-III: saving the retrieved breads into the session scope:
+		        	 session.setAttribute("retrievedBreads", retrievedBread);
+		        	 
+		    		
 		    		
 				} catch (Exception e) {
 					

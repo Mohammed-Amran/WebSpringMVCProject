@@ -3,6 +3,9 @@ package com.example.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +21,15 @@ public class CustomerController {
 
 	
 	@GetMapping("/customerViewCategoryController")
-	public ModelAndView customerCategoryController(@RequestParam Map<String, String> req) {
+	public ModelAndView customerCategoryController(@RequestParam Map<String, String> req, HttpServletRequest request) {
 		
 		String showCategory = req.get("category");
 		
 		ModelAndView model = new ModelAndView("view/customer");
 		
 		
-		
+		//Initializing a Session object:
+    	HttpSession session = request.getSession(false);
 		
         try {
         	
@@ -34,8 +38,9 @@ public class CustomerController {
         		DaoBreads breadsObj = new DaoBreads();
         		
         		List<breads> retrievedBread = breadsObj.getBreads();
+        		
+        		session.setAttribute("retrievedBreads", retrievedBread);
     			
-    			model.addObject("retrievedBreads" , retrievedBread);
     			
         	}
         	else if("Cakes".equals(showCategory)) {
@@ -44,9 +49,10 @@ public class CustomerController {
                 DaoCakes cakesObj = new DaoCakes();
         		
         		List<cakes> retrievedDeserts = cakesObj.getDesert();
-    			
-    			model.addObject("retrievedDeserts" , retrievedDeserts);
         		
+        		session.setAttribute("retrievedDeserts" , retrievedDeserts);
+    			
+    				
         	}
 			
 			
