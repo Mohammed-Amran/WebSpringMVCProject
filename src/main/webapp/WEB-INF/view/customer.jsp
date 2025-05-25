@@ -90,12 +90,12 @@ color: #DBDBDB;
 }
 
 
-#cart{
+#cartBasket{
 
 color: #4a403a;
 }
 
-#cart:hover{
+#cartBasket:hover{
 
 color: #DBDBDB;
 }
@@ -342,7 +342,7 @@ color: #DBDBDB;
 
             <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
 			
-            <a href="" id="cart" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
+            <a href="" id="cartBasket" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
             <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox"> <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( 0 ) </span> </a>
 
@@ -821,7 +821,7 @@ color: #DBDBDB;
        
                        <div class="card-action">
           
-                           <button class="btn btn-primary" onclick="openModal('${bread.id}','${bread.itemPrice}', '${bread.itemName}', '${bread.itemDesc}')">
+                           <button class="btn btn-primary" onclick="openModal('${bread.id}', '${bread.itemName}', '${bread.itemDesc}')">
                               
                               Select
                    
@@ -856,7 +856,7 @@ color: #DBDBDB;
        
                             <div class="card-action" >
           
-                                 <button class="btn btn-primary" onclick="openModal('${desert.id}','${desert.itemPrice}', '${desert.itemName}', '${desert.itemDesc}')">
+                                 <button class="btn btn-primary" onclick="openModal('${desert.id}', '${desert.itemName}', '${desert.itemDesc}')">
                       
                                         Select
                     
@@ -898,29 +898,50 @@ color: #DBDBDB;
 
 <!-- Modal 1 -->
 <div class="modal fade" id="itemModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    
     <div class="modal-dialog" role="document">
+       
         <div class="modal-content">
+        
             <div class="modal-header">
+            
                 <h5 class="modal-title" id="itemModalLabel"></h5>
+                
             </div>
+            
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm1" autocomplete="off">
+                
                 <div class="modal-body">
+                
                     <p id="itemDescription"></p>
+                    
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        
                         <option value="2">2 pieces ~ 250iqd</option>
                         <option value="4">4 pieces ~ 500iqd</option>
                         <option value="8">8 pieces ~ 1000iqd</option>
                         <option value="12">12 pieces ~ 1500iqd</option>
+                        
                     </select>
+                    
                 </div>
+                
                 <div class="modal-footer">
+                
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
                     <input type="hidden" name="itemName" value="Baguette Bread">
+                    
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    
                 </div>
+                
             </form>
+            
         </div>
+        
     </div>
+    
 </div>
 
 <!-- Modal 2 -->

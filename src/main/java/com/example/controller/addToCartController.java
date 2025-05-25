@@ -64,7 +64,11 @@ public class addToCartController {
 			
 			//1st:
 			//retrieving the items number in the 'cartItems' table.
-			int itemsCount = daoAddToCartObj.getCartItemCount(intId);
+			
+			//I.: Instantiating an object from the daoCart class.
+			daoCart daoCartObj = new daoCart();
+			
+			int itemsCount = daoCartObj.getCartItemCount(intId);
 			
 			session.setAttribute("cartCounter", itemsCount); 
 			
@@ -72,8 +76,7 @@ public class addToCartController {
 			//2nd:
 			//getting the Items from the cartItems table.
 			
-			//I.: Instantiating an object from the daoCart class.
-			daoCart daoCartObj = new daoCart();
+			
 			
 			//II.: Accessing the 'getCartItemsByUserId' method - to retrieve the items in the cart for that specific user.
 		    try {

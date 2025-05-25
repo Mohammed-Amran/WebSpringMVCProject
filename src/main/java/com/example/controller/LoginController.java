@@ -15,18 +15,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.DAO.DaoBreads;
 import com.example.DAO.DaoUsers;
+import com.example.DAO.daoCart;
 import com.example.model.breads;
+import com.example.model.cartItems;
 
 
 @Controller
 public class LoginController {
 
+	
+	//This method only forwards the user to the login page.
 	@RequestMapping("/accessLoginPage")
 	protected String accessLoginPage() {
 		
 		return "view/login";
 		
 	} //closing brace of the 'accessLoginPage()' method.
+	
 	
 	
 	@PostMapping("/loginngIn")
@@ -64,12 +69,36 @@ public class LoginController {
 		    	destination = "view/customer";
 		    	
 		    	try {
+		    		
+		    		//1st: Retrieving the id of the user:
+		    		 String strId =  daoObj.retrieveId(email);
+		   		     
+		    		 //parsing the Stringed id into INT.
+		    		 int intId = Integer.parseInt(strId);
+		    		
+		    		
+		    		 
+		    		//2nd: retrieving the items number in the 'cartItems' table.	    		
+		    		daoCart daoCartObj = new daoCart();
+		    		
+					int itemsCount = daoCartObj.getCartItemCount(intId);
 					
+					session.setAttribute("cartCounter", itemsCount); 
+		    		
+		    		
+					//3rd: retrieving the items in the cart:
+					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(intId);
+			    	
+			    	session.setAttribute("retrievedCartItems", retrievedItems);
+					
+		    		
+		    		
+					//4th: retrieving the 
 		    		 DaoBreads breadsObj = new DaoBreads();
 		        		
-		        		List<breads> retrievedBread = breadsObj.getBreads();
+		        	List<breads> retrievedBread = breadsObj.getBreads();
 		    			
-		    			model.addAttribute("retrievedBreads" , retrievedBread);
+		    		model.addAttribute("retrievedBreads" , retrievedBread);
 		    		
 				} catch (Exception e) {
 					
@@ -100,19 +129,25 @@ public class LoginController {
 	
 	
 	@GetMapping("/login")
-	public String showLoginPage(@RequestParam(value = "logOutMessage", required = false) String logOutMessage,
-	                            Model model) {
-	    if (logOutMessage != null) {
-	        model.addAttribute("logOutMessage", logOutMessage);
+	public String showLoginPage(@RequestParam(value = "logOutMessage", required = false) String logOutMessage, Model model) {
+	    
+		
+		if (logOutMessage != null) {
+	       
+			model.addAttribute("logOutMessage", logOutMessage);
 	    }
+		
 	    return "view/login"; 
-	}
+	    
+	}//closing brace of the 'showLoginPage()' method.
 
+	
 	
 	@GetMapping("/backToView")
 	protected String backToView() {
 		
 		return "view/viewerOnly";
+		
 	}//closing brace of the 'backToView()' method.
 	
 	
