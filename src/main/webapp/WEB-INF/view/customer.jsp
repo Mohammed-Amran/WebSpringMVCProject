@@ -181,17 +181,11 @@ color: #DBDBDB;
 }
 
 
-
-
-
 .modal-title {
   font-size: 24px;
   color: #4a403a;
   margin: 0;
-  
-
-  
-  
+   
 }
 
 .modal-body {
@@ -307,6 +301,81 @@ font-size:19px;
 
 
 /*=======================================================================*/
+
+
+/* CSS code of the cart +,-,trash buttons*/
+
+.cart-item-header, .cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.item-name, .item-quantity, .item-price, .item-actions {
+    flex: 1;
+    text-align: center;
+}
+
+.item-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-quantity, .btn-delete {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Add transition for smooth animation */
+    transition: all 0.2s ease-in-out;
+    
+    /* Add a subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-quantity {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn-delete {
+    font-size: 14px;
+}
+
+/* Hover effects */
+.btn-increase:hover {
+    background-color: #218838 !important; /* Slightly darker green */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-decrease:hover {
+    background-color: #e0a800 !important; /* Slightly darker yellow */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-delete:hover {
+    background-color: #c82333 !important; /* Slightly darker red */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Active/pressed effect */
+.btn-increase:active, 
+.btn-decrease:active, 
+.btn-delete:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
 
 
 </style>
@@ -540,112 +609,116 @@ font-size:19px;
 					<h3 class="modal-title" style="font-weight: bold; color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Cart</h3>
 				
 				</div>
-				
+
+
 				<div class="modal-body">
+				
 					
-					
-					<!-- Here's the region where the list of the selected items are shown -->
 					<div class="cart-body">
 					
-					
-					<c:choose>
-					
-					  <c:when test="${not empty sessionScope.retrievedCartItems}">
-					
-					
-					       <div class="cart-item-header" style="background-color: #C9B194;">
-                             
-                              <span class="item-name"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Item Name </strong> </span>
- 
-                              <span class="item-quantity"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Quantity </strong> </span>
- 
-                              <span class="item-price"> <strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;"> Price </strong> </span>
-                           
-                           </div>
-					   
-					
-					
-					       <!-- Looping through the items -->
-					       <c:forEach var="x" items="${sessionScope.retrievedCartItems}">
-					       
-					          <div class="cart-item">
-					          
-					           <div class="cart-item-row">
-                                  
-                                   <span class="item-name"> <strong style="color: #A08963; font-size: 22px; font-family: 'Pacifico', cursive; font-style: normal;"> <c:out value="${x.itemName}" /> </strong> </span>
-  
-                                   <span class="item-quantity" style="color: #4a403a; font-size: 22px;"> <c:out  value="${x.selectedQuantity}" /> </span>
- 
-                                   <span class="item-price" style="color: #D5451B; font-size: 22px;"> <c:out value="${x.selectedQuantity * 125}" /> IQD </span>
-              
-                               </div>
+						<c:choose>
+						
+							<c:when test="${not empty sessionScope.retrievedCartItems}">
+							
+								<div class="cart-item-header" style="background-color: #C9B194;">
+								
+									<span class="item-name"><strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Item Name</strong></span>
+									 
+									<span class="item-quantity"><strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Quantity</strong></span>
+									
+									<span class="item-price"><strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Price</strong></span>
+									
+									<span class="item-actions"><strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Actions</strong></span>
+								
+								</div>
 
-					          
-					          </div>
-					       
-					       </c:forEach>
-					
-					  </c:when>
-					
-					
-					  <c:otherwise>
-                             
-                             <div class="empty-cart">
-                   
-                                <i class="fas fa-shopping-cart"></i>
-                                <p>Your cart is empty</p>
+								<!-- Looping through the items -->
+								<c:forEach var="x" items="${sessionScope.retrievedCartItems}">
+									
+									<div class="cart-item">
+										
+										<div class="cart-item-row">
+											
+											<span class="item-name"><strong style="color: #A08963; font-size: 22px; font-family: 'Pacifico', cursive; font-style: normal;"><c:out value="${x.itemName}" /></strong></span>
+														 
+											<span class="item-quantity" style="color: #4a403a; font-size: 22px;"><c:out value="${x.selectedQuantity}" /></span>
+											
+											<span class="item-price" style="color: #D5451B; font-size: 22px;"><c:out value="${x.selectedQuantity * 125}" /> IQD</span> 
+											
+											<span class="item-actions">
+												
+											    <button class="btn btn-quantity btn-increase" style="background-color: #28a745; color: white;">+</button>
+												
+											    <button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;">-</button>
+												
+											    <button class="btn btn-delete" style="background-color: #dc3545; color: white;"> <i class="fas fa-trash"></i> </button>
+											
+											</span>
+											
+										</div>
+										
+									</div>
+									
+								</c:forEach>
+								
+							</c:when>
+
+							<c:otherwise>
+							
+								<div class="empty-cart">
+								
+									<i class="fas fa-shopping-cart"></i>
+									
+									<p>Your cart is empty</p>
+									
+								</div>
+								
+							</c:otherwise>
+							
+						</c:choose>
+						
+					</div>  <!-- Closing tag of the cart body -->
+
+
+					<!-- Total Price -->
+					<div class="total-price-container">
+						
+						<div class="total-line">
+							
+							<strong style="color: #4a403a; font-size: 24px; font-family: 'Pacifico', cursive; font-style: normal;">Total:</strong>
+							
+							<span id="totalPrice" style="color: #D5451B; font-size: 22px;">
+								
+								<c:if test="${not empty sessionScope.retrievedCartItems}">
+									
+									<c:set var="total" value="0" />
+									
+									<c:forEach var="x" items="${sessionScope.retrievedCartItems}">
+										
+										<c:set var="total" value="${total + (x.selectedQuantity * 125)}" />
+									
+									</c:forEach>
+                           
+                           
+                                       ${total}
                
-                             </div>
-                     
-                     </c:otherwise>
-					
-					
-					</c:choose>
-					
-					
+                               </c:if>
+                
+                              
+                               <c:if test="${empty sessionScope.retrievedCartItems}">0</c:if>
+								
+								   IQD
+							</span>
+							
+						</div>
+						
 					</div>
 					
 					
 					
-					<%-- Total Price --%>
-                    <div class="total-price-container">
-                       
-                       <div class="total-line">
-                         
-                         <strong style="color: #4a403a; font-size: 24px; font-family: 'Pacifico', cursive; font-style: normal;">Total:</strong>
-        
-                           <span id="totalPrice" style="color: #D5451B; font-size: 22px;">
-                                 
-                                  <c:if test="${not empty sessionScope.retrievedCartItems}">
-                
-                                       <c:set var="total" value="0"/>
-                                       
-                                       <c:forEach var="x" items="${sessionScope.retrievedCartItems}">
-                    
-                                           <c:set var="total" value="${total + (x.selectedQuantity * 125)}"/>
-                
-                                       </c:forEach>
-               
-                                    ${total}
-           
-                                  </c:if>
-           
-                            <c:if test="${empty sessionScope.retrievedCartItems}">0</c:if>
-          
-                               IQD
-        
-                          </span>
-   
-                    </div>
-        
-                 </div> <!-- Closing brace of the 'total-price-container' -->
+				</div> <!-- Closing tag of the modal body -->
 
-			
-				
-				
-				</div> <!-- Closing brace of the modal-body -->
-				
-				
+
 				<div class="modal-footer">
 					
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -658,6 +731,7 @@ font-size:19px;
 			</div>
 			
 		</div>
+		 
 		
 	</div> <!-- Closing Tag of the Cart Modal -->
 
