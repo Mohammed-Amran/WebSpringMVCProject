@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.DAO.*;
 import com.example.model.*;
@@ -18,16 +20,24 @@ public class addToCartController {
 
 	
 	
-	
-	
-	@GetMapping("/addToCartController")
-	public String addItemsToCart(@RequestParam Map<String, String> req,  HttpServletRequest request, HttpServletRequest response) {
+	@GetMapping("/getBackToCustomerPage")
+	public String showCustomerPage(HttpServletRequest request) {
+	    
 		
-		String destination = "";
+	    return "view/customer";
+	}
+	
+	
+	
+	
+	@PostMapping("/addToCartController")
+	public String addItemsToCart(@RequestParam Map<String, String> req,  HttpServletRequest request, HttpServletRequest response, RedirectAttributes redirectAttributes) {
+		
+		//String destination = "";
 		
      HttpSession session = request.getSession(false);
 		
-		String email = (String) session.getAttribute("email");
+		
 		 
 		
 		//3 things are required to be inserted into the Cart!, :
@@ -116,15 +126,18 @@ public class addToCartController {
 		    	session.setAttribute("retrievedCartItems", retrievedItems);
 		    	
 		    	
-		    	destination = "view/customer";
+		    	return "redirect:/getBackToCustomerPage"; 
+		    	
+		    	//destination = "view/customer";
 		    	
 			} 
 		    catch (Exception e) {
 				
 				String failedRetrievingItemsMessage = "Failed to retrieve cartItems!";
 				session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
-								
-				destination = "view/customer";
+					
+				return "redirect:/getBackToCustomerPage";
+				//destination = "view/customer";
 			}
 			
 			
@@ -136,13 +149,14 @@ public class addToCartController {
 			
 			session.setAttribute("addToCarErrorMessage", addToCartError);
 			
-			destination = "view/customer";
+			return "redirect:/getBackToCustomerPage";
+			//destination = "view/customer";
 						
 		}
 		
 		
 				
-		return destination;
+		//return destination;
 
 		
 		

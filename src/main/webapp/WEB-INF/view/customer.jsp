@@ -932,7 +932,7 @@ font-size:19px;
                 
             </div>
             
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm1" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm1" autocomplete="off">
                 
                 <div class="modal-body">
                 
@@ -975,7 +975,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm2" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm2" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1003,7 +1003,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm3" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm3" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1031,7 +1031,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm4" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm4" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1059,7 +1059,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm5" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm5" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1087,7 +1087,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm6" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm6" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1115,7 +1115,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm7" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm7" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1143,7 +1143,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm8" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm8" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1171,7 +1171,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm9" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm9" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1199,7 +1199,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm10" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm10" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1227,7 +1227,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm21" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm21" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1255,7 +1255,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm22" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm22" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1284,7 +1284,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm30" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm30" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1313,7 +1313,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm31" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm31" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1343,7 +1343,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm11" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm11" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1371,7 +1371,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm12" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm12" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1399,7 +1399,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm13" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm13" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1427,7 +1427,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm14" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm14" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1455,7 +1455,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm15" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm15" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1483,7 +1483,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm16" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm16" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1511,7 +1511,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm17" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm17" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1539,7 +1539,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm18" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm18" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1567,7 +1567,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
@@ -1595,7 +1595,7 @@ font-size:19px;
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm20" autocomplete="off">
+            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm20" autocomplete="off">
                 <div class="modal-body">
                     <p id="itemDescription"></p>
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
