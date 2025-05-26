@@ -44,17 +44,18 @@ public class daoCart {
 
   
 //Insert item into 'cartItems' table
-  public boolean insertIntoCartItem(int id, String itemName, int selectedQuantity) {
+  public boolean insertIntoCartItem(int userId, int itemId, String itemName, int selectedQuantity) {
       
-      String sql = "INSERT INTO cartItems (id, itemName, selectedQuantity) VALUES (?, ?, ?)";
+      String sql = "INSERT INTO cartItems (userId, itemId, itemName, selectedQuantity) VALUES (?, ?, ?, ?)";
 
       try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
           
-          stmt.setInt(1, id);
-          stmt.setString(2, itemName);
-          stmt.setInt(3, selectedQuantity);
+          stmt.setInt(1, userId);
+          stmt.setInt(2, itemId);
+          stmt.setString(3, itemName);
+          stmt.setInt(4, selectedQuantity);
 
-          System.out.println("Trying to insert into cartItems: ID=" + id + ", Item=" + itemName + ", Quantity=" + selectedQuantity);
+          System.out.println("Trying to insert into cartItems: USER-ID=" + userId + ", Item=" + itemName + ", Quantity=" + selectedQuantity);
 
           int rowsInserted = stmt.executeUpdate();
 
@@ -78,7 +79,7 @@ public class daoCart {
   //Retrieving the numbers of items in the 'carItems' table.
   public int getCartItemCount(int userId) {
       
-  	String sql = "SELECT COUNT(*) FROM cartItems WHERE id = ?";
+  	String sql = "SELECT COUNT(*) FROM cartItems WHERE userId = ?";
 
       try (Connection conn = getConnection();
            
@@ -114,7 +115,7 @@ public class daoCart {
 	   ArrayList<cartItems> itemsList = new ArrayList<>();
 	  
 	   
-	   String sql = "SELECT itemName, selectedQuantity FROM cartItems WHERE id = ?";
+	   String sql = "SELECT itemName, selectedQuantity FROM cartItems WHERE userId = ?";
 	    
 	   
 	    try (Connection conn = getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -151,7 +152,7 @@ public class daoCart {
 //This method will clear out all added items related to user with id = ?
 	public void clearCart(int userId) {
 		
-	    String sql = "DELETE FROM cartItems WHERE id = ?";
+	    String sql = "DELETE FROM cartItems WHERE userId = ?";
 
 	    try (Connection conn = getConnection();
 	    		

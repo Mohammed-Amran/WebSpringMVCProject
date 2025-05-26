@@ -185,7 +185,7 @@ public String retrievePhoneNo(String email, String pass) {
 public String retrieveId(String email) {
 	
 	
-	String sql = "SELECT id FROM users WHERE email = ?";
+	String sql = "SELECT userId FROM users WHERE email = ?";
 	
 	try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -196,7 +196,7 @@ public String retrieveId(String email) {
       	
           if (rs.next()) {
           	
-              return rs.getString("id");
+              return rs.getString("userId");
               
           }
       }

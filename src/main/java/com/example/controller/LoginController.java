@@ -56,12 +56,16 @@ public class LoginController {
 		    	//bring-in the users phoneNo from the DB:
 		    	String phoneNo = daoObj.retrievePhoneNo(email, password);
 		    	
+		    	//bring-in the users id from the DB:
+		    	String userId = daoObj.retrieveId(email);
+		    	
 		    	    	
 		    	//Initializing a Session object:
 		    	HttpSession session = request.getSession(true);
 		    	    		
 		    	//Setting the essential user-info's to the session object! would be required for further steps:
 		    	session.setAttribute("fullName", fullName);
+		    	session.setAttribute("userId", userId);
 		    	session.setAttribute("email", email);
 		    	session.setAttribute("phoneNo", phoneNo);
 				

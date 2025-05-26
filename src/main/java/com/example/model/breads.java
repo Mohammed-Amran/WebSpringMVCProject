@@ -2,7 +2,7 @@ package com.example.model;
 
 public class breads {
 
-private int id;
+private int breadsId;
 private String itemName;
 private double itemPrice;
 private String imgURL;
@@ -16,12 +16,12 @@ public breads() {
 
 
 public int getId() {
-	return id;
+	return breadsId;
 }
 
 
-public void setId(int id) {
-	this.id = id;
+public void setId(int breadsId) {
+	this.breadsId = breadsId;
 }
 
 

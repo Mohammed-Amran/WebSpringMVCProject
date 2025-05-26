@@ -954,6 +954,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     
                     <input type="hidden" name="itemName" value="Baguette Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                     
@@ -987,6 +988,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Brioche Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1014,6 +1016,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Ciabatta Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1041,6 +1044,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Multigrain Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1068,6 +1072,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Whole Wheat">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1095,6 +1100,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Lavash Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1122,6 +1128,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Thin Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1149,6 +1156,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Naan Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1176,6 +1184,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Tortilla">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1203,6 +1212,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Crispy Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1230,6 +1240,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kurdish Bread">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1257,6 +1268,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kulera">
+                    <input type="hidden" name="itemType" value="Bread">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1288,6 +1300,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kunafa">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1315,6 +1328,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Cherry Cake">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1342,6 +1356,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Lemon Cake">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1369,6 +1384,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Strawberry Cake">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1396,6 +1412,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Donut">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1423,6 +1440,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Croissant">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1450,6 +1468,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Baklava">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1477,6 +1496,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Apple Cake">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1486,29 +1506,49 @@ font-size:19px;
 
 <!-- Modal 19 -->
 <div class="modal fade" id="itemModal19" tabindex="-1" role="dialog" aria-hidden="true">
+    
     <div class="modal-dialog" role="document">
+       
         <div class="modal-content">
+           
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
+            
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
+                
                 <div class="modal-body">
+                   
                     <p id="itemDescription"></p>
+                    
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        
                         <option value="2">2 pieces ~ 250iqd</option>
                         <option value="4">4 pieces ~ 500iqd</option>
                         <option value="8">8 pieces ~ 1000iqd</option>
                         <option value="12">12 pieces ~ 1500iqd</option>
+                        
                     </select>
+                    
                 </div>
+                
                 <div class="modal-footer">
+                   
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
                     <input type="hidden" name="itemName" value="Caramel Candy">
+                    <input type="hidden" name="itemType" value="Desert">
+                    
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
+              
                 </div>
+                
             </form>
+            
         </div>
+        
     </div>
+    
 </div>
 
 <!-- Modal 20 -->
@@ -1531,6 +1571,7 @@ font-size:19px;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Chocolate Cake">
+                    <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>

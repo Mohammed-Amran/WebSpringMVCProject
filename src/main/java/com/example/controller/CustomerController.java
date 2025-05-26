@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,6 +41,7 @@ public class CustomerController {
         		
         		session.setAttribute("retrievedBreads", retrievedBread);
     			
+        		session.setAttribute("showCategory", showCategory);
     			
         	}
         	else if("Cakes".equals(showCategory)) {
@@ -51,6 +52,8 @@ public class CustomerController {
         		List<cakes> retrievedDeserts = cakesObj.getDesert();
         		
         		session.setAttribute("retrievedDeserts" , retrievedDeserts);
+        		
+        		session.setAttribute("showCategory", showCategory);
     			
     				
         	}
@@ -67,7 +70,7 @@ public class CustomerController {
         
         
 		
-		model.addObject("showCategory",showCategory);		
+				
 		
 		return model;
 		

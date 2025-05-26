@@ -17,10 +17,13 @@ import com.example.model.*;
 public class addToCartController {
 
 	
+	
+	
+	
 	@GetMapping("/addToCartController")
 	public String addItemsToCart(@RequestParam Map<String, String> req,  HttpServletRequest request, HttpServletRequest response) {
 		
-	String destination = "";	
+		String destination = "";
 		
      HttpSession session = request.getSession(false);
 		
@@ -33,6 +36,7 @@ public class addToCartController {
 		     // III. The id of the user that has added this item into the Cart.
 		
 	/*I*/ String itemName = req.get("itemName");
+	      String itemType = req.get("itemType");
 	
 	/*II*/String strSelectedQuantity = req.get("selectedQuantity");
 		  int intSelectedQuantity = Integer.parseInt(strSelectedQuantity);
@@ -41,22 +45,48 @@ public class addToCartController {
 		  
   /*III*/    //retrieving the id of the user:
 		
-		  //1st: Instantiate an object from the 'DaoUsers' class:
-		  DaoUsers daoObj = new DaoUsers();
+		 
 		
-		  //2nd: Access the 'retrieveId()' method via the 'daoObj':
-          String strId =  daoObj.retrieveId(email);
+		  //1st: Access the 'retrieveId()' method via the 'daoObj':
+          String strId = (String) session.getAttribute("userId");
 		  int intId = Integer.parseInt(strId);
 		
+		  //3rd: Retrieving the itemId.
+		  DaoBreads breadObj = new DaoBreads();
+		  DaoCakes desertObj = new DaoCakes();
 		  
-		 //Inserting the (id, itemName, selectedQuantity) into the cartItems table.
+		  int itemId = 0;
+		  
+		 try {
+			
+			 if("Bread".equals(itemType)) {
+				 
+				 itemId = breadObj.getBreadIdByName(itemName);
+			 }
+			 else if("Desert".equals(itemType)) {
+				 
+				 itemId = desertObj.getDesertIdByName(itemName);
+			 }
+			  
+			 
+			  
+			 
+		} catch (Exception e) {
+			
+			System.out.print(e);
+		} 
+		 
+		  
+		  
+		  
+		 //Inserting the (userId, itemId, itemName, selectedQuantity) into the cartItems table.
         		  
          //1st: Instantiating an object from the 'DoaAddToCart' class.
          daoCart daoAddToCartObj = new daoCart();
          
          
          //2nd: calling the 'insertIntoCartItem' method via the 'doaAddToCartObj'.
-        boolean isInserted = daoAddToCartObj.insertIntoCartItem(intId, itemName, intSelectedQuantity);
+        boolean isInserted = daoAddToCartObj.insertIntoCartItem(intId, itemId, itemName, intSelectedQuantity);
 		
        
         
@@ -85,23 +115,20 @@ public class addToCartController {
 		    	
 		    	session.setAttribute("retrievedCartItems", retrievedItems);
 		    	
-		    	destination = "view/customer";
 		    	
+		    	destination = "view/customer";
 		    	
 			} 
 		    catch (Exception e) {
 				
 				String failedRetrievingItemsMessage = "Failed to retrieve cartItems!";
 				session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
-				
-				
+								
 				destination = "view/customer";
 			}
 			
 			
-			
-			
-					 
+							 
 		}
 		else {
 			
@@ -109,17 +136,17 @@ public class addToCartController {
 			
 			session.setAttribute("addToCarErrorMessage", addToCartError);
 			
-			
 			destination = "view/customer";
+						
 		}
 		
 		
-		
-		
+				
 		return destination;
+
 		
 		
-	}//closing brace of the 'addItemsToCart' method.s
+	}//closing brace of the 'addItemsToCart' method.
 	
 	
 }//closing brace of the class.

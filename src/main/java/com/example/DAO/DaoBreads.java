@@ -47,7 +47,7 @@ public class DaoBreads {
 
 	        ArrayList<breads> itemsList = new ArrayList<>();
 
-	        String sql = "SELECT id, itemName, itemPrice, imgURL, itemDesc FROM breads";
+	        String sql = "SELECT breadsId, itemName, itemPrice, imgURL, itemDesc FROM breads";
 
 	        try (Connection conn = getConnection();
 	             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class DaoBreads {
 	            while (rs.next()) {
 	                breads item = new breads();
 
-	                item.setId(rs.getInt("id"));
+	                item.setId(rs.getInt("breadsId"));
 	                item.setItemName(rs.getString("itemName"));
 	                item.setItemPrice(rs.getDouble("itemPrice"));
 	                item.setImgURL(rs.getString("imgURL"));
@@ -73,7 +73,26 @@ public class DaoBreads {
 	    
 	
 	
-	    
+	    public int getBreadIdByName(String itemName) throws SQLException {
+	        
+	    	int breadId = -1; // Default value if not found
+	        
+	        String sql = "SELECT breadsId FROM breads WHERE itemName = ?";
+	        
+	        try (Connection conn = getConnection();
+	             PreparedStatement stmt = conn.prepareStatement(sql)) {
+	             
+	            stmt.setString(1, itemName);
+	            
+	            try (ResultSet rs = stmt.executeQuery()) {
+	                if (rs.next()) {
+	                    breadId = rs.getInt("breadsId");
+	                }
+	            }
+	        }
+	        
+	        return breadId;
+	    } 
 	    
 	    
 	
