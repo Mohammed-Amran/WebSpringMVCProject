@@ -1277,6 +1277,62 @@ font-size:19px;
 </div>
 
 
+<!-- Modal 30 -->
+<div class="modal fade" id="itemModal30" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
+            </div>
+            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm30" autocomplete="off">
+                <div class="modal-body">
+                    <p id="itemDescription"></p>
+                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        <option value="2">2 pieces ~ 250iqd</option>
+                        <option value="4">4 pieces ~ 500iqd</option>
+                        <option value="8">8 pieces ~ 1000iqd</option>
+                        <option value="12">12 pieces ~ 1500iqd</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="itemName" value="German Breads">
+                    <input type="hidden" name="itemType" value="Bread">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal 31 -->
+<div class="modal fade" id="itemModal31" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
+            </div>
+            <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm31" autocomplete="off">
+                <div class="modal-body">
+                    <p id="itemDescription"></p>
+                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
+                        <option value="2">2 pieces ~ 250iqd</option>
+                        <option value="4">4 pieces ~ 500iqd</option>
+                        <option value="8">8 pieces ~ 1000iqd</option>
+                        <option value="12">12 pieces ~ 1500iqd</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="itemName" value="Crotian Breads">
+                    <input type="hidden" name="itemType" value="Bread">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!-- Cake Modals -->
@@ -1506,49 +1562,30 @@ font-size:19px;
 
 <!-- Modal 19 -->
 <div class="modal fade" id="itemModal19" tabindex="-1" role="dialog" aria-hidden="true">
-    
     <div class="modal-dialog" role="document">
-       
         <div class="modal-content">
-           
             <div class="modal-header">
                 <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
             </div>
-            
             <form name="AddtoCartForm" method="get" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
-                
                 <div class="modal-body">
-                   
                     <p id="itemDescription"></p>
-                    
                     <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        
                         <option value="2">2 pieces ~ 250iqd</option>
                         <option value="4">4 pieces ~ 500iqd</option>
                         <option value="8">8 pieces ~ 1000iqd</option>
                         <option value="12">12 pieces ~ 1500iqd</option>
-                        
                     </select>
-                    
                 </div>
-                
                 <div class="modal-footer">
-                   
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
                     <input type="hidden" name="itemName" value="Caramel Candy">
                     <input type="hidden" name="itemType" value="Desert">
-                    
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
-              
                 </div>
-                
             </form>
-            
         </div>
-        
     </div>
-    
 </div>
 
 <!-- Modal 20 -->

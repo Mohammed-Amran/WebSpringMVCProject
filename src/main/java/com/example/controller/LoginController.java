@@ -127,6 +127,8 @@ public class LoginController {
 		        	 session.setAttribute("retrievedBreads", retrievedBread);
 		        	 
 		    		
+		        	 destination = "view/customer";
+		        	 
 		    		
 				} catch (Exception e) {
 					
