@@ -163,4 +163,30 @@ public class addToCartController {
 	}//closing brace of the 'addItemsToCart' method.
 	
 	
+	@GetMapping("/modifyCart")
+	public String modifyCart(@RequestParam Map<String, String> req, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		
+		HttpSession session = request.getSession(false);
+		
+		String actionToBeDone = req.get("cartActionButton");
+		
+	    if("increment".equals(actionToBeDone)) {
+	    	
+	    	
+	    }
+	    else if("decrement".equals(actionToBeDone)) {
+	    	
+	    	
+	    }
+	    else if("remove".equals(actionToBeDone)) {
+	    	
+	    	
+	    }
+		
+	}//closing brace of the 'modifyCart()' method.
+	
+	
+	
+	
+	
 }//closing brace of the class.

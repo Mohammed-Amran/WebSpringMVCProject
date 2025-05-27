@@ -647,11 +647,11 @@ font-size:19px;
 											
 											<span class="item-actions">
 												
-											    <button class="btn btn-quantity btn-increase" style="background-color: #28a745; color: white;">+</button>
+											    <button class="btn btn-quantity btn-increase" style="background-color: #28a745; color: white;" name="cartActionButton" value="increment" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'">+</button>
 												
-											    <button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;">-</button>
+											    <button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;" name="cartActionButton" value="decrement" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'">-</button>
 												
-											    <button class="btn btn-delete" style="background-color: #dc3545; color: white;"> <i class="fas fa-trash"></i> </button>
+											    <button class="btn btn-delete" style="background-color: #dc3545; color: white;" name="cartActionButton" value="remove" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'"> <i class="fas fa-trash"></i> </button>
 											
 											</span>
 											
