@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -128,7 +130,7 @@ public class addToCartController {
 		    	
 		    	return "redirect:/getBackToCustomerPage"; 
 		    	
-		    	//destination = "view/customer";
+		    	
 		    	
 			} 
 		    catch (Exception e) {
@@ -137,7 +139,7 @@ public class addToCartController {
 				session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
 					
 				return "redirect:/getBackToCustomerPage";
-				//destination = "view/customer";
+			
 			}
 			
 			
@@ -163,30 +165,180 @@ public class addToCartController {
 	}//closing brace of the 'addItemsToCart' method.
 	
 	
-	@GetMapping("/modifyCart")
-	public String modifyCart(@RequestParam Map<String, String> req, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	
+	
+	//================= Method that Increments the Item Quantity by 2 ====================
+	@PostMapping("/incrementItem")
+	public String incrementItem(@RequestParam Map<String, String> req, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		
+		HttpSession session = request.getSession(false);
+	
+		
+		//getting the itemId as String & parsing it into integer.
+		String strItemId =  req.get("itemId");
+		int intItemId = Integer.parseInt(strItemId);
+		
+		
+		  //--------- Retrieving the USERID ----------------------
+	      //1st: Access the 'retrieveId()' method via the 'daoObj':
+		   String strUserId = (String) session.getAttribute("userId");
+		   int intUserId = Integer.parseInt(strUserId);
+				
+		 
+				//I. Instantiating an object from the 'daoCart' class.
+				 daoCart cartObj = new daoCart();
+				 
+				 cartObj.IncrementUpdateCartItemQuantity(intUserId, intItemId); 
+				 
+				 
+				//II.: Accessing the 'getCartItemsByUserId' method - to retrieve the items in the cart for that specific user.
+				    try {
+						
+				    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(intUserId);
+				    		
+				    	session.setAttribute("retrievedCartItems", retrievedItems);
+				    	
+				    	int itemsCount = cartObj.getCartItemCount(intUserId);
+						
+						session.setAttribute("cartCounter", itemsCount);
+						
+						session.setAttribute("openCartModal", true);
+
+				    	
+			    	
+				    	return "view/customer";
+				    	
+					} 
+				    catch (Exception e) {
+						
+						String failedRetrievingItemsMessage = "Failed to retrieve cartItems!";
+						session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
+						
+						
+				
+					}
+				 
+				 
+				    return "view/customer";
+		
+		
+	}//closing brace of the 'incrementItem()' method.
+	
+	
+
+	//================= Method that Decrements the Item Quantity by 2 ====================
+@PostMapping("/decrementItem")	
+public String decrementItem(@RequestParam Map<String, String> req, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		
 		HttpSession session = request.getSession(false);
 		
-		String actionToBeDone = req.get("cartActionButton");
+		//getting the itemId as String & parsing it into integer.
+		String strItemId =  req.get("itemId");
+		int intItemId = Integer.parseInt(strItemId);
 		
-	    if("increment".equals(actionToBeDone)) {
-	    	
-	    	
-	    }
-	    else if("decrement".equals(actionToBeDone)) {
-	    	
-	    	
-	    }
-	    else if("remove".equals(actionToBeDone)) {
-	    	
-	    	
-	    }
+		//--------- Retrieving the USERID ----------------------
+				//1st: Access the 'retrieveId()' method via the 'daoObj':
+		        String strUserId = (String) session.getAttribute("userId");
+				int intUserId = Integer.parseInt(strUserId);
+
+				
+				//Instantiating an object from the 'daoCart' class.
+				 daoCart cartObj = new daoCart();
+				 
+				 cartObj.decrementUpdateCartItemQuantity(intUserId, intItemId); 
+				 
+				 
+				//II.: Accessing the 'getCartItemsByUserId' method - to retrieve the items in the cart for that specific user.
+				    try {
+						
+				    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(intUserId);
+				    	
+				    	session.setAttribute("retrievedCartItems", retrievedItems);
+				    	
+                        int itemsCount = cartObj.getCartItemCount(intUserId);
+						
+						session.setAttribute("cartCounter", itemsCount);
+						
+						session.setAttribute("openCartModal", true);
+
+				    	
+				    	 return "view/customer";
+			    	
+					} 
+				    catch (Exception e) {
+						
+						String failedRetrievingItemsMessage = "Failed to retrieve cartItems!";
+						session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
+				
+					}
+				 
+				 
+				 
+				    return "view/customer";
 		
-	}//closing brace of the 'modifyCart()' method.
+		
+	}//closing brace of the 'decrementItem()' method.
+	
+
+//================= Method that Removes the Item ====================
+@PostMapping("/removeItem")
+public String removeItem(@RequestParam Map<String, String> req, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	
+	HttpSession session = request.getSession(false);
 	
 	
+	//getting the itemId as String & parsing it into integer.
+	String strItemId =  req.get("itemId");
+	int intItemId = Integer.parseInt(strItemId);
 	
 	
+	//--------- Retrieving the USERID ----------------------
+			//1st: Access the 'retrieveId()' method via the 'daoObj':
+	        String strUserId = (String) session.getAttribute("userId");
+			int intUserId = Integer.parseInt(strUserId);
+			
+	
+			
+			 
+			 
+			//Instantiating an object from the 'daoCart' class.
+			 daoCart cartObj = new daoCart();
+			 
+			 cartObj.removeCartItem(intUserId, intItemId); 
+			 
+			 
+			//II.: Accessing the 'getCartItemsByUserId' method - to retrieve the items in the cart for that specific user.
+			    try {
+					
+			    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(intUserId);
+			    	
+			    	session.setAttribute("retrievedCartItems", retrievedItems);
+			    	
+			    	int itemsCount = cartObj.getCartItemCount(intUserId);
+					
+					session.setAttribute("cartCounter", itemsCount);
+					
+					//Opends the modal.
+					session.setAttribute("openCartModal", true);
+
+			    	
+			    	 return "view/customer";
+		    	
+				} 
+			    catch (Exception e) {
+					
+					String failedRetrievingItemsMessage = "Failed to retrieve cartItems!";
+					session.setAttribute("itemRetrievalErrorMessage", failedRetrievingItemsMessage);
+			
+				}
+			 
+			 
+			    return "view/customer";
+	
+	
+}//closing brace of the 'removeItem()' method.
+
+
+
 	
 }//closing brace of the class.

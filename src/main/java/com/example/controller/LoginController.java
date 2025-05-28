@@ -78,10 +78,10 @@ public class LoginController {
 		    	//1st: Retrieving the id of the user:
 		    		
 		    		 //1-I: getting the id based on the users email via the 'retrieveId()' method.
-		    		 String strId =  daoObj.retrieveId(email);
+		    		 String strUserId =  daoObj.retrieveId(email);
 		   		     
 		    		 //1-II: parsing the string id into Integer.
-		    		 int intId = Integer.parseInt(strId);
+		    		 int intUserId = Integer.parseInt(strUserId);
 		    		 
 		    		 
 		   //================================================================================================
@@ -93,7 +93,7 @@ public class LoginController {
 		    		daoCart daoCartObj = new daoCart();
 		    		
 		    		//2-II: getting the items-numbers via the 'getCartItemCount()' method.
-					int itemsCount = daoCartObj.getCartItemCount(intId);
+					int itemsCount = daoCartObj.getCartItemCount(intUserId);
 					
 					//2-III: saving the itemsCount into session Scope.
 					session.setAttribute("cartCounter", itemsCount); 
@@ -106,7 +106,7 @@ public class LoginController {
 			  //3rd: retrieving the items in the cart:
 					
 					//3-I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
-					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(intId);
+					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(intUserId);
 			    	
 					//3-II: saving the retrieved items into session scope.
 			    	session.setAttribute("retrievedCartItems", retrievedItems);

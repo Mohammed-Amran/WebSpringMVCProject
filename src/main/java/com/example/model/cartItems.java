@@ -3,6 +3,7 @@ package com.example.model;
 public class cartItems {
 
 	private String itemName;
+	private int itemId;
 	private int selectedQuantity;
 	
 	public String getItemName() {
@@ -23,6 +24,14 @@ public class cartItems {
 	public void setSelectedQuantity(int selectedQuantity) {
 		
 		this.selectedQuantity = selectedQuantity;
+	}
+
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 	
 	

@@ -595,6 +595,20 @@ font-size:19px;
 
 
 
+<c:if test="${not empty sessionScope.openCartModal}">
+   
+    <script>
+        window.onload = function() {
+            $('#cart').modal('show');
+        };
+    </script>
+    
+    <c:remove var="openCartModal" scope="session" />
+    
+</c:if>
+
+
+
 <!-- ========- CART MODAL -=========== -->
 
 <!-- Cart Modal -->
@@ -639,28 +653,69 @@ font-size:19px;
 										
 										<div class="cart-item-row">
 											
-											<span class="item-name"><strong style="color: #A08963; font-size: 22px; font-family: 'Pacifico', cursive; font-style: normal;"><c:out value="${x.itemName}" /></strong></span>
-														 
-											<span class="item-quantity" style="color: #4a403a; font-size: 22px;"><c:out value="${x.selectedQuantity}" /></span>
+											<span class="item-name"> <strong style="color: #A08963; font-size: 22px; font-family: 'Pacifico', cursive; font-style: normal;">
+													                 
+													                    <c:out value="${x.itemName}" />
+											        
+											                         </strong>
+											</span> 
 											
-											<span class="item-price" style="color: #D5451B; font-size: 22px;"><c:out value="${x.selectedQuantity * 125}" /> IQD</span> 
+											<span class="item-quantity" style="color: #4a403a; font-size: 22px;">
 											
-											<span class="item-actions">
-												
-											    <button class="btn btn-quantity btn-increase" style="background-color: #28a745; color: white;" name="cartActionButton" value="increment" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'">+</button>
-												
-											    <button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;" name="cartActionButton" value="decrement" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'">-</button>
-												
-											    <button class="btn btn-delete" style="background-color: #dc3545; color: white;" name="cartActionButton" value="remove" onclick="window.location.href='${pageContext.request.contextPath}/modifyCart'"> <i class="fas fa-trash"></i> </button>
+											     <c:out	value="${x.selectedQuantity}" />
+											
+											</span> 
+											
+											<span class="item-price" style="color: #D5451B; font-size: 22px;">
+											
+											     <c:out value="${x.selectedQuantity * 125}" /> IQD
 											
 											</span>
-											
+
+
+											<div class="item-actions">
+
+												<!-- Increment Button -->
+												<form action="${pageContext.request.contextPath}/incrementItem" method="post"
+													style="display: inline;">
+													
+													<input type="hidden" name="itemId" value="${x.itemId}">
+													<button class="btn btn-quantity btn-increase"
+														style="background-color: #28a745; color: white;">
+														+</button>
+												</form>
+
+												<!-- Decrement Button -->
+												<form action="${pageContext.request.contextPath}/decrementItem" method="post" style="display: inline;">
+													
+													<input type="hidden" name="itemId" value="${x.itemId}">
+													
+													<button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;">
+														
+														-</button>
+												</form>
+
+												<!-- Remove Button -->
+												<form action="${pageContext.request.contextPath}/removeItem" method="post"
+													style="display: inline;">
+													
+													<input type="hidden" name="itemId" value="${x.itemId}">
+													<button class="btn btn-delete"
+														style="background-color: #dc3545; color: white;">
+														<i class="fas fa-trash"></i>
+													</button>
+												</form>
+
+											</div>
+
+
+
 										</div>
 										
 									</div>
 									
 								</c:forEach>
-								
+
 							</c:when>
 
 							<c:otherwise>
@@ -1569,7 +1624,7 @@ font-size:19px;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Croissant">
+                    <input type="hidden" name="itemName" value="Criossant">
                     <input type="hidden" name="itemType" value="Desert">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
