@@ -16,18 +16,11 @@ import com.example.DAO.*;
 import com.example.model.*;
 
 
-
 @Controller
 public class RegisterController {
 
-	@GetMapping("/goToRegister")
-	protected String goToRegisterPage() {
-		
-		
-		 return "view/register";
-	}//closing brace of the 'goToRegister()' method.
 	
-	
+	//This method forwards the user from 'viewerOnly' page to 'register' page.
 	@RequestMapping("/accessRegisterPage")
 	protected String accessLoginPage() {
 		
@@ -35,15 +28,28 @@ public class RegisterController {
 		
 	} //closing brace of the 'accessLoginPage()' method.
 	
-	@GetMapping("/backToViewOnlyFromRegistration")
-	protected String backToLogin() {
-		
-		return "view/viewerOnly";
-		
-	}
 	
 	
 	
+//##############################################################################################	
+	
+	
+	//This method takes the user from 'login' page to 'register' page
+	@GetMapping("/goToRegister")
+	protected String goToRegisterPage() {
+			
+		 return "view/register";
+		 
+	}//closing brace of the 'goToRegister()' method.
+	
+	
+	
+
+//##############################################################################################	
+	
+	
+	
+	//This method registers the user & forwards it to 'customer' page.
 	@PostMapping("/registerUser")
 	protected String registerUser(@RequestParam Map<String, String> req, Model model, HttpServletRequest request ) {
 		
@@ -100,8 +106,9 @@ public class RegisterController {
 				
 				//If the email & phoneNo were fine!, then:
 				
-				//Create an object from the 'UserRegistration' class:
+				//Instantiating an object from the 'UserRegistration' class:
 				UserRegistration userObj = new UserRegistration();
+				
 				
 				userObj.setFullName(fullName);
 				userObj.setEmail(email);
@@ -110,23 +117,24 @@ public class RegisterController {
 				
 					
 				
-				//Saving the user info into the database:
+				//Saving the 'userObj' object info's into the 'users' table in the DB:
 				
 				//1st: Instantiating an object from the DAO class:
 				DaoUsers dao = new DaoUsers();
 				
-				//Passing the userObj object into the insertUser method:
+				
+				//Passing the 'userObj' object into the insertUser method:
 			    boolean insertSuccess =	dao.insertUser(userObj);
 				
 			    
 			    //So, if the Insertion success:
 			    if(insertSuccess) {
 			    	
-			    	//Initializing the Session Object:
-			    	HttpSession session = request.getSession(true); //Exactly same as: HttpSession session = req.getSession();
+			    	//Initializing a Session Object:
+			    	HttpSession session = request.getSession(true); //This is exactly same as: HttpSession session = req.getSession();
 			       
 			    	
-			    	//Setting the essential user-info's to the session object! would be required for further steps:
+			    	//Setting the essential user-info's into the session object! we'll require them for further steps:
 			    	session.setAttribute("fullName", fullName);
 			    	session.setAttribute("email", email);
 			    	session.setAttribute("phoneNo", phoneNo);
@@ -142,6 +150,8 @@ public class RegisterController {
 			    	
 			    }
 			    else {
+			    	
+			    	//So, if the insertion failed! this part will run
 			    	
 			    	//setting an error message!
 			    	model.addAttribute("insertingError", "Failed to Register, Please try again!");
@@ -161,6 +171,24 @@ public class RegisterController {
 		
 		
 	}//closing brace of the 'registerUser()' method.
+	
+	
+	
+	
+//##############################################################################################
+	
+	
+	//This method takes the user from 'register' page back to the 'viewerOnly' page.
+	@GetMapping("/backToViewOnlyFromRegistration")
+	protected String backToLogin() {
+		
+		return "view/viewerOnly";
+		
+	}
+	
+	
+	
+	
 	
 	
 	

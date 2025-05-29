@@ -49,11 +49,13 @@ public class DaoCakes {
 
        ArrayList<cakes> itemsList = new ArrayList<>();
 
-       String sql = "SELECT desertsId,itemName, itemPrice, imgURL, itemDesc, itemType FROM deserts";
+       String sql = "SELECT desertsId, itemName, itemPrice, imgURL, itemDesc, itemType FROM deserts";
 
        try (Connection conn = getConnection();
+    		   
             PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery()) {
+    		   
+            ResultSet rs = stmt.executeQuery() ) {
 
            while (rs.next()) {
                cakes item = new cakes();

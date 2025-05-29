@@ -1,0 +1,304 @@
+@charset "UTF-8";
+
+body {
+	
+   font-family: "Delius", cursive;
+   font-weight: 400;
+   font-style: normal;
+   margin: 0;  
+   background-color: #F5F5DD;
+}
+
+
+/* Appbar Styles */
+.appbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #C9B194;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.appbar-brand h1 {
+    font-family: "Delius", cursive;
+   font-weight: 400;
+   font-style: normal;
+    color: #4a403a;
+    margin: 0;
+}
+
+.appbar-brand h1:hover {
+	
+	 text-shadow: 0 0 5px #F2F3F1, 0 0 10px #F2F3F1, 0 0 15px #F2F3F1;
+}
+
+.appbar-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+.btn i {
+    margin-right: 8px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #F5F5DD;
+    margin-bottom: 30px;
+}
+
+.hero-content h2 {
+    font-family: "Delius", cursive;
+   font-size: 37px;
+   font-weight: bold;
+   font-style: normal;
+    color: #885539;
+    margin-bottom: 10px;
+}
+
+.hero-content h2:hover {
+	
+    
+    text-shadow: 0 0 5px #F2F3F1, 0 0 10px #F2F3F1, 0 0 15px #F2F3F1;
+    
+}
+
+.hero-content p {
+    font-size: 24px;
+    color: #885539;
+    margin-bottom: 30px;
+}
+
+	
+.hero-content p:hover {
+	
+   
+    text-shadow: 0 0 5px #F2F3F1, 0 0 10px #F2F3F1, 0 0 15px #F2F3F1;
+    
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+/* Menu Section */
+.menu-container {
+    
+    padding: 40px 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-title {
+	
+    text-align: center;
+    font-family: "Delius", cursive;
+   font-style: normal;
+    color: #F2EAD5;
+    margin-bottom: 30px;
+}
+
+.menu-title:hover{
+	text-shadow: 0 0 5px #F2F3F1, 0 0 10px #F2F3F1, 0 0 15px #F2F3F1;
+}
+
+
+.menu-items {
+	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+ 
+}
+
+
+
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card {
+    flex: 0 0 calc(50% - 20px); /* 2 cards per row with gap */
+    max-width: calc(50% - 20px);
+  
+    border: 2px solid #885539;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px; /* Keeping the height fixed */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding is inside the card */
+}
+
+
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #F5F5DD;
+}
+
+
+
+.card-content h1 {
+    font-size: 37px;
+    color: #885539;
+    margin: 10px 0;
+    flex-grow: 1; /* Pushes the title to the bottom */
+}
+
+.card-content h1:hover{
+	
+	text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+}
+
+.card-content img {
+    width: 100%;
+    height: auto; /* Keeps the image aspect ratio intact */
+    border-radius: 5px;
+    object-fit: cover; /* Ensures the image fits well */
+    max-height: 180px; /* Adjust max height for better layout control */
+}
+
+
+
+
+
+
+
+
+
+/* Footer container */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #A57A5A;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #F2EAD5;
+    flex-wrap: wrap;
+}
+
+/* Left section (phone numbers) */
+.footer__contact i {
+    display: block;
+    margin: 5px 0;
+    color: #F2EAD5;
+    transition: all 0.2s ease;
+}
+
+.footer__contact i:hover {
+    transform: scale(1.08);
+    color: white;
+    text-shadow: 0 0 5px white;
+}
+
+/* Center section (social media) */
+.footer__social .social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer__social .social-icons li a {
+    color: #F2EAD5;
+    font-size: 20px;
+    transition: all 0.2s ease;
+    display: inline-block; /* Needed for transform to work */
+}
+
+.footer__social .social-icons li a:hover {
+    transform: scale(1.08);
+    color: white;
+    text-shadow: 0 0 5px white;
+}
+
+/* Right section (email) */
+.footer__mail i {
+    display: block;
+    color: #F2EAD5;
+    transition: all 0.2s ease;
+}
+
+.footer__mail i:hover {
+    transform: scale(1.08);
+    color: white;
+    text-shadow: 0 0 5px white;
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer__contact,
+    .footer__social,
+    .footer__mail {
+        flex: none;
+        width: 100%;
+        margin: 10px 0;
+    }
+}

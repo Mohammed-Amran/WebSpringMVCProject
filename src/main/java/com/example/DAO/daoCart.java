@@ -116,7 +116,7 @@ public class daoCart {
 	   ArrayList<cartItems> itemsList = new ArrayList<>();
 	  
 	   
-	   String sql = "SELECT itemId, itemName, selectedQuantity FROM cartItems WHERE userId = ?";
+	   String sql = "SELECT userId, itemId, itemName, selectedQuantity FROM cartItems WHERE userId = ?";
 	    
 	   
 	    try (Connection conn = getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -127,10 +127,12 @@ public class daoCart {
 	       
 	        
 	        while (rs.next()) {
+	     
 	        	
+	        	//Instantiating an object from the 'cartItems' table.
 	            cartItems item = new cartItems();
 	            
-	            
+	            item.setUserId(rs.getInt("userId")); 
 	            item.setItemId(rs.getInt("itemId"));
 	            item.setItemName(rs.getString("itemName"));
 	            item.setSelectedQuantity(rs.getInt("selectedQuantity"));
@@ -146,6 +148,7 @@ public class daoCart {
 	    return itemsList;
 	    
 	}//closing brace of the 'getCartItemByUserId' method.
+  
   
   
 //=====================================================================================================-============= 

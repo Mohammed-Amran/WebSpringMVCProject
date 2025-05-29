@@ -24,7 +24,8 @@ import com.example.model.cartItems;
 public class LoginController {
 
 	
-	//This method only forwards the user to the login page.
+	
+	//This method takes the user from 'viewerOnly' page to the 'login' page.
 	@RequestMapping("/accessLoginPage")
 	protected String accessLoginPage() {
 		
@@ -33,37 +34,54 @@ public class LoginController {
 	} //closing brace of the 'accessLoginPage()' method.
 	
 	
+//##############################################################################################	
 	
+	
+	//This Method logs in the user from the 'login' page into the 'customer' page
 	@PostMapping("/loginngIn")
 	protected String loginController(@RequestParam Map<String,String> req, Model model, HttpServletRequest request) {
 		
 		    String destination = "";
 		
-			
+		    
+			//Retrieving the inputed field values from the login page via 'req' parameter
 			String email = req.get("email");
 			String password = req.get("password");
 			
+			
+			//Instantiating an object from the 'DaoUsers' class - in order to access the 'users' table.
 			DaoUsers daoObj = new DaoUsers();
 			
-			//checking if the user has already registered or not!
+			
+			//checking if the user has already registered or not! via 'CheckUser()' method.
 			if(daoObj.CheckUser(email, password)) {
 				
-	            //So, if the user has Registered already:
+				
+				/*So, if the result was True - this part will run
+	            And it means that the user has Registered already: */
 		    	
-		    	//bring-in the users fullName from the DB:
+				
+		    	//Retrieving the users fullName from the 'users' table in the DB:
 		    	String fullName = daoObj.retrieveFullName(email, password);
 		    	
-		    	//bring-in the users phoneNo from the DB:
+		    	
+		    	//Retrieving the users phoneNo from the 'users' table in the DB:
 		    	String phoneNo = daoObj.retrievePhoneNo(email, password);
 		    	
-		    	//bring-in the users id from the DB:
-		    	String userId = daoObj.retrieveId(email);
+		    	
+		    	//Retrieving the users ID from the 'users' table in the DB:
+		    	int userId = daoObj.retrieveId(email);
+		    	
 		    	
 		    	    	
+		    	
 		    	//Initializing a Session object:
 		    	HttpSession session = request.getSession(true);
-		    	    		
-		    	//Setting the essential user-info's to the session object! would be required for further steps:
+		    	    	
+		    	
+		    	/*Saving the essential user-info's to the session object!
+		    	Because we would require them for further steps:*/
+		    	
 		    	session.setAttribute("fullName", fullName);
 		    	session.setAttribute("userId", userId);
 		    	session.setAttribute("email", email);
@@ -72,30 +90,24 @@ public class LoginController {
 		    	
 		    	destination = "view/customer";
 		    	
+		    	
+		    	
+		    	
 		    	try {
+		    		    
+		    		
+		    	    //1st: Retrieving the items-number in the 'cartItems' table.	
 		    		
 		    		
-		    	//1st: Retrieving the id of the user:
-		    		
-		    		 //1-I: getting the id based on the users email via the 'retrieveId()' method.
-		    		 String strUserId =  daoObj.retrieveId(email);
-		   		     
-		    		 //1-II: parsing the string id into Integer.
-		    		 int intUserId = Integer.parseInt(strUserId);
-		    		 
-		    		 
-		   //================================================================================================
-		    		
-		    		 	    		 
-		    	//2nd: retrieving the items-number in the 'cartItems' table.	
-		    		
-		    		//2-I: Instantiating an object from the 'daoCart' class.
+		    		//I: Instantiating an object from the 'daoCart' class.
 		    		daoCart daoCartObj = new daoCart();
 		    		
-		    		//2-II: getting the items-numbers via the 'getCartItemCount()' method.
-					int itemsCount = daoCartObj.getCartItemCount(intUserId);
+		    		
+		    		//II: getting the items-numbers via the 'getCartItemCount()' method.
+					int itemsCount = daoCartObj.getCartItemCount(userId);
 					
-					//2-III: saving the itemsCount into session Scope.
+					
+					//III: saving the itemsCount into session Scope.
 					session.setAttribute("cartCounter", itemsCount); 
 		    		
 		    	
@@ -103,34 +115,44 @@ public class LoginController {
 					
 					
 					
-			  //3rd: retrieving the items in the cart:
+			  //2nd: Retrieving the items from the 'cartItems' table
 					
-					//3-I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
-					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(intUserId);
+					
+					//I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
+					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
 			    	
-					//3-II: saving the retrieved items into session scope.
+					
+					//II: saving the retrieved items into session scope.
 			    	session.setAttribute("retrievedCartItems", retrievedItems);
 					
 		    		
 			//================================================================================================
 			    	
 			    	
-				//4th: retrieving the breads items from the 'breads' tables.
+			  //3rd: Retrieving the bread items from the 'breads' tables.
 			    	
-			    	 //4-I: Instantiating an object from the 'DaoBreads' class.
+			    	
+			    	 //I: Instantiating an object from the 'DaoBreads' class.
 		    		 DaoBreads breadsObj = new DaoBreads();
 		        	
-		    		 //4-II: getting the breads items via the 'getBreads()' method.
-		        	 List<breads> retrievedBread = breadsObj.getBreads();
+		    		 
+		    		 //II: getting the bread items via the 'getBreads()' method.
+		        	 List<breads> retrievedBreads = breadsObj.getBreads();
 		    			
-		        	 //4-III: saving the retrieved breads into the session scope:
-		        	 session.setAttribute("retrievedBreads", retrievedBread);
+		        	 //III: saving the retrieved breads into the session scope:
+		        	 session.setAttribute("retrievedBreads", retrievedBreads);
+		        	 
+		        	 //IV: this allows the 'when' tag in the 'customer' page to loop through the 'retrievedBreads'
+		        	 session.setAttribute("showCategory", "Breads");
+		        	 
+		        	 
 		        	 
 		    		
 		        	 destination = "view/customer";
 		        	 
 		    		
-				} catch (Exception e) {
+				} 
+		    	catch (Exception e) {
 					
 					System.out.print(e);
 				}
@@ -141,23 +163,34 @@ public class LoginController {
 			}
 			else {
 				
-				//So, if the user hasn't registered.
+				
+				//So, if the user hasn't registered - this Part will run
+				
 				model.addAttribute("loginError", "Login failed! Please check your email and password");
+				
 				model.addAttribute("email", email);
 				
 				
 				destination = "view/login";
 					
-			}
+			}//closing brace of the 'else' part
 			
 		
 		
 	return destination;	
 		
 		
+	
 	}//closing brace of the 'loginController()' method.
 	
 	
+	
+	
+//##############################################################################################	
+
+	
+	
+	//When the user logs out! this method will take the user from 'customer' page back to the 'login' page
 	@GetMapping("/login")
 	public String showLoginPage(@RequestParam(value = "logOutMessage", required = false) String logOutMessage, Model model) {
 	    
@@ -173,6 +206,10 @@ public class LoginController {
 
 	
 	
+//##############################################################################################	
+	
+	
+	//This method returns back the user from 'login' page back to the 'viewerOnly' page.
 	@GetMapping("/backToView")
 	protected String backToView() {
 		

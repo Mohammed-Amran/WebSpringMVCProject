@@ -139,7 +139,7 @@ transition: transform 0.2s ease;
     <div class="appbar-actions">
    
      <!-- Controller for this button is in '' file. -->      
-     <form method="get" action="getBackToViewPage">  
+     <form method="get" action="getBackToViewPageFromMenuAndGallery">  
      
         <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a;; font-weight: bold;" >       
              Back         

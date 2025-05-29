@@ -42,7 +42,7 @@ public class DaoBreads {
 //================================================================================================================== 	
 	
 	
-	    //This method retrieves breads items from the 'breads' table.
+	    //This method retrieves bread items from the 'breads' table.
 	    public List<breads> getBreads() throws SQLException {
 
 	        ArrayList<breads> itemsList = new ArrayList<>();
@@ -50,11 +50,15 @@ public class DaoBreads {
 	        String sql = "SELECT breadsId, itemName, itemPrice, imgURL, itemDesc, itemType FROM breads";
 
 	        try (Connection conn = getConnection();
+	        		
 	             PreparedStatement stmt = conn.prepareStatement(sql);
-	             ResultSet rs = stmt.executeQuery()) {
+	        		
+	             ResultSet rs = stmt.executeQuery() ) {
 
 	            while (rs.next()) {
-	                breads item = new breads();
+	               
+	            	//Instantiating an object from the 'breads' class.
+	            	breads item = new breads();
 
 	                item.setId(rs.getInt("breadsId"));
 	                item.setItemName(rs.getString("itemName"));
@@ -73,6 +77,9 @@ public class DaoBreads {
 	    } // closing brace of the getBreads method
 	    
 	
+	    
+	    
+	    
 	    //This method retrieves back the breadsId using the bread itemName.
 	    public int getBreadIdByName(String itemName) throws SQLException {
 	        
@@ -81,11 +88,13 @@ public class DaoBreads {
 	        String sql = "SELECT breadsId FROM breads WHERE itemName = ?";
 	        
 	        try (Connection conn = getConnection();
+	        		
 	             PreparedStatement stmt = conn.prepareStatement(sql)) {
 	             
 	            stmt.setString(1, itemName);
 	            
 	            try (ResultSet rs = stmt.executeQuery()) {
+	            	
 	                if (rs.next()) {
 	                    
 	                	breadId = rs.getInt("breadsId");

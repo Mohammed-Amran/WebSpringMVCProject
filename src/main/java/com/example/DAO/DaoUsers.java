@@ -182,7 +182,7 @@ public String retrievePhoneNo(String email, String pass) {
 
 
 //Retrieving the id of user.
-public String retrieveId(String email) {
+public int retrieveId(String email) {
 	
 	
 	String sql = "SELECT userId FROM users WHERE email = ?";
@@ -196,7 +196,7 @@ public String retrieveId(String email) {
       	
           if (rs.next()) {
           	
-              return rs.getString("userId");
+              return rs.getInt("userId");
               
           }
       }
@@ -207,7 +207,7 @@ public String retrieveId(String email) {
       e.printStackTrace();
   }
 
-  return "Unknown id"; // return Unknown phoneNo if not found or error occurs
+  return -1; // return Unknown id, if id not found or error occurs
 	
 	
 	

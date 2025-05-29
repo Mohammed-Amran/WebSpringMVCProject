@@ -30,6 +30,10 @@ if(session == null || session.getAttribute("fullName") == null){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
 
 <%-- Link to the CSS file for this customer view page --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customerViewStyle.css">
@@ -597,16 +601,15 @@ font-size:19px;
 
 
 <c:if test="${not empty sessionScope.openCartModal}">
-   
     <script>
-        window.onload = function() {
+        $(document).ready(function() {
             $('#cart').modal('show');
-        };
+        });
     </script>
-    
+
     <c:remove var="openCartModal" scope="session" />
-    
 </c:if>
+
 
 
 
@@ -779,7 +782,7 @@ font-size:19px;
 					
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					
-					<form method="get" action="${pageContext.request.contextPath}/gotToCheckout">
+					<form method="get" action="${pageContext.request.contextPath}/goToCheckout">
 					
 					<button type="submit" class="btn btn-primary checkout-btn">Checkout</button>
 				
@@ -798,18 +801,64 @@ font-size:19px;
 
 
 
+
+
+<!-- if incrementing items in the Cart failed! this message will be shown -->
+<c:if test="${not empty incrementError}">
+
+    <script type="text/javascript">
+    
+      alert('${incrementError}');
+      
+    </script>
+
+</c:if>
+
+
+
+<!-- if decrementing items in the Cart failed! this message will be shown -->
+<c:if test="${not empty decrementError}">
+
+    <script type="text/javascript">
+    
+      alert('${decrementError}');
+      
+    </script>
+
+</c:if>
+
+
+
+<!-- if removing items in the Cart failed! this message will be shown -->
+<c:if test="${not empty removingError}">
+
+    <script type="text/javascript">
+    
+      alert('${removingError}');
+      
+    </script>
+
+</c:if>
+
+
+
+
 <!-- ################################################################################################################################ -->
 
 
 
-<c:if test="${showCheckoutModal}">
-<script>
 
-    $(document).ready(function() {
-        $('#checkoutModal').modal('show');
-    });
-</script>
+
+<c:if test="${not empty sessionScope.showCheckoutModal}">
+    <script>
+        $(function() {
+            $('#checkoutModal').modal('show');
+        });
+    </script>
+
+    <c:remove var="showCheckoutModal" scope="session" />
 </c:if>
+
 
 
 
@@ -844,7 +893,7 @@ font-size:19px;
 							<c:set var="total" value="0" />
 
 							<!-- Loop through cart items -->
-							<c:forEach var="c" items="${sessionScope.cartItems}">
+							<c:forEach var="c" items="${sessionScope.retrievedItemsForCheckout}">
 
 								<!-- Calculate item total and update grand total -->
 								<c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
@@ -854,7 +903,7 @@ font-size:19px;
 								<div class="card mb-2 p-2">
 									<div class="d-flex justify-content-between align-items-center">
 										<div>
-											<strong>${c.name}</strong><br> Quantity:
+											<strong>${c.itemName}</strong><br> Quantity:
 											${c.selectedQuantity}<br> Price per item: 125 IQD
 										</div>
 										<div>
@@ -993,6 +1042,9 @@ font-size:19px;
                 
               </form>  
       </div>
+    
+    
+    
     
     
     <div class="menu-items" style="background-color: #F2F3F1">
