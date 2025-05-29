@@ -865,122 +865,91 @@ font-size:19px;
 <!-- ========- CHECKOUT MODAL -=========== -->
 
 
-<!-- Checkout Modal -->
-	<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<!-- Checkout Modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document" style="max-width: 1000px;"> <!-- Increased width -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="font-weight: bold;">Checkout</h3>
+            </div>
 
-		<div class="modal-dialog modal-lg" role="document">
+            <div class="modal-body" style="display: flex; justify-content: space-between; gap: 40px; padding: 25px;"> <!-- Increased gap and padding -->
+                <!-- Left Section: Cart Items -->
+                <div style="width: 55%;">
+                    <h5 style="margin-bottom: 20px;">Your Items</h5>
+                    
+                    <div class="checkout-cart-body">
+                        <!-- Table Header -->
+                        <div class="cart-item-header" style="display: flex; justify-content: space-between; 
+                            padding: 12px 15px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;
+                            font-weight: bold; margin-bottom: 10px;">
+                            <span style="width: 40%; padding-left: 10px;">Item Name</span>
+                            <span style="width: 20%; text-align: center;">Quantity</span>
+                            <span style="width: 30%; text-align: right; padding-right: 15px;">Price</span>
+                        </div>
+                        
+                        <!-- Initialize total price -->
+                        <c:set var="total" value="0" />
+                        
+                        <!-- Loop through cart items -->
+                        <c:forEach var="c" items="${sessionScope.retrievedItemsForCheckout}">
+                            <c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
+                            <c:set var="total" value="${total + itemTotal}" />
+                            
+                            <div class="cart-item-row" style="display: flex; justify-content: space-between; 
+                                align-items: center; padding: 12px 15px; border-bottom: 1px solid #eee;
+                                margin-bottom: 8px;">
+                                <span style="width: 40%; font-weight: 500; padding-left: 10px;">${c.itemName}</span>
+                                <span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
+                                <span style="width: 30%; text-align: right; padding-right: 15px; color: #D5451B;">${itemTotal} IQD</span>
+                            </div>
+                        </c:forEach>
+                        
+                        <!-- Total price display -->
+                        <div style="margin-top: 25px; text-align: right; padding: 15px; 
+                            background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
+                            <strong>Total Price: </strong> 
+                            <span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
+                        </div>
+                    </div>
+                </div>
 
-			<div class="modal-content">
+                <!-- Right Section: User Info Form -->
+                <div style="width: 45%; padding: 0 15px;">
+                    <h5 style="margin-bottom: 20px;">Delivery Information</h5>
+                    <form id="deliveryForm">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="citySelect" style="display: block; margin-bottom: 8px; font-weight: 500;">City</label> 
+                            <select id="citySelect" class="form-control" required style="padding: 10px; height: 45px;">
+                                <option value="">Select District</option>
+                                <option value="Sulaymaniyah">Sulaymaniya</option>
+                                <option value="Erbil">Erbil</option>
+                                <option value="Duhok">Duhok</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 25px;">
+                            <label for="addressInput" style="display: block; margin-bottom: 8px; font-weight: 500;">Address</label>
+                            <textarea id="addressInput" class="form-control" rows="4" 
+                                placeholder="Enter your full address" required
+                                style="padding: 12px; min-height: 100px;"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="processDelivery()"
+                            style="width: 100%; padding: 12px; font-size: 16px; font-weight: 500;">Order</button>
+                    </form>
+                </div>
+            </div>
 
-				<div class="modal-header">
-
-					<h3 class="modal-title" style="font-weight: bold;">Checkout</h3>
-
-				</div>
-
-				<div class="modal-body" style="display: flex; justify-content: space-between; gap: 20px;">
-
-					<!-- Left Section: Cart Items -->
-					<div style="width: 50%;">
-
-						<h5>Your Items</h5>
-
-
-
-						<div class="checkout-cart-body">
-
-							<!-- Initialize total price -->
-							<c:set var="total" value="0" />
-
-							<!-- Loop through cart items -->
-							<c:forEach var="c" items="${sessionScope.retrievedItemsForCheckout}">
-
-								<!-- Calculate item total and update grand total -->
-								<c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
-								<c:set var="total" value="${total + itemTotal}" />
-
-								<!-- Item display block -->
-								<div class="card mb-2 p-2">
-									<div class="d-flex justify-content-between align-items-center">
-										<div>
-											<strong>${c.itemName}</strong><br> Quantity:
-											${c.selectedQuantity}<br> Price per item: 125 IQD
-										</div>
-										<div>
-											<strong>${itemTotal} IQD</strong>
-										</div>
-									</div>
-								</div>
-
-							</c:forEach>
-
-							<!-- Total price display -->
-							<div class="mt-3 text-right" style="font-size: 18px;">
-								<strong>Total Price: </strong> <span id="checkoutTotalPrice">${total}</span>
-								IQD
-							</div>
-
-						</div> <!-- closing tag of the 'checkout-cart-body' -->
-
-
-
-					</div>
-
-
-					<!-- Right Section: User Info Form -->
-					<div style="width: 40%;">
-
-						<h5>Delivery Information</h5>
-
-						<form id="deliveryForm">
-
-							<div class="form-group">
-
-								<label for="citySelect">City</label> <select id="citySelect" class="form-control" required>
-
-									<option value="">Select District</option>
-									<option value="Sulaymaniyah">Sulaymaniya</option>
-									<option value="Erbil">Erbil</option>
-									<option value="Duhok">Duhok</option>
-
-								</select>
-
-							</div>
-
-							<div class="form-group">
-
-								<label for="addressInput">Address</label>
-
-								<textarea id="addressInput" class="form-control" rows="3" placeholder="Enter your address" required></textarea>
-
-							</div>
-
-							<button type="button" class="btn btn-success" onclick="processDelivery()">Order</button>
-
-						</form>
-
-					</div>
-
-				</div>
-
-
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
-
-				</div>
-
-
-			</div>
-
-
-		</div>
-
-	</div> <!-- Closing Tag of the Checkout Modal -->
+            <div class="modal-footer" style="padding: 15px 25px;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    style="padding: 8px 20px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-<!-- =========================================================================================================================== -->
+	<!-- =========================================================================================================================== -->
 <!-- =========================================================================================================================== -->
 
 
