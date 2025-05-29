@@ -44,12 +44,12 @@ public class DaoCakes {
 	
 	
 
- //Method to retrieve desert items from the 'deserts' table.
+ //This method to retrieves desert items from the 'deserts' table.
    public List<cakes> getDesert() throws SQLException {
 
        ArrayList<cakes> itemsList = new ArrayList<>();
 
-       String sql = "SELECT desertsId,itemName, itemPrice, imgURL, itemDesc FROM deserts";
+       String sql = "SELECT desertsId,itemName, itemPrice, imgURL, itemDesc, itemType FROM deserts";
 
        try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -63,6 +63,7 @@ public class DaoCakes {
                item.setItemPrice(rs.getDouble("itemPrice"));
                item.setImgURL(rs.getString("imgURL"));
                item.setItemDesc(rs.getString("itemDesc"));
+               item.setItemType(rs.getString("itemType"));
 
                itemsList.add(item);
            }
@@ -74,7 +75,7 @@ public class DaoCakes {
    } // closing brace of the getBreads method   
    
    
- 
+  //This method retrieves back the desert item id using the itemName.
    public int getDesertIdByName(String itemName) throws SQLException {
        
    	int desertId = -1; // Default value if not found
@@ -88,7 +89,9 @@ public class DaoCakes {
            
            try (ResultSet rs = stmt.executeQuery()) {
                if (rs.next()) {
+            	   
             	   desertId = rs.getInt("desertsId");
+            
                }
            }
        }

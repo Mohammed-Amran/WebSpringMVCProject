@@ -42,12 +42,12 @@ public class DaoBreads {
 //================================================================================================================== 	
 	
 	
-	    //Method to retrieve breads items from the 'breads' table.
+	    //This method retrieves breads items from the 'breads' table.
 	    public List<breads> getBreads() throws SQLException {
 
 	        ArrayList<breads> itemsList = new ArrayList<>();
 
-	        String sql = "SELECT breadsId, itemName, itemPrice, imgURL, itemDesc FROM breads";
+	        String sql = "SELECT breadsId, itemName, itemPrice, imgURL, itemDesc, itemType FROM breads";
 
 	        try (Connection conn = getConnection();
 	             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -61,6 +61,7 @@ public class DaoBreads {
 	                item.setItemPrice(rs.getDouble("itemPrice"));
 	                item.setImgURL(rs.getString("imgURL"));
 	                item.setItemDesc(rs.getString("itemDesc"));
+	                item.setItemType(rs.getString("itemType"));
 
 	                itemsList.add(item);
 	            }
@@ -72,7 +73,7 @@ public class DaoBreads {
 	    } // closing brace of the getBreads method
 	    
 	
-	
+	    //This method retrieves back the breadsId using the bread itemName.
 	    public int getBreadIdByName(String itemName) throws SQLException {
 	        
 	    	int breadId = -1; // Default value if not found
@@ -86,7 +87,9 @@ public class DaoBreads {
 	            
 	            try (ResultSet rs = stmt.executeQuery()) {
 	                if (rs.next()) {
-	                    breadId = rs.getInt("breadsId");
+	                    
+	                	breadId = rs.getInt("breadsId");
+	                	
 	                }
 	            }
 	        }

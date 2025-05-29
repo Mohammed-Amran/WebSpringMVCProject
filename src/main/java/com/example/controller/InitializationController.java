@@ -11,13 +11,27 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InitializationController {
 
-	 //This Method below Initially Shows the viewerOnly page to the user.
+	
+	
+	 //This Method runs at first & Shows the viewerOnly page to the user.
 	  @RequestMapping("/")
 	  protected String initializer() {
 		  
 		  return "view/viewerOnly";
 		  
 	  }//closing brace of the 'initializer()' method.
+	  
+	  
+//#############################################################################################################
+	  
+	  
+	  //This Method forwards the user to 'aboutUs' page.
+	  @RequestMapping("/accessAboutUsPage")
+	  protected String forwardToAboutUs() {
+		  
+		  return "view/aboutUs";
+		  
+	  }//closing brace of the 'forwardToAboutUs()' method.
 	  
 	  
 	  @RequestMapping("/categoryController")
@@ -35,12 +49,8 @@ public class InitializationController {
 	  
 	  
 	  
-	  @RequestMapping("/accessAboutUsPage")
-	  protected String forwardToAboutUs() {
-		  
-		  return "view/aboutUs";
-		  
-	  }//closing brace of the 'forwardToAboutUs()' method.
+	  
+	 
 	  
 	  
 	  

@@ -2,9 +2,22 @@ package com.example.model;
 
 public class cartItems {
 
-	private String itemName;
+	private int userId;
 	private int itemId;
+	private String itemName;
 	private int selectedQuantity;
+	
+	
+	public void setUserId(int userId) {
+		
+		this.userId = userId;
+	}
+	
+	
+	public int getUserId() {
+		
+		return userId;
+	}
 	
 	public String getItemName() {
 		

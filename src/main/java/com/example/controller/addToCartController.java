@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -337,6 +338,49 @@ public String removeItem(@RequestParam Map<String, String> req, HttpServletReque
 	
 	
 }//closing brace of the 'removeItem()' method.
+
+
+@GetMapping("/gotToCheckout")
+public String goToCheckout(HttpServletRequest request) {
+	
+	HttpSession session = request.getSession(false);
+	
+	 String strUserId = (String) session.getAttribute("userId");
+	   int intUserId = Integer.parseInt(strUserId);
+	
+	 daoCart cartObj = new daoCart();
+	 
+
+	
+	try {
+		
+	
+		 List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(intUserId);
+			
+	 	session.setAttribute("retrievedCartItems", retrievedItems);
+		
+	 	
+	    session.setAttribute("cartItems", retrievedItems);
+	    
+	    session.setAttribute("showCheckoutModal", true);
+	 	
+	    return "view/customer";
+	 	
+	} catch (Exception e) {
+		
+		
+		
+		
+	}
+	
+	
+	
+	return "view/customer";
+	
+	
+	
+}//closing brace of the 'gotToCheckout()' method.
+
 
 
 

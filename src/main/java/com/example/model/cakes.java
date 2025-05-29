@@ -7,11 +7,23 @@ public class cakes {
 	private double itemPrice;
 	private String imgURL;
 	private String itemDesc;
+	private String itemType;
 	
 	
 	//Default Constructor
-	public cakes() {}
+	public cakes() {
+		
+	}
+	
+	public void setItemType(String itemType) {
+		
+		this.itemType = itemType;
+	}
 
+	public String getItemType() {
+		
+		return itemType;
+	}
 
 	public int getId() {
 		return desertsId;

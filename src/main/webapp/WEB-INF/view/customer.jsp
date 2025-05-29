@@ -1,12 +1,13 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	
+<!-- Below is Taglib directive -->	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 
-<%
 
+<!-- This Scriptlet code checks the session expiration -->
+<%
 
 if(session == null || session.getAttribute("fullName") == null){
 	
@@ -778,7 +779,11 @@ font-size:19px;
 					
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					
-					<button type="button" class="btn btn-primary checkout-btn" onclick="Checkout()">Checkout</button>
+					<form method="get" action="${pageContext.request.contextPath}/gotToCheckout">
+					
+					<button type="submit" class="btn btn-primary checkout-btn">Checkout</button>
+				
+				    </form>
 				
 				</div>
 				
@@ -794,6 +799,17 @@ font-size:19px;
 
 
 <!-- ################################################################################################################################ -->
+
+
+
+<c:if test="${showCheckoutModal}">
+<script>
+
+    $(document).ready(function() {
+        $('#checkoutModal').modal('show');
+    });
+</script>
+</c:if>
 
 
 
@@ -820,13 +836,44 @@ font-size:19px;
 
 						<h5>Your Items</h5>
 
-						<div class="checkout-cart-body"></div>
 
-						<p style="font-size: 20px; margin-top: 10px;">
 
-							<strong>Total Price: </strong><span id="checkoutTotalPrice">0</span> IQD
+						<div class="checkout-cart-body">
 
-						</p>
+							<!-- Initialize total price -->
+							<c:set var="total" value="0" />
+
+							<!-- Loop through cart items -->
+							<c:forEach var="c" items="${sessionScope.cartItems}">
+
+								<!-- Calculate item total and update grand total -->
+								<c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
+								<c:set var="total" value="${total + itemTotal}" />
+
+								<!-- Item display block -->
+								<div class="card mb-2 p-2">
+									<div class="d-flex justify-content-between align-items-center">
+										<div>
+											<strong>${c.name}</strong><br> Quantity:
+											${c.selectedQuantity}<br> Price per item: 125 IQD
+										</div>
+										<div>
+											<strong>${itemTotal} IQD</strong>
+										</div>
+									</div>
+								</div>
+
+							</c:forEach>
+
+							<!-- Total price display -->
+							<div class="mt-3 text-right" style="font-size: 18px;">
+								<strong>Total Price: </strong> <span id="checkoutTotalPrice">${total}</span>
+								IQD
+							</div>
+
+						</div> <!-- closing tag of the 'checkout-cart-body' -->
+
+
 
 					</div>
 

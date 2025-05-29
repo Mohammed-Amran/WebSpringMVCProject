@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<!-- Taglib directive -->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -7,7 +8,9 @@
 <html>
 
 <head>
+
 <meta charset="UTF-8">
+<title>Viewer Only Page</title>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,10 +23,11 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
 <!-- link to the css file -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/indexStyle.css">
 
-<title>Viewer Only Page</title>
+
 
  <style>
     
@@ -192,10 +196,12 @@ font-size: 21px;
 
 </head>
 
+
 <body style="background-color: #DBDBDB;">
 
 
-<!-- APP bar -->
+
+<!-- App bar -->
 <nav class="appbar">
 
     <div class="appbar-brand">
@@ -203,39 +209,45 @@ font-size: 21px;
         <h1>Suly Bakery</h1> 
         
     </div>
-    
-    
-    <div class="appbar-actions">
-   
-     <!-- Controller for this button is in 'InitializationCOntroller' file. -->
-     <form method="get" action="accessAboutUsPage">  
-     
-        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold; margin-right: 20px;" >       
-             About Us        
-        </button>
-        
-     </form>
-     
-    
-     <form method="get" action="accessRegisterPage">  
-     
-        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;" >       
-             Register         
-        </button>
-        
-     </form>
-             
-     <form method="get" action="accessLoginPage">  
-     
-        <button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;" >       
-             Login         
-        </button>
-        
-     </form>
-      
-        
-    </div>
-    
+
+
+		<div class="appbar-actions">
+
+			<!-- Controller for this button is in 'InitializationController' file. -->
+			<form method="get" action="accessAboutUsPage">
+
+				<button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold; margin-right: 20px;">
+					
+					About Us
+					
+				</button>
+
+			</form>
+
+
+			<form method="get" action="accessRegisterPage">
+
+				<button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;">
+					
+					Register
+					
+				</button>
+
+			</form>
+
+			<form method="get" action="accessLoginPage">
+
+				<button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold;">
+					
+					Login
+					
+				</button>
+
+			</form>
+
+
+		</div> <!-- closing tag of the appbar-actions div -->
+
 </nav>
 
 

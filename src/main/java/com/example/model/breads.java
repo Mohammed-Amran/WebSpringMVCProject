@@ -7,12 +7,24 @@ private String itemName;
 private double itemPrice;
 private String imgURL;
 private String itemDesc;
+private String itemType;
 
 
 //Default constructor.
 public breads() {
 	
 }//closing brace of the default constructor.
+
+
+public String getItemType() {
+	return itemType;
+}
+
+
+public void setItemType(String itemType) {
+	this.itemType = itemType;
+}
+
 
 
 public int getId() {

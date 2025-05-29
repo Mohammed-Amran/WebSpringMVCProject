@@ -43,7 +43,7 @@ public class daoCart {
 
 
   
-//Insert item into 'cartItems' table
+  //This method inserts items into 'cartItems' table
   public boolean insertIntoCartItem(int userId, int itemId, String itemName, int selectedQuantity) {
       
       String sql = "INSERT INTO cartItems (userId, itemId, itemName, selectedQuantity) VALUES (?, ?, ?, ?)";
@@ -76,7 +76,8 @@ public class daoCart {
   
 //=====================================================================================================-=============		    
   
-  //Retrieving the numbers of items in the 'carItems' table.
+  
+  //This method retrieves the numbers of items in the 'carItems' table.
   public int getCartItemCount(int userId) {
       
   	String sql = "SELECT COUNT(*) FROM cartItems WHERE userId = ?";
@@ -108,14 +109,14 @@ public class daoCart {
   
 //=====================================================================================================-=============	   
   
-  //This method will get the cartItems for the specific user.
+  //This method retrieves items in the 'cartItems' table for a specific user using the userId.
   public List<cartItems> getCartItemsByUserId(int userId) throws SQLException {
 	  
 	   
 	   ArrayList<cartItems> itemsList = new ArrayList<>();
 	  
 	   
-	   String sql = "SELECT itemName, itemId, selectedQuantity FROM cartItems WHERE userId = ?";
+	   String sql = "SELECT itemId, itemName, selectedQuantity FROM cartItems WHERE userId = ?";
 	    
 	   
 	    try (Connection conn = getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -129,10 +130,9 @@ public class daoCart {
 	        	
 	            cartItems item = new cartItems();
 	            
-	            item.setItemName(rs.getString("itemName"));
 	            
 	            item.setItemId(rs.getInt("itemId"));
-	            
+	            item.setItemName(rs.getString("itemName"));
 	            item.setSelectedQuantity(rs.getInt("selectedQuantity"));
 	            
 	            itemsList.add(item);
@@ -151,7 +151,7 @@ public class daoCart {
 //=====================================================================================================-============= 
   
   
-//This method will clear out all added items related to user with id = ?
+   //This method clears out all items in the cart that are added with reference to the user, using the userId.
 	public void clearCart(int userId) {
 		
 	    String sql = "DELETE FROM cartItems WHERE userId = ?";
@@ -178,7 +178,7 @@ public class daoCart {
 //===================================================================================================================
 	
 
-	//Update selectedQuantity in 'cartItems' table by incrementing it by 2
+	//This method updates the selectedQuantity attribute in the 'cartItems' table - by incrementing it by 2.
 	public boolean IncrementUpdateCartItemQuantity(int userId, int itemId) {
 	  
 		String sql = "UPDATE cartItems SET selectedQuantity = selectedQuantity + 2 WHERE userId = ? AND itemId = ?";
@@ -209,24 +209,30 @@ public class daoCart {
 //===================================================================================================================
 	
 
-	//Update selectedQuantity in 'cartItems' table by decrementing it by 2
+	//This method updates the selectedQuantity attribute in the 'cartItems' table - by decrementing it by 2.
 	public boolean decrementUpdateCartItemQuantity(int userId, int itemId) {
-	    // First check current quantity
+	   
+		// Firstly, check the current selectedQuantity
 	    String checkQtySql = "SELECT selectedQuantity FROM cartItems WHERE userId = ? AND itemId = ?";
 	    
+	    
 	    try (Connection conn = getConnection();
+	    		
 	         PreparedStatement checkStmt = conn.prepareStatement(checkQtySql)) {
 
 	        checkStmt.setInt(1, userId);
 	        checkStmt.setInt(2, itemId);
+	        
 	        ResultSet rs = checkStmt.executeQuery();
 
 	        if (rs.next()) {
+	        	
 	            int currentQty = rs.getInt("selectedQuantity");
 	            
+	            //Checking if the current selectedQuantity is less than 2.
 	            if (currentQty <= 2) {
 	            	
-	                // Remove item if quantity is 1 or less
+	                // Remove the item if selectedQuantity is less than 2.
 	                return removeCartItem(userId, itemId);
 	                
 	            } 
@@ -236,11 +242,16 @@ public class daoCart {
 	                String updateSql = "UPDATE cartItems SET selectedQuantity = selectedQuantity - 2 WHERE userId = ? AND itemId = ?";
 	                
 	                try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+	                	
 	                    updateStmt.setInt(1, userId);
 	                    updateStmt.setInt(2, itemId);
+	                    
 	                    return updateStmt.executeUpdate() > 0;
+	                    
 	                }
+	                
 	            }
+	            
 	        } 
 	        else {
 	            
@@ -261,7 +272,10 @@ public class daoCart {
 
 //===================================================================================================================
 
+	
+	//This method removes the item in the cart using userId & itemId.
 	public boolean removeCartItem(int userId, int itemId) {
+		
 	    String sql = "DELETE FROM cartItems WHERE userId = ? AND itemId = ?";
 	    
 	    try (Connection conn = getConnection();

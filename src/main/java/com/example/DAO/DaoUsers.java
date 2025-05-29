@@ -38,7 +38,7 @@ public class DaoUsers {
     
     
     
-    // Insert User into 'users' table
+    //This method Inserts User into 'users' table
     public boolean insertUser(UserRegistration user) {
     	
     	//The below Table column(attribute) names! must be exactly the same of the Actual table column(attribute) names!
