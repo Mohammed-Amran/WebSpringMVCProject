@@ -101,6 +101,45 @@ public class DaoCakes {
        return desertId;
    } 
    
+ 
+   
+   
+ //==============================================================================================================	    
+   
+   
+	  //Retrieving the itemPrice of a bread item.
+		public int getDesertItemPrice(String itemName) {
+			
+			
+			String sql = "SELECT itemPrice FROM deserts WHERE itemName = ?";
+			
+			try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		      stmt.setString(1, itemName);
+		     
+
+		      try (ResultSet rs = stmt.executeQuery()) {
+		      	
+		          if (rs.next()) {
+		          	
+		              return rs.getInt("itemPrice");
+		              
+		          }
+		      }
+
+		  } 
+			catch (SQLException e) {
+				
+		      e.printStackTrace();
+		  }
+
+		  return -1; // return Unknown id, if id not found or error occurs
+			
+			
+			
+		}//closing brace of the 'getDesertItemPrice()' method.	   
+   
+   
    
 	
 	

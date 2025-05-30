@@ -113,7 +113,7 @@ public class addToCartController {
 		  
 	  
 		 int itemId = 0;
-		  
+		 int itemPrice = 0; 
 		 
 		 /* 4 of 5 */
 		 try {
@@ -123,12 +123,22 @@ public class addToCartController {
 				 
 				 //Then, retrieve the itemId of them item from the 'breads' table via the 'getBreadIdByName()' method.
 				 itemId = breadObj.getBreadIdByName(itemName);
+				 
+				 /*----5-----= Retrieving the itemPrice =----------*/	
+				 itemPrice = breadObj.getBreadItemPrice(itemName);
+				 
+				 
 			 }
 			 //And if the itemType was 'Desert':
 			 else if("Desert".equals(itemType)) {
 				 
 				 //Then, retrieve the itemId of them item from the 'deserts' table via the 'getDesertIdByName()' method.
 				 itemId = desertObj.getDesertIdByName(itemName);
+				 
+				 /*----5-----= Retrieving the itemPrice =----------*/	
+				 itemPrice = desertObj.getDesertItemPrice(itemName);
+				 
+				 
 			 }
 			  
 			 	 
@@ -138,19 +148,6 @@ public class addToCartController {
 			System.out.print(e);
 		} 
 		 
-		 
-
-		 
-		 
-/*----5-----= Retrieving the itemPrice =----------*/		 
-		
-		 
-              String strItemPrice = req.get("itemPrice");
-	 	 
-              //Parsing the retrieved 'strSelectedQuantity' into Integer:
-/* 5 of 5 */  int itemPrice = Integer.parseInt(strItemPrice);		
-		 
-	
 
 
 

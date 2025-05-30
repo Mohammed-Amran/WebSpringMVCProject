@@ -186,7 +186,7 @@ public class daoCart {
 	//This method updates the selectedQuantity attribute in the 'cartItems' table - by incrementing it by 2.
 	public boolean IncrementUpdateCartItemQuantity(int userId, int itemId) {
 	  
-		String sql = "UPDATE cartItems SET selectedQuantity = selectedQuantity + 2 WHERE userId = ? AND itemId = ?";
+		String sql = "UPDATE cartItems SET selectedQuantity = selectedQuantity + 1 WHERE userId = ? AND itemId = ?";
 
 	    try (Connection conn = getConnection(); 
 	         PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -235,7 +235,7 @@ public class daoCart {
 	            int currentQty = rs.getInt("selectedQuantity");
 	            
 	            //Checking if the current selectedQuantity is less than 2.
-	            if (currentQty <= 2) {
+	            if (currentQty <= 1) {
 	            	
 	                // Remove the item if selectedQuantity is less than 2.
 	                return removeCartItem(userId, itemId);
@@ -244,7 +244,7 @@ public class daoCart {
 	            else {
 	            	
 	                // Decrement quantity
-	                String updateSql = "UPDATE cartItems SET selectedQuantity = selectedQuantity - 2 WHERE userId = ? AND itemId = ?";
+	                String updateSql = "UPDATE cartItems SET selectedQuantity = selectedQuantity - 1 WHERE userId = ? AND itemId = ?";
 	                
 	                try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
 	                	
@@ -303,7 +303,19 @@ public class daoCart {
 	    	return false;
 	    }
 	    
-	}
+	}//closing brace of the 'removeCartItem()' method
+	
+	
+	
+//==================================================================================================================
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }//closing brace of the class.
