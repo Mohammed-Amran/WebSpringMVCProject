@@ -112,8 +112,17 @@ public class orderController {
     	
         model.addObject("successMessage", "Your order has been placed successfully.");
         
+     
+        
     }
  
+    
+    
+    //clear cart from session after order is placed
+    session.removeAttribute("retrievedCartItems");
+    
+    //clear cart counter from session after order is placed
+    session.removeAttribute("cartCounter");
     
     
     //Instantiating an object from the 'cartItems' class.
