@@ -48,23 +48,23 @@ public class addToCartController {
 		
 		 
 	/*
-	     4 things are required to be inserted into the Cart!: 
+	     5 things are required to be inserted into the Cart!: 
        
-         1.userId - 2.itemId - 3.itemName - 4.selectedQuantity. 
+         1.userId - 2.itemId - 3.itemName - 4.selectedQuantity -5.itemPrice. 
 		     
      */
 		
      
 //.........................................................................................................................	
      
-     /*Retrieving the 'itemName', 'itemType', 'selectedQuantity' of item
+     /*Retrieving the 'itemName', 'itemType', 'selectedQuantity', 'itemPrice' of item
        that the user has sent to this method */
      
 
 /*----1-----= Retrieving the itemName =----------*/
      
      
-   /* 1 of 4 */  String itemName = req.get("itemName");
+   /* 1 of 5 */  String itemName = req.get("itemName");
 	             
 	             
 	             
@@ -77,7 +77,7 @@ public class addToCartController {
 	             String strSelectedQuantity = req.get("selectedQuantity");
 	 	 
 	             //Parsing the retrieved 'strSelectedQuantity' into Integer:
-   /* 2 of 4 */  int intSelectedQuantity = Integer.parseInt(strSelectedQuantity);
+   /* 2 of 5 */  int intSelectedQuantity = Integer.parseInt(strSelectedQuantity);
 	
    
 
@@ -88,7 +88,7 @@ public class addToCartController {
 /*----3-----= Retrieving the userId =----------*/    
    
                  //Retrieve the userId from the session scope & parsing it into Integer:
-   /* 3 of 4 */  int userId = (Integer) session.getAttribute("userId");
+   /* 3 of 5 */  int userId = (Integer) session.getAttribute("userId");
   
                  
               
@@ -115,7 +115,7 @@ public class addToCartController {
 		 int itemId = 0;
 		  
 		 
-		 /* 4 of 4 */
+		 /* 4 of 5 */
 		 try {
 			
 			 //so, if the itemType was 'Bread':
@@ -138,23 +138,41 @@ public class addToCartController {
 			System.out.print(e);
 		} 
 		 
-		  
+		 
+
+		 
+		 
+/*----5-----= Retrieving the itemPrice =----------*/		 
+		
+		 
+              String strItemPrice = req.get("itemPrice");
+	 	 
+              //Parsing the retrieved 'strSelectedQuantity' into Integer:
+/* 5 of 5 */  int itemPrice = Integer.parseInt(strItemPrice);		
+		 
+	
+
+
+
 		 /* so, at the moment! we have all 4 necessary data's
 		    
-		    1.userId - 2.itemId - 3.itemName - 4.selectedQuantity
+		    1.userId - 2.itemId - 3.itemName - 4.selectedQuantity -5.itemPrice
 		     
 		 */
-		  
+	
+
+
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-		 
-		//Inserting the (userId, itemId, itemName, selectedQuantity) into the 'cartItems' table.
+	
+
+		//Inserting the (userId, itemId, itemName, selectedQuantity, itemPrice) into the 'cartItems' table.
         		  
         //1st: Instantiating an object from the 'DoaAddToCart' class.
         daoCart daoAddToCartObj = new daoCart();
          
          
         //2nd: Inserting the item into the 'cartItems' table via the 'insertIntoCartItem()' method.
-        boolean isInserted = daoAddToCartObj.insertIntoCartItem(userId, itemId, itemName, intSelectedQuantity);
+        boolean isInserted = daoAddToCartObj.insertIntoCartItem(userId, itemId, itemName, intSelectedQuantity, itemPrice);
 		
        
         //So, if the item successfully has inserted into the 'cartItems' table - this part below will run

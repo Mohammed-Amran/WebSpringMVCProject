@@ -44,9 +44,9 @@ public class daoCart {
 
   
   //This method inserts items into 'cartItems' table
-  public boolean insertIntoCartItem(int userId, int itemId, String itemName, int selectedQuantity) {
+  public boolean insertIntoCartItem(int userId, int itemId, String itemName, int selectedQuantity, int itemPrice) {
       
-      String sql = "INSERT INTO cartItems (userId, itemId, itemName, selectedQuantity) VALUES (?, ?, ?, ?)";
+      String sql = "INSERT INTO cartItems (userId, itemId, itemName, selectedQuantity, itemPrice) VALUES (?, ?, ?, ?, ?)";
 
       try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
           
@@ -54,8 +54,9 @@ public class daoCart {
           stmt.setInt(2, itemId);
           stmt.setString(3, itemName);
           stmt.setInt(4, selectedQuantity);
+          stmt.setInt(5, itemPrice);
 
-          System.out.println("Trying to insert into cartItems: USER-ID=" + userId + ", Item=" + itemName + ", Quantity=" + selectedQuantity);
+          System.out.println("Trying to insert into cartItems: USER-ID=" + userId + ", Item=" + itemName + ", Quantity=" + selectedQuantity + ", itemPrice=" + itemPrice);
 
           int rowsInserted = stmt.executeUpdate();
 
@@ -116,7 +117,7 @@ public class daoCart {
 	   ArrayList<cartItems> itemsList = new ArrayList<>();
 	  
 	   
-	   String sql = "SELECT userId, itemId, itemName, selectedQuantity FROM cartItems WHERE userId = ?";
+	   String sql = "SELECT userId, itemId, itemName, selectedQuantity, itemPrice FROM cartItems WHERE userId = ?";
 	    
 	   
 	    try (Connection conn = getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -136,6 +137,7 @@ public class daoCart {
 	            item.setItemId(rs.getInt("itemId"));
 	            item.setItemName(rs.getString("itemName"));
 	            item.setSelectedQuantity(rs.getInt("selectedQuantity"));
+	            item.setItemPrice(rs.getDouble("itemPrice"));
 	            
 	            itemsList.add(item);
 	        }

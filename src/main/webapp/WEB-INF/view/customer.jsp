@@ -876,97 +876,157 @@ font-size:19px;
 
 <!-- Checkout Modal -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+
   <div class="modal-dialog" role="document" style="max-width: 90vw; width: 90vw;">
 
         <div class="modal-content">
+        
             <div class="modal-header" style="padding: 20px 30px;">
+            
                 <h3 class="modal-title" style="font-weight: bold;">Checkout</h3>
+                
             </div>
 
             <div class="modal-body" style="display: flex; justify-content: space-between; gap: 50px; padding: 30px;"> 
+               
                 <!-- Left Section: Cart Items -->
                 <div style="flex: 1.1;">
+                    
                     <h5 style="margin-bottom: 20px;">Your Items</h5>
                     
                     <div class="checkout-cart-body">
+                        
                         <!-- Table Header -->
+                       
                         <div class="cart-item-header" style="display: flex; justify-content: space-between; 
-                            padding: 12px 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;
-                            font-weight: bold; margin-bottom: 10px;">
+                                                     
+                             padding: 12px 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;
+                            
+                             font-weight: bold; margin-bottom: 10px;">
+                             
+                             
                             <span style="width: 50%;">Item Name</span>
+                            
                             <span style="width: 20%; text-align: center;">Quantity</span>
+                            
                             <span style="width: 30%; text-align: right;">Price</span>
+                            
+                            
                         </div>
                         
-                        <!-- Initialize total price -->
-                        <c:set var="total" value="0" />
+                        
+                         <!-- Initialize total price -->
+                         <c:set var="total" value="0" />
+                        
                         
                         
                         <div class="items-list">
 
 								<!-- Loop through cart items -->
-								<c:forEach var="c"
-									items="${sessionScope.retrievedItemsForCheckout}">
+								<c:forEach var="c" items="${sessionScope.retrievedItemsForCheckout}">
+								
 									<c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
+									
 									<c:set var="total" value="${total + itemTotal}" />
 
-									<div class="cart-item-row"
-										style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+									<div class="cart-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+										
 										<span style="width: 50%; font-weight: 500;">${c.itemName}</span>
+										
 										<span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
-										<span style="width: 30%; text-align: right; color: #D5451B;">${itemTotal}
-											IQD</span>
+										
+										<span style="width: 30%; text-align: right; color: #D5451B;">${itemTotal} IQD</span>
+										
 									</div>
+									
 								</c:forEach>
 
 							</div>
                                              
                         
                         <!-- Total price display -->
-                        <div style="margin-top: 25px; text-align: right; padding: 15px 20px; 
-                            background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
+                        <div style="margin-top: 25px; text-align: right; padding: 15px 20px; background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
+                           
                             <strong>Total Price: </strong> 
+                           
                             <span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
+                            
                         </div>
+                        
+                        
                     </div>
+                    
+                    
                 </div>
+                
+
 
                 <!-- Right Section: User Info Form -->
                 <div style="flex: 0.9;">
+                   
                     <h5 style="margin-bottom: 20px;">Delivery Information</h5>
-                    <form id="deliveryForm">
+                  
+                    
+                    <form id="deliveryForm" method="post" action="${pageContext.request.contextPath}/orderItems">
+                        
                         <div class="form-group" style="margin-bottom: 20px;">
+                            
                             <label for="citySelect" style="display: block; margin-bottom: 8px; font-weight: 500;">City</label> 
-                            <select id="citySelect" class="form-control" required style="padding: 10px; height: 45px;">
+                           
+                            <select id="citySelect" class="form-control" name="location" required style="padding: 10px; height: 45px;">
+                                
+                                
                                 <option value="">Select District</option>
+                                
                                 <option value="Sulaymaniyah">Sulaymaniya</option>
+                                
                                 <option value="Erbil">Erbil</option>
+                               
                                 <option value="Duhok">Duhok</option>
+                                
+                                
                             </select>
+                            
                         </div>
+                        
                         <div class="form-group" style="margin-bottom: 25px;">
+                           
                             <label for="addressInput" style="display: block; margin-bottom: 8px; font-weight: 500;">Address</label>
-                            <textarea id="addressInput" class="form-control" rows="4" 
-                                placeholder="Enter your full address" required
-                                style="padding: 12px; min-height: 100px;"></textarea>
+                          
+                            <textarea id="addressInput" class="form-control" name="address" rows="4" placeholder="Enter your full address" required style="padding: 12px; min-height: 100px;"></textarea>
+                        
                         </div>
-                        <button type="button" class="btn btn-success" onclick="processDelivery()"
-                            style="width: 100%; padding: 12px; font-size: 16px; font-weight: 500;">Order</button>
+                        
+                        
+                        <button type="submit" class="btn btn-success" style="width: 100%; padding: 12px; font-size: 16px; font-weight: 500;">Order</button>
+                   
+                   
                     </form>
+                    
+                    
                 </div>
+                
+                
             </div>
 
+
+
             <div class="modal-footer" style="padding: 15px 30px;">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    style="padding: 8px 20px;">Close</button>
+            
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="padding: 8px 20px;">Close</button>
+                
             </div>
+            
+            
         </div>
+        
     </div>
+    
 </div>
 
 
 
-	<!-- =========================================================================================================================== -->
+<!-- =========================================================================================================================== -->
 <!-- =========================================================================================================================== -->
 
 
@@ -1169,6 +1229,7 @@ font-size:19px;
                     
                     <input type="hidden" name="itemName" value="Baguette Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                     
@@ -1203,6 +1264,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Brioche Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1231,6 +1293,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Ciabatta Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1259,6 +1322,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Multigrain Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1287,6 +1351,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Whole Wheat">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1315,6 +1380,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Lavash Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1343,6 +1409,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Thin Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1371,6 +1438,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Naan Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1399,6 +1467,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Tortilla">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1427,6 +1496,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Crispy Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1455,6 +1525,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kurdish Bread">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1483,6 +1554,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kulera">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1512,6 +1584,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="German Breads">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1541,6 +1614,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Crotian Breads">
                     <input type="hidden" name="itemType" value="Bread">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1571,6 +1645,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Kunafa">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1599,6 +1674,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Cherry Cake">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1627,6 +1703,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Lemon Cake">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1655,6 +1732,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Strawberry Cake">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1683,6 +1761,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Donut">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1711,6 +1790,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Criossant">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1739,6 +1819,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Baklava">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1767,6 +1848,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Apple Cake">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1795,6 +1877,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Caramel Candy">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>
@@ -1823,6 +1906,7 @@ font-size:19px;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="itemName" value="Chocolate Cake">
                     <input type="hidden" name="itemType" value="Desert">
+                    <input type="hidden" name="itemPrice" value="125">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </div>
             </form>

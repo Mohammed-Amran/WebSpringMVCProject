@@ -6,8 +6,19 @@ public class cartItems {
 	private int itemId;
 	private String itemName;
 	private int selectedQuantity;
+	private double itemPrice;
 	
 	
+	public double getItemPrice() {
+		return itemPrice;
+	}
+
+
+	public void setItemPrice(double itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+
+
 	public void setUserId(int userId) {
 		
 		this.userId = userId;
