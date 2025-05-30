@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -140,8 +141,91 @@ public class RegisterController {
 			    	session.setAttribute("phoneNo", phoneNo);
 			    	
 			    	
+			    	//Instantiating an object from the 'DaoUsers' class - in order to access the 'users' table.
+					DaoUsers daoObj = new DaoUsers();
+			    	
+			    	//Retrieving the users ID from the 'users' table in the DB:
+			    	int userId = daoObj.retrieveId(email);
+			    	
+			    	session.setAttribute("userId", userId);
+			    	
+	    	
 			    	//Setting the session time-out to 2 hours:
 			    	session.setMaxInactiveInterval(2 * 60 * 60);
+			    	
+			    	
+			    	try {
+			    		
+			    	
+				    	
+	                    //1st: Retrieving the items-number in the 'cartItems' table.	
+			    			    		
+			    		//I: Instantiating an object from the 'daoCart' class.
+			    		daoCart daoCartObj = new daoCart();
+			    		
+			    		
+			    		//II: getting the items-numbers via the 'getCartItemCount()' method.
+						int itemsCount = daoCartObj.getCartItemCount(userId);
+						
+						
+						//III: saving the itemsCount into session Scope.
+						session.setAttribute("cartCounter", itemsCount); 
+			    		
+			    	
+				//================================================================================================		
+						
+						
+						
+				  //2nd: Retrieving the items from the 'cartItems' table
+						
+						
+						//I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
+						List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
+				    	
+						
+						//II: saving the retrieved items into session scope.
+				    	session.setAttribute("retrievedCartItems", retrievedItems);
+						
+			    		
+				//================================================================================================
+				    	
+				    	
+				  //3rd: Retrieving the bread items from the 'breads' tables.
+				    	
+				    	
+				    	 //I: Instantiating an object from the 'DaoBreads' class.
+			    		 DaoBreads breadsObj = new DaoBreads();
+			        	
+			    		 
+			    		 //II: getting the bread items via the 'getBreads()' method.
+			        	 List<breads> retrievedBreads = breadsObj.getBreads();
+			    			
+			        	 //III: saving the retrieved breads into the session scope:
+			        	 session.setAttribute("retrievedBreads", retrievedBreads);
+			        	 
+			        	 //IV: this allows the 'when' tag in the 'customer' page to loop through the 'retrievedBreads'
+			        	 session.setAttribute("showCategory", "Breads");
+			        	 
+			        	 
+			        	//Instantiating an object from the 'DaoUsers' class - in order to access the 'users' table.
+						DaoOrders ordersObj = new DaoOrders();
+			        	 
+			        	 List<Orders> retrievedItemsIntoInbox = ordersObj.getOrders(userId);
+			     		
+			     		session.setAttribute("retrievedOrderedItems", retrievedItemsIntoInbox);
+			     		
+			     		
+			     		 int orderedItemsCounter = ordersObj.getOrderedItemsCount(userId);
+			     	    
+			     	    session.setAttribute("inboxCounter", orderedItemsCounter);
+			        	 
+						
+					} 
+			    	catch (Exception e) {
+			    		
+			    		e.printStackTrace();
+						
+					}
 			    	
 			    	
 			    	

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.DAO.DaoBreads;
+import com.example.DAO.DaoOrders;
 import com.example.DAO.DaoUsers;
 import com.example.DAO.daoCart;
+import com.example.model.Orders;
 import com.example.model.breads;
 import com.example.model.cartItems;
 
@@ -146,6 +148,17 @@ public class LoginController {
 		        	 session.setAttribute("showCategory", "Breads");
 		        	 
 		        	 
+		        	//Instantiating an object from the 'DaoOrders' class - in order to access the 'orders' table.
+					DaoOrders ordersObj = new DaoOrders();
+			        	 
+			        List<Orders> retrievedItemsIntoInbox = ordersObj.getOrders(userId);
+			     		
+			     	session.setAttribute("retrievedOrderedItems", retrievedItemsIntoInbox);
+			     		
+			     		
+			     	 int orderedItemsCounter = ordersObj.getOrderedItemsCount(userId);
+			     	    
+			     	 session.setAttribute("inboxCounter", orderedItemsCounter);
 		        	 
 		    		
 		        	 destination = "view/customer";
