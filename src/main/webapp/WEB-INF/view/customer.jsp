@@ -450,7 +450,7 @@ font-size:19px;
 			
             <a href="" id="cartBasket" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
-            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox"> <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( 0 ) </span> </a>
+            <a href="${pageContext.request.contextPath}/retrieveOrderedItemsIntoInbox" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
 
 		</div>
 
@@ -543,9 +543,21 @@ font-size:19px;
 <!-- ========- INBOX MODAL -=========== -->
 
 
+<c:if test="${not empty sessionScope.showInboxModal}">
+    <script>
+        $(function() {
+            $('#Inbox').modal('show');
+        });
+    </script>
+    <c:remove var="showInboxModal" scope="session" />
+</c:if>
+
+
+
+
+
 <!-- Inbox Modal -->
-	<div class="modal fade" id="Inbox" tabindex="-1" role="dialog"
-		aria-hidden="true">
+	<div class="modal fade" id="Inbox" tabindex="-1" role="dialog" aria-hidden="true">
 
 		<div class="modal-dialog modal-lg" role="document">
 
@@ -557,24 +569,70 @@ font-size:19px;
 
 				</div>
 
-				<div class="modal-body"
-					style="display: flex; justify-content: space-between; gap: 20px;">
-
+				<div class="modal-body" style="display: flex; justify-content: space-between; gap: 20px;">
+ 
+ 
 					<!-- Left Section: Cart Items -->
 					<div style="width: 50%;">
 
 						<h5>Your Ordered Items</h5>
 
-						<div class="checkout-cart-body"></div>
+						<div class="checkout-cart-body">
 
-						<p style="font-size: 20px; margin-top: 10px;">
 
-							<strong>Total Price: </strong><span id="checkoutTotalPrice">0</span>
-							IQD
+							<!-- Initialize total price -->
+							<c:set var="total" value="0" />
 
-						</p>
+
+
+							<div class="items-list">
+
+								<!-- Loop through cart items -->
+								<c:forEach var="c" items="${sessionScope.retrievedOrderedItems}">
+
+									<c:set var="itemTotal" value="${c.selectedQuantity * c.itemPrice}" />
+
+									<c:set var="total" value="${total + itemTotal}" />
+
+									<div class="cart-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+
+
+										<span style="width: 50%; font-weight: 500;">${c.itemName}</span>
+
+										<span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
+
+										<span style="width: 30%; text-align: right; color: #D5451B;">${itemTotal} IQD</span>
+										
+										<span style="width: 20%; text-align: center;">${c.status}</span>
+
+
+									</div>
+
+
+								</c:forEach>
+
+
+							</div>
+
+
+
+							<!-- Total price display -->
+							<div style="margin-top: 25px; text-align: right; padding: 15px 20px; background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
+
+								<strong>Total Price: </strong> 
+								<span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
+
+							</div>
+
+
+						</div> 
+
+
+
+
 
 					</div>
+
 
 
 					<!-- Right Section: User Info Form -->
@@ -591,8 +649,7 @@ font-size:19px;
 
 				<div class="modal-footer">
 
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
 
 				</div>
 

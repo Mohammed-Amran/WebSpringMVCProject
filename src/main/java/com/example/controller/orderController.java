@@ -1,5 +1,7 @@
 package com.example.controller;
 
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -7,14 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.DAO.DaoOrders;
 import com.example.DAO.daoCart;
+import com.example.model.Orders;
 import com.example.model.cartItems;
+import com.mysql.cj.Session;
 
 @Controller
 public class orderController {
@@ -121,15 +125,21 @@ public class orderController {
     //clear cart from session after order is placed
     session.removeAttribute("retrievedCartItems");
     
-    //clear cart counter from session after order is placed
-    session.removeAttribute("cartCounter");
-    
-    
     //Instantiating an object from the 'cartItems' class.
     daoCart cartObj = new daoCart();
     
+    //clearing the items for the user in the 'cartItems' table:
     cartObj.clearCart(userId);
     
+    //clear cart counter from session after order is placed
+    session.removeAttribute("cartCounter");
+    
+
+    
+    int orderedItemsCounter = ordersObj.getOrderedItemsCount(userId);
+    
+    session.setAttribute("inboxCounter", orderedItemsCounter);
+
     
     
     return "view/customer";
@@ -138,6 +148,42 @@ public class orderController {
  }//closing brace of the 'getOrders()' method.
 	
 	
+
+@GetMapping("/retrieveOrderedItemsIntoInbox")
+public String getOrderedItemsIntoInbox(HttpServletRequest request) {
+	
+	
+	//Instantiating an session object:
+	HttpSession session = request.getSession(false);
+	
+	//Retrieve the userId from the session scope & parsing it into Integer:
+    int userId = (Integer) session.getAttribute("userId");
+	
+	try {
+		
+		DaoOrders ordersItemObj = new DaoOrders();
+		
+		List<Orders> retrievedItemsIntoInbox = ordersItemObj.getOrders(userId);
+		
+		session.setAttribute("retrievedOrderedItems", retrievedItemsIntoInbox);
+		
+		session.setAttribute("showInboxModal", true);
+		
+		
+	} 
+	catch (Exception e) {
+		
+		e.printStackTrace();
+	}
+	
+	
+	
+	return "view/customer";
+	
+}//closing brace of the 'getOrderedItemsIntoInbox()' method
+
+
+
 
 
 
