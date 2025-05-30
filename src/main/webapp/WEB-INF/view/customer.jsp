@@ -383,6 +383,15 @@ font-size:19px;
 
 
 
+/* Checkout modal css code for the items list */
+.items-list {
+    max-height: 300px;  /* Adjust height as needed */
+    overflow-y: auto;   /* Adds vertical scroll */
+    padding-right: 10px; /* Prevents content from hiding behind scrollbar */
+}
+
+
+
 </style>
 
 
@@ -865,48 +874,56 @@ font-size:19px;
 <!-- ========- CHECKOUT MODAL -=========== -->
 
 
-	<!-- Checkout Modal -->
+<!-- Checkout Modal -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document" style="max-width: 1000px;"> <!-- Increased width -->
+  <div class="modal-dialog" role="document" style="max-width: 90vw; width: 90vw;">
+
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="padding: 20px 30px;">
                 <h3 class="modal-title" style="font-weight: bold;">Checkout</h3>
             </div>
 
-            <div class="modal-body" style="display: flex; justify-content: space-between; gap: 40px; padding: 25px;"> <!-- Increased gap and padding -->
+            <div class="modal-body" style="display: flex; justify-content: space-between; gap: 50px; padding: 30px;"> 
                 <!-- Left Section: Cart Items -->
-                <div style="width: 55%;">
+                <div style="flex: 1.1;">
                     <h5 style="margin-bottom: 20px;">Your Items</h5>
                     
                     <div class="checkout-cart-body">
                         <!-- Table Header -->
                         <div class="cart-item-header" style="display: flex; justify-content: space-between; 
-                            padding: 12px 15px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;
+                            padding: 12px 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;
                             font-weight: bold; margin-bottom: 10px;">
-                            <span style="width: 40%; padding-left: 10px;">Item Name</span>
+                            <span style="width: 50%;">Item Name</span>
                             <span style="width: 20%; text-align: center;">Quantity</span>
-                            <span style="width: 30%; text-align: right; padding-right: 15px;">Price</span>
+                            <span style="width: 30%; text-align: right;">Price</span>
                         </div>
                         
                         <!-- Initialize total price -->
                         <c:set var="total" value="0" />
                         
-                        <!-- Loop through cart items -->
-                        <c:forEach var="c" items="${sessionScope.retrievedItemsForCheckout}">
-                            <c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
-                            <c:set var="total" value="${total + itemTotal}" />
-                            
-                            <div class="cart-item-row" style="display: flex; justify-content: space-between; 
-                                align-items: center; padding: 12px 15px; border-bottom: 1px solid #eee;
-                                margin-bottom: 8px;">
-                                <span style="width: 40%; font-weight: 500; padding-left: 10px;">${c.itemName}</span>
-                                <span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
-                                <span style="width: 30%; text-align: right; padding-right: 15px; color: #D5451B;">${itemTotal} IQD</span>
-                            </div>
-                        </c:forEach>
+                        
+                        <div class="items-list">
+
+								<!-- Loop through cart items -->
+								<c:forEach var="c"
+									items="${sessionScope.retrievedItemsForCheckout}">
+									<c:set var="itemTotal" value="${c.selectedQuantity * 125}" />
+									<c:set var="total" value="${total + itemTotal}" />
+
+									<div class="cart-item-row"
+										style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+										<span style="width: 50%; font-weight: 500;">${c.itemName}</span>
+										<span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
+										<span style="width: 30%; text-align: right; color: #D5451B;">${itemTotal}
+											IQD</span>
+									</div>
+								</c:forEach>
+
+							</div>
+                                             
                         
                         <!-- Total price display -->
-                        <div style="margin-top: 25px; text-align: right; padding: 15px; 
+                        <div style="margin-top: 25px; text-align: right; padding: 15px 20px; 
                             background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
                             <strong>Total Price: </strong> 
                             <span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
@@ -915,7 +932,7 @@ font-size:19px;
                 </div>
 
                 <!-- Right Section: User Info Form -->
-                <div style="width: 45%; padding: 0 15px;">
+                <div style="flex: 0.9;">
                     <h5 style="margin-bottom: 20px;">Delivery Information</h5>
                     <form id="deliveryForm">
                         <div class="form-group" style="margin-bottom: 20px;">
@@ -939,7 +956,7 @@ font-size:19px;
                 </div>
             </div>
 
-            <div class="modal-footer" style="padding: 15px 25px;">
+            <div class="modal-footer" style="padding: 15px 30px;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
                     style="padding: 8px 20px;">Close</button>
             </div>
