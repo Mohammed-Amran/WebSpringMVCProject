@@ -111,13 +111,27 @@ public class orderController {
     if (!allInserted) {
     	
         model.addObject("insertionIntoOrdersFailedMessage", "An error occurred while inserting items into the orders table.");
+        
+     
     }
     else {
     	
         model.addObject("successMessage", "Your order has been placed successfully.");
-        
      
         
+        try {
+    		
+    		
+    		List<Orders> retrievedItemsIntoInbox = ordersObj.getOrders(userId);
+    		
+    		session.setAttribute("retrievedOrderedItems", retrievedItemsIntoInbox);
+    		 		
+    	} 
+    	catch (Exception e) {
+    		
+    		e.printStackTrace();
+    	}
+      
     }
  
     
@@ -149,38 +163,11 @@ public class orderController {
 	
 	
 
-@GetMapping("/retrieveOrderedItemsIntoInbox")
-public String getOrderedItemsIntoInbox(HttpServletRequest request) {
-	
-	
-	//Instantiating an session object:
-	HttpSession session = request.getSession(false);
-	
-	//Retrieve the userId from the session scope & parsing it into Integer:
-    int userId = (Integer) session.getAttribute("userId");
-	
-	try {
-		
-		DaoOrders ordersItemObj = new DaoOrders();
-		
-		List<Orders> retrievedItemsIntoInbox = ordersItemObj.getOrders(userId);
-		
-		session.setAttribute("retrievedOrderedItems", retrievedItemsIntoInbox);
-		
-		session.setAttribute("showInboxModal", true);
-		
-		
-	} 
-	catch (Exception e) {
-		
-		e.printStackTrace();
-	}
-	
-	
-	
-	return "view/customer";
-	
-}//closing brace of the 'getOrderedItemsIntoInbox()' method
+
+
+
+
+
 
 
 

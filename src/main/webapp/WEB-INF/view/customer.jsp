@@ -450,7 +450,7 @@ font-size:19px;
 			
             <a href="" id="cartBasket" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
-            <a href="${pageContext.request.contextPath}/retrieveOrderedItemsIntoInbox" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
+            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
 
 		</div>
 
@@ -542,7 +542,7 @@ font-size:19px;
 
 <!-- ========- INBOX MODAL -=========== -->
 
-
+<!-- 
 <c:if test="${not empty sessionScope.showInboxModal}">
     <script>
         $(function() {
@@ -553,7 +553,7 @@ font-size:19px;
 </c:if>
 
 
-
+-->
 
 
 <!-- Inbox Modal -->
@@ -573,11 +573,27 @@ font-size:19px;
  
  
 					<!-- Left Section: Cart Items -->
-					<div style="width: 50%;">
+					<div style="width: 100%;">
 
 						<h5>Your Ordered Items</h5>
 
 						<div class="checkout-cart-body">
+
+
+							<!-- Table Header -->
+							<div class="cart-item-header" style="display: flex; justify-content: space-between; padding: 12px 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; font-weight: bold; margin-bottom: 10px;">
+
+
+								<span style="width: 50%;">Item Name</span> 
+								
+								<span style="width: 20%; text-align: center;">Quantity</span>
+								
+								<span style="width: 30%; text-align: right;">Sum</span>
+								
+								<span style="width: 30%; text-align: right;">Status</span>
+
+
+							</div>
 
 
 							<!-- Initialize total price -->
@@ -587,23 +603,25 @@ font-size:19px;
 
 							<div class="items-list">
 
-								<!-- Loop through cart items -->
-								<c:forEach var="c" items="${sessionScope.retrievedOrderedItems}">
+								<!-- Loop through ordered items -->
+								<c:forEach var="o" items="${sessionScope.retrievedOrderedItems}">
 
-									<c:set var="itemTotal" value="${c.selectedQuantity * c.itemPrice}" />
+
+									<c:set var="itemTotal" value="${o.selectedQuantity * 125}" />
 
 									<c:set var="total" value="${total + itemTotal}" />
+
 
 									<div class="cart-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
 
 
-										<span style="width: 50%; font-weight: 500;">${c.itemName}</span>
+										<span style="width: 50%; font-weight: 500;">${o.itemName}</span>
 
-										<span style="width: 20%; text-align: center;">${c.selectedQuantity}</span>
+										<span style="width: 20%; text-align: center;">${o.selectedQuantity}</span>
 
 										<span style="width: 30%; text-align: right; color: #D5451B;">${itemTotal} IQD</span>
 										
-										<span style="width: 20%; text-align: center;">${c.status}</span>
+										<span style="width: 20%; text-align: center;">${o.status}</span>
 
 
 									</div>
@@ -615,11 +633,11 @@ font-size:19px;
 							</div>
 
 
-
 							<!-- Total price display -->
 							<div style="margin-top: 25px; text-align: right; padding: 15px 20px; background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
 
 								<strong>Total Price: </strong> 
+								
 								<span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
 
 							</div>
@@ -635,15 +653,7 @@ font-size:19px;
 
 
 
-					<!-- Right Section: User Info Form -->
-					<div style="width: 40%;">
-
-						<h5>Status</h5>
-
-
-
-					</div>
-
+					
 				</div>
 
 
@@ -668,10 +678,10 @@ font-size:19px;
 
 <c:if test="${not empty sessionScope.openCartModal}">
     <script>
-        $(document).ready(function() {
-            $('#cart').modal('show');
-        });
-    </script>
+					$(document).ready(function() {
+						$('#cart').modal('show');
+					});
+				</script>
 
     <c:remove var="openCartModal" scope="session" />
 </c:if>
