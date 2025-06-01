@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class cartItems {
+public class CartItems {
 
 	private int userId;
 	private int itemId;

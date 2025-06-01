@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.model.breads;
+import com.example.model.Breads;
 
 public class DaoBreads {
 
@@ -41,11 +41,17 @@ public class DaoBreads {
 	    
 //================================================================================================================== 	
 	
+	    
+	    
+	    
+	    
+	    
+	    
 	
 	    //This method retrieves bread items from the 'breads' table.
-	    public List<breads> getBreads() throws SQLException {
+	    public List<Breads> getBreads() throws SQLException {
 
-	        ArrayList<breads> itemsList = new ArrayList<>();
+	        ArrayList<Breads> itemsList = new ArrayList<>();
 
 	        String sql = "SELECT breadsId, itemName, itemPrice, imgURL, itemDesc, itemType FROM breads";
 
@@ -58,7 +64,7 @@ public class DaoBreads {
 	            while (rs.next()) {
 	               
 	            	//Instantiating an object from the 'breads' class.
-	            	breads item = new breads();
+	            	Breads item = new Breads();
 
 	                item.setId(rs.getInt("breadsId"));
 	                item.setItemName(rs.getString("itemName"));

@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class breads {
+public class Breads {
 
 private int breadsId;
 private String itemName;
@@ -11,7 +11,7 @@ private String itemType;
 
 
 //Default constructor.
-public breads() {
+public Breads() {
 	
 }//closing brace of the default constructor.
 

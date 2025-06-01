@@ -36,7 +36,7 @@ public class RegisterController {
 	
 	
 	//This method takes the user from 'login' page to 'register' page
-	@GetMapping("/goToRegister")
+	@GetMapping("/goToRegisterFromLogin")
 	protected String goToRegisterPage() {
 			
 		 return "view/register";
@@ -108,7 +108,7 @@ public class RegisterController {
 				//If the email & phoneNo were fine!, then:
 				
 				//Instantiating an object from the 'UserRegistration' class:
-				UserRegistration userObj = new UserRegistration();
+				Users userObj = new Users();
 				
 				
 				userObj.setFullName(fullName);
@@ -161,7 +161,7 @@ public class RegisterController {
 	                    //1st: Retrieving the items-number in the 'cartItems' table.	
 			    			    		
 			    		//I: Instantiating an object from the 'daoCart' class.
-			    		daoCart daoCartObj = new daoCart();
+			    		DaoCart daoCartObj = new DaoCart();
 			    		
 			    		
 			    		//II: getting the items-numbers via the 'getCartItemCount()' method.
@@ -180,7 +180,7 @@ public class RegisterController {
 						
 						
 						//I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
-						List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
+						List<CartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
 				    	
 						
 						//II: saving the retrieved items into session scope.
@@ -198,7 +198,7 @@ public class RegisterController {
 			        	
 			    		 
 			    		 //II: getting the bread items via the 'getBreads()' method.
-			        	 List<breads> retrievedBreads = breadsObj.getBreads();
+			        	 List<Breads> retrievedBreads = breadsObj.getBreads();
 			    			
 			        	 //III: saving the retrieved breads into the session scope:
 			        	 session.setAttribute("retrievedBreads", retrievedBreads);

@@ -109,7 +109,7 @@ public class addToCartController {
 	  
 	  
 	  //Instantiating an object from the 'DaoCakes' class:
-	  DaoCakes desertObj = new DaoCakes();
+	  DaoDeserts desertObj = new DaoDeserts();
 		  
 	  
 		 int itemId = 0;
@@ -165,7 +165,7 @@ public class addToCartController {
 		//Inserting the (userId, itemId, itemName, selectedQuantity, itemPrice) into the 'cartItems' table.
         		  
         //1st: Instantiating an object from the 'DoaAddToCart' class.
-        daoCart daoAddToCartObj = new daoCart();
+        DaoCart daoAddToCartObj = new DaoCart();
          
          
         //2nd: Inserting the item into the 'cartItems' table via the 'insertIntoCartItem()' method.
@@ -180,7 +180,7 @@ public class addToCartController {
 			
 			
 			//I: Instantiating an object from the daoCart class.
-			daoCart daoCartObj = new daoCart();
+			DaoCart daoCartObj = new DaoCart();
 			
 			
 			//II: Retrieving the items number via the 'getCartItemCount()' method:
@@ -201,7 +201,7 @@ public class addToCartController {
 		    try {
 				
 		    	//I: Retrieving the items from the 'cartItems' table using specific userId via the 'getCartItemsByUserId()' method.
-		    	List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
+		    	List<CartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
 		    	
 		    	
 		    	//II: Saving the retrieved items into the session scope:
@@ -252,7 +252,7 @@ public class addToCartController {
 	
 	
 	
-	//This Method Increments the itemQuantity by 2.
+	//This Method Increments the itemQuantity by 1.
 	@PostMapping("/incrementItem")
 	public String incrementItem(@RequestParam Map<String, String> req, HttpServletRequest request, ModelAndView model, RedirectAttributes redirectAttributes) {
 		
@@ -290,7 +290,7 @@ public class addToCartController {
 		 
 		 
 		 //I. Instantiating an object from the 'daoCart' class.
-		 daoCart cartObj = new daoCart();
+		 DaoCart cartObj = new DaoCart();
 			
 		 
 		 //II. Calling the 'IncrementUpdateCartItemQuantity()' method:
@@ -306,7 +306,7 @@ public class addToCartController {
 			 try {
 					
 				    //1. Retrieve the items from the 'cartItems' methods:
-			    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
+			    	List<CartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
 			    		
 			    	
 			    	//2. Saving the retrieved items into the session scope:
@@ -362,7 +362,7 @@ public class addToCartController {
 	
 	
 
-	//This Method Decrements the itemQuantity by 2. 
+	//This Method Decrements the itemQuantity by 1. 
     @PostMapping("/decrementItem")	
     public String decrementItem(@RequestParam Map<String, String> req, HttpServletRequest request, ModelAndView model, RedirectAttributes redirectAttributes) {
 		
@@ -404,7 +404,7 @@ public class addToCartController {
 		 
 		 
 		         //I. Instantiating an object from the 'daoCart' class.
-				 daoCart cartObj = new daoCart();
+				 DaoCart cartObj = new DaoCart();
 				 
 				 
 				 
@@ -421,7 +421,7 @@ public class addToCartController {
 			    	try {
 						
 					    //1. Retrieve the items from the 'cartItems' methods:
-				    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
+				    	List<CartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
 				    		
 				    	
 				    	//2. Saving the retrieved items into the session scope:
@@ -516,7 +516,7 @@ public class addToCartController {
 			 
 	  		 
 			 //I. Instantiating an object from the 'daoCart' class.
-			 daoCart cartObj = new daoCart();
+			 DaoCart cartObj = new DaoCart();
 			 
 			 //II. Calling the 'removeCartItem()' method:
 			 boolean isRemoved = cartObj.removeCartItem(userId, intItemId); 
@@ -530,7 +530,7 @@ public class addToCartController {
 				 try {
 						
 					    //1. Retrieve the items from the 'cartItems' methods:
-				    	List<cartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
+				    	List<CartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
 				    		
 				    	
 				    	//2. Saving the retrieved items into the session scope:

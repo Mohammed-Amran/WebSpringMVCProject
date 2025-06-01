@@ -213,7 +213,6 @@ font-size: 21px;
 
 		<div class="appbar-actions">
 
-			<!-- Controller for this button is in 'InitializationController' file. -->
 			<form method="get" action="accessAboutUsPage">
 
 				<button class="btn login-btn" type="submit" style="background-color: #DBDBDB; color: #4a403a; font-weight: bold; margin-right: 20px;">

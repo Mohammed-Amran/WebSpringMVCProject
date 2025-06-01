@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.DAO.DaoBreads;
-import com.example.DAO.DaoOrders;
-import com.example.DAO.DaoUsers;
-import com.example.DAO.daoCart;
-import com.example.model.Orders;
-import com.example.model.breads;
-import com.example.model.cartItems;
+import com.example.DAO.*;
+
+import com.example.model.*;
+
 
 
 @Controller
@@ -40,7 +37,7 @@ public class LoginController {
 	
 	
 	//This Method logs in the user from the 'login' page into the 'customer' page
-	@PostMapping("/loginngIn")
+	@PostMapping("/logIn")
 	protected String loginController(@RequestParam Map<String,String> req, Model model, HttpServletRequest request) {
 		
 		    String destination = "";
@@ -102,7 +99,7 @@ public class LoginController {
 		    		
 		    		
 		    		//I: Instantiating an object from the 'daoCart' class.
-		    		daoCart daoCartObj = new daoCart();
+		    		DaoCart daoCartObj = new DaoCart();
 		    		
 		    		
 		    		//II: getting the items-numbers via the 'getCartItemCount()' method.
@@ -121,7 +118,7 @@ public class LoginController {
 					
 					
 					//I: getting the items for the specific userId via the 'getCartItemsByUserId()' method.
-					List<cartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
+					List<CartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
 			    	
 					
 					//II: saving the retrieved items into session scope.
@@ -139,7 +136,7 @@ public class LoginController {
 		        	
 		    		 
 		    		 //II: getting the bread items via the 'getBreads()' method.
-		        	 List<breads> retrievedBreads = breadsObj.getBreads();
+		        	 List<Breads> retrievedBreads = breadsObj.getBreads();
 		    			
 		        	 //III: saving the retrieved breads into the session scope:
 		        	 session.setAttribute("retrievedBreads", retrievedBreads);
@@ -204,7 +201,7 @@ public class LoginController {
 	
 	
 	//When the user logs out! this method will take the user from 'customer' page back to the 'login' page
-	@GetMapping("/login")
+	@GetMapping("/TakeBackUserFromCustomerToLogin")
 	public String showLoginPage(@RequestParam(value = "logOutMessage", required = false) String logOutMessage, Model model) {
 	    
 		

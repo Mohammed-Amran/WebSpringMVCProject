@@ -2,7 +2,7 @@ package com.example.DAO;
 
 import java.sql.*;
 
-import com.example.model.UserRegistration;
+import com.example.model.Users;
 
 public class DaoUsers {
 
@@ -39,7 +39,7 @@ public class DaoUsers {
     
     
     //This method Inserts User into 'users' table
-    public boolean insertUser(UserRegistration user) {
+    public boolean insertUser(Users user) {
     	
     	//The below Table column(attribute) names! must be exactly the same of the Actual table column(attribute) names!
         String sql = "INSERT INTO users (fullName, email, pass, phoneNo) VALUES (?, ?, ?, ?)";

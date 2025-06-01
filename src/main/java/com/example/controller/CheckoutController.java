@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.DAO.daoCart;
-import com.example.model.cartItems;
+import com.example.DAO.*;
+import com.example.model.*;
 
 
 @Controller
@@ -31,7 +31,7 @@ public class CheckoutController {
 		
 		
 		//2. Instantiating an object from the 'daoCart' class.
-		daoCart cartObj = new daoCart();
+		DaoCart cartObj = new DaoCart();
 		 
 
 		
@@ -39,7 +39,7 @@ public class CheckoutController {
 			
 				
 			 //I. Retrieving items from the 'cartItems' table;
-			 List<cartItems> retrievedItemsForCheckout = cartObj.getCartItemsByUserId(userId);
+			 List<CartItems> retrievedItemsForCheckout = cartObj.getCartItemsByUserId(userId);
 				
 			 
 			 //II. saving the retrieved items into the session scope:

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.DAO.*;
-import com.example.model.breads;
-import com.example.model.cakes;
+import com.example.model.*;
+
 
 @Controller
 public class CustomerController {
@@ -49,7 +49,7 @@ public class CustomerController {
         		
         		
         		//Retrieving the bread items from the 'breads' table via the 'getBreads()' methods:
-        		List<breads> retrievedBreads = breadsObj.getBreads();
+        		List<Breads> retrievedBreads = breadsObj.getBreads();
         		
         		
         		//Saving the retrieved bread items List into the session scope:
@@ -65,11 +65,11 @@ public class CustomerController {
         		
         		
         		//Instantiating an object from the 'DaoCakes' class - in order to access the 'deserts' table in the DB:
-                DaoCakes cakesObj = new DaoCakes();
+                DaoDeserts cakesObj = new DaoDeserts();
         		
                 
                 //Retrieving the desert items from the 'deserts' table via the 'getDeserts()' methods:
-        		List<cakes> retrievedDeserts = cakesObj.getDesert();
+        		List<Deserts> retrievedDeserts = cakesObj.getDesert();
         		
         		
         		//Saving the retrieved desert items List into the session scope:
@@ -140,7 +140,7 @@ public class CustomerController {
             
             
             //Instantiating an object from the 'daoCart' class.
-            daoCart daoClearObj = new daoCart();
+            DaoCart daoClearObj = new DaoCart();
             
             //Clearing the all the items in the 'cartItems' table for the specific user via its userId using 'clearCart()' method:
             daoClearObj.clearCart(userId);
@@ -155,7 +155,7 @@ public class CustomerController {
 
        
         //Redirecting back the user to the 'login' page:
-        return "redirect:/login?logOutMessage=You+have+been+logged+out!";
+        return "redirect:/TakeBackUserFromCustomerToLogin?logOutMessage=You+have+been+logged+out!";
 
 		
 		

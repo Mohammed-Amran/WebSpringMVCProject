@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.example.model.*;
 
-public class daoCart {
+public class DaoCart {
 
 	//==================================================================================================================	
 
@@ -111,10 +111,10 @@ public class daoCart {
 //=====================================================================================================-=============	   
   
   //This method retrieves items in the 'cartItems' table for a specific user using the userId.
-  public List<cartItems> getCartItemsByUserId(int userId) throws SQLException {
+  public List<CartItems> getCartItemsByUserId(int userId) throws SQLException {
 	  
 	   
-	   ArrayList<cartItems> itemsList = new ArrayList<>();
+	   ArrayList<CartItems> itemsList = new ArrayList<>();
 	  
 	   
 	   String sql = "SELECT userId, itemId, itemName, selectedQuantity, itemPrice FROM cartItems WHERE userId = ?";
@@ -131,7 +131,7 @@ public class daoCart {
 	     
 	        	
 	        	//Instantiating an object from the 'cartItems' table.
-	            cartItems item = new cartItems();
+	            CartItems item = new CartItems();
 	            
 	            item.setUserId(rs.getInt("userId")); 
 	            item.setItemId(rs.getInt("itemId"));
@@ -183,7 +183,7 @@ public class daoCart {
 //===================================================================================================================
 	
 
-	//This method updates the selectedQuantity attribute in the 'cartItems' table - by incrementing it by 2.
+	//This method updates the selectedQuantity attribute in the 'cartItems' table - by incrementing it by 1.
 	public boolean IncrementUpdateCartItemQuantity(int userId, int itemId) {
 	  
 		String sql = "UPDATE cartItems SET selectedQuantity = selectedQuantity + 1 WHERE userId = ? AND itemId = ?";
@@ -214,7 +214,7 @@ public class daoCart {
 //===================================================================================================================
 	
 
-	//This method updates the selectedQuantity attribute in the 'cartItems' table - by decrementing it by 2.
+	//This method updates the selectedQuantity attribute in the 'cartItems' table - by decrementing it by 1.
 	public boolean decrementUpdateCartItemQuantity(int userId, int itemId) {
 	   
 		// Firstly, check the current selectedQuantity

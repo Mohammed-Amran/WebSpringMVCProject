@@ -9,23 +9,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.DAO.DaoOrders;
-import com.example.DAO.daoCart;
-import com.example.model.Orders;
-import com.example.model.cartItems;
-import com.mysql.cj.Session;
+import com.example.DAO.*;
+
+import com.example.model.*;
+
+
 
 @Controller
 public class orderController {
 
-	
+
+//This method retrieves the selected items from the checkout modal & inserts them into the 'orders' table.
 @PostMapping("/orderItems")	
- protected String getOrders(@RequestParam Map<String, String> req, HttpServletRequest request, ModelAndView model) {
+ protected String setOrder(@RequestParam Map<String, String> req, HttpServletRequest request, ModelAndView model) {
 	 
 	 
 	
@@ -60,9 +61,9 @@ public class orderController {
     
     
     
-    //Retrieve the phoneNo from the session scope & parsing it into String:
+   
     @SuppressWarnings("unchecked")
-	List<cartItems> orderedItems = (List<cartItems>) session.getAttribute("retrievedItemsForCheckout");    
+	List<CartItems> orderedItems = (List<CartItems>) session.getAttribute("retrievedItemsForCheckout");    
     
 	
 	// Handle case when session attribute is null
@@ -82,7 +83,7 @@ public class orderController {
     
     boolean allInserted = true;
     
-    for(cartItems cartObj : orderedItems) {
+    for(CartItems cartObj : orderedItems) {
     	
     	 int itemId = cartObj.getItemId();
     	 
@@ -140,7 +141,7 @@ public class orderController {
     session.removeAttribute("retrievedCartItems");
     
     //Instantiating an object from the 'cartItems' class.
-    daoCart cartObj = new daoCart();
+    DaoCart cartObj = new DaoCart();
     
     //clearing the items for the user in the 'cartItems' table:
     cartObj.clearCart(userId);

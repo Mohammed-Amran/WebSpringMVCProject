@@ -174,7 +174,7 @@ input[type="password"]:hover {
 
 		<div class="card" style="background-color: #C9B194;">
 
-			<form name="loginForm" action="loginngIn" method="post">
+			<form name="loginForm" action="logIn" method="post">
 
 
 				<label for="email" style="color: #4a403a;"> <b>Email</b> </label> 
@@ -199,7 +199,7 @@ input[type="password"]:hover {
 
 			<div class="signup-link">
 		
-               <p style="color: #4a403a;">Don't have an account? <a href="<%= request.getContextPath() %>/goToRegister" style="color: #AF3E3E;">Sign Up</a></p>
+               <p style="color: #4a403a;">Don't have an account? <a href="<%= request.getContextPath() %>/goToRegisterFromLogin" style="color: #AF3E3E;">Sign Up</a></p>
 
 			</div>
 
