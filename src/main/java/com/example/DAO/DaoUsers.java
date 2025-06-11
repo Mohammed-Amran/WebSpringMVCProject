@@ -9,18 +9,21 @@ public class DaoUsers {
 	
 //==================================================================================================================	
 
-	 //JDBC URL for MySQL connection
+	//JDBC URL for MySQL connection
     private final String jdbcURL = "jdbc:mysql://localhost:3306/bakeryweb?useSSL=false&serverTimezone=UTC";
     private final String jdbcUsername = "root"; // Our MySQL username
-    private final String jdbcPassword = "1234"; // Our MySQL password (
+    private final String jdbcPassword = "1234"; // Our MySQL password 
 
     
     // Method to get connection to MySQL Database
     private Connection getConnection() throws SQLException {
-       
+      
+    	
     	try {
     		
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Loading the MySQL JDBC driver
+    		//Step-1: Loading the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
+            
             
         } 
     	catch (ClassNotFoundException e) {
@@ -28,8 +31,12 @@ public class DaoUsers {
             e.printStackTrace();
         }
     	
+    
+    	
+    	
         return DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         
+             
     }//closing brace of the 'getConnection()' method.
 
     
@@ -41,10 +48,14 @@ public class DaoUsers {
     //This method Inserts User into 'users' table
     public boolean insertUser(Users user) {
     	
-    	//The below Table column(attribute) names! must be exactly the same of the Actual table column(attribute) names!
+    	
         String sql = "INSERT INTO users (fullName, email, pass, phoneNo) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( 
+        	  Connection conn = getConnection(); 
+        	  PreparedStatement stmt = conn.prepareStatement(sql)
+        			  
+        	) {
 
             stmt.setString(1, user.getFullName());
             stmt.setString(2, user.getEmail());
@@ -58,14 +69,15 @@ public class DaoUsers {
 
             return rowsInserted > 0; // true if at least one row inserted
 
-        } 
-        
+        }       
         catch (SQLException e) {
         	
             e.printStackTrace();
             return false;
             
         }
+        
+        
         
         
     }//closing brace of the 'insertUser'.

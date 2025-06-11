@@ -520,7 +520,7 @@ transition: transform 0.2s ease;
 
 
 <!-- Footer -->
-	<div class="footer" style="margin-top: 40px;">
+	<div class="footer" style="margin-top: 40px; background-color: #C9B194;">
 
 		<!-- Phone Numbers -->
 		<div class="footer__contact">
