@@ -457,8 +457,14 @@ font-size:19px;
             <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
 			
             
-            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
-
+           <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox">
+              
+              <img src="${pageContext.request.contextPath}/images/gifs/delivered.gif" alt="Inbox" style="width: 40px; height: 40px;">
+ 
+             <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span>
+        
+           </a>
+		
 		</div>
 
 
@@ -727,6 +733,8 @@ font-size:19px;
 					
 						<c:forEach var="order" items="${sessionScope.retrievedOrders}">
 						
+						 <c:if test="${order.status ne 'cancelled' && order.status ne 'delivered'}">
+						
 							<tr>
 							
 								<td><strong>${order.orderId}</strong></td>
@@ -832,11 +840,39 @@ font-size:19px;
                                       ${order.status}
   
                                     </button>
-                               
+                                    
+                                    
+                                    <c:choose>
+                                    
+                                       <c:when test="${order.status eq 'pending'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/pending.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       <c:when test="${order.status eq 'processing'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/baking.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       <c:when test="${order.status eq 'onway'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/onway.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       
+                                    
+                                    </c:choose>
+                                    
+                                    
                                </td>
 
 								
-							</tr>
+							</tr> 
+							
+							</c:if>
 
 
 
@@ -885,7 +921,7 @@ font-size:19px;
 														
 														<option value="pending">pending</option>
 														<option value="processing">processing</option>
-														<option value="on way">onway</option>
+														<option value="onway">onway</option>
 														<option value="delivered">delivered</option>
 														<option value="cancelled">cancelled</option>
 														
