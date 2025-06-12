@@ -63,8 +63,7 @@ if(session == null || session.getAttribute("fullName") == null){
  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <script src="mycart.js"></script>
- <script src="myscript.js"></script>	
+
 	
 	
 <style type="text/css">
@@ -755,15 +754,20 @@ font-size:19px;
 
 											<div class="item-actions">
 
+
 												<!-- Increment Button -->
-												<form action="${pageContext.request.contextPath}/incrementItem" method="post"
-													style="display: inline;">
+												<form action="${pageContext.request.contextPath}/incrementItem" method="post" style="display: inline;">
 													
 													<input type="hidden" name="itemId" value="${x.itemId}">
-													<button class="btn btn-quantity btn-increase"
-														style="background-color: #28a745; color: white;">
-														+</button>
+													
+													<button class="btn btn-quantity btn-increase" style="background-color: #28a745; color: white;">
+														
+														+
+														
+													</button>
+												
 												</form>
+
 
 												<!-- Decrement Button -->
 												<form action="${pageContext.request.contextPath}/decrementItem" method="post" style="display: inline;">
@@ -772,29 +776,38 @@ font-size:19px;
 													
 													<button class="btn btn-quantity btn-decrease" style="background-color: #ffc107; color: black;">
 														
-														-</button>
+														-
+														
+													</button>
+													
 												</form>
+
 
 												<!-- Remove Button -->
-												<form action="${pageContext.request.contextPath}/removeItem" method="post"
-													style="display: inline;">
+												<form action="${pageContext.request.contextPath}/removeItem" method="post" style="display: inline;">
 													
 													<input type="hidden" name="itemId" value="${x.itemId}">
-													<button class="btn btn-delete"
-														style="background-color: #dc3545; color: white;">
+													
+													<button class="btn btn-delete" style="background-color: #dc3545; color: white;">
+														
 														<i class="fas fa-trash"></i>
+													
 													</button>
+												
 												</form>
 
-											</div>
+											</div> <!-- closing tag of the item-actions div -->
 
 
 
 										</div>
 										
+										
 									</div>
+								
 									
 								</c:forEach>
+
 
 							</c:when>
 

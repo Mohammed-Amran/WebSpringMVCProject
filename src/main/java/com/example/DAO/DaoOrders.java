@@ -127,7 +127,54 @@ public class DaoOrders {
  } // closing brace of the getBreads method
  
  
-	
+ 
+ 
+//==============================================================================================================
+ 
+ 
+ 
+//This method retrieves items from the 'orders' table.
+public List<Orders> getAllOrders() throws SQLException {
+
+	 //Creating an array list to save the the orders object:
+    ArrayList<Orders> ordersList = new ArrayList<>();
+
+    String sql = "SELECT orderId, userId, userPhoneNo, itemId, itemName, selectedQuantity, itemPriceSum, location, deliveryAddress, status FROM orders";
+
+    try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+    	
+        ResultSet rs = stmt.executeQuery();
+
+        
+        while (rs.next()) {
+           
+        	//Instantiating an object from the 'orders' class.
+        	Orders orderItem = new Orders();
+
+        	orderItem.setOrderId(rs.getInt("orderId"));
+        	orderItem.setUserId(rs.getInt("userId"));
+        	orderItem.setUserPhoneNo(rs.getString("userPhoneNo"));
+        	orderItem.setItemId(rs.getInt("itemId"));
+        	orderItem.setItemName(rs.getString("itemName"));
+        	orderItem.setSelectedQuantity(rs.getInt("selectedQuantity"));
+        	orderItem.setItemPriceSum(rs.getInt("itemPriceSum"));
+        	orderItem.setLocation(rs.getString("location"));
+        	orderItem.setDeliveryAddress(rs.getString("deliveryAddress"));
+        	orderItem.setStatus(rs.getString("status"));
+
+            ordersList.add(orderItem);
+        }
+
+    }
+
+    return ordersList;
+
+} // closing brace of the getBreads method
+ 
+ 
+
+//=======================================================================================
  
  
  //This method retrieves the numbers of items in the 'orders' table.
