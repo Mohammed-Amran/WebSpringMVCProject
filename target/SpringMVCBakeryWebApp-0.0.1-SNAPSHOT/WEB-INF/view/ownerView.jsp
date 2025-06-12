@@ -105,6 +105,9 @@ color: #DBDBDB;
 }
 
 
+.dropdown-menu div {
+    margin-bottom: 5px;
+}
 
 
 /* ===== MENU CONTAINER ===== */
@@ -378,6 +381,46 @@ font-size:19px;
     padding-right: 10px; /* Prevents content from hiding behind scrollbar */
 }
 
+/*============================================================================*/
+
+.order-table-wrapper {
+  width: 100vw;              
+  margin: 0;                 
+  padding: 20px 0;           
+  background-color: #C9B194;
+  border-radius: 0;          
+}
+
+
+
+.order-table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 18px;
+}
+
+
+.order-table th,
+.order-table td {
+  padding: 14px 16px;
+  text-align: center;
+}
+
+
+.order-table .dropdown-menu div {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .order-table-wrapper {
+    padding: 15px;
+  }
+
+  .order-table {
+    font-size: 16px;
+  }
+}
+
 
 
 </style>
@@ -648,89 +691,284 @@ font-size:19px;
 
 	<div id="main" style="margin-top: 40px;">
 
-   <!-- Main Content - Menu Section -->
-   <main class="menu-container" style="background-color: #C9B194;">
-
-   
- 
-    <h2 class="menu-title" style="font-family: 'Pacifico', cursive; font-style: normal; font-weight: bold; font-size: 46px; color: #4a403a;">  All Undelivered Orders </h2>
+		<!-- Main Content - Menu Section -->
+		<main class="order-table-wrapper">
 
 
-				<c:forEach var="order" items="${retrievedOrders}">
-					<div
-						class="order-row d-flex align-items-center my-2 p-2 border rounded bg-light">
-
-						<!-- 1. Order ID -->
-						<div class="col-1">
-							<strong>${order.orderId}</strong>
-						</div>
-
-						<!-- 2. user-info dropdown -->
-						<div class="col-3">
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle w-100"
-									type="button" id="userInfoDropdown${order.orderId}"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">User Info</button>
-								<div class="dropdown-menu"
-									aria-labelledby="userInfoDropdown${order.orderId}">
-									<span class="dropdown-item-text">User ID:
-										${order.userId}</span> <span class="dropdown-item-text">Phone:
-										${order.userPhoneNo}</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- 3. item-info dropdown -->
-						<div class="col-3">
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle w-100"
-									type="button" id="itemInfoDropdown${order.orderId}"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">Item Info</button>
-								<div class="dropdown-menu"
-									aria-labelledby="itemInfoDropdown${order.orderId}">
-									<span class="dropdown-item-text">Item ID:
-										${order.itemId}</span> <span class="dropdown-item-text">Name:
-										${order.itemName}</span> <span class="dropdown-item-text">Qty:
-										${order.selectedQuantity}</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- 4. Price Sum -->
-						<div class="col-2 text-right">${order.itemPriceSum} IQD</div>
-
-						<!-- 5. delivery-inf dropdown -->
-						<div class="col-2">
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle w-100"
-									type="button" id="deliveryInfoDropdown${order.orderId}"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">Delivery Info</button>
-								<div class="dropdown-menu"
-									aria-labelledby="deliveryInfoDropdown${order.orderId}">
-									<span class="dropdown-item-text">Location:
-										${order.location}</span> <span class="dropdown-item-text">Address:
-										${order.deliveryAddress}</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- 6. Status -->
-						<div class="col-1 text-center">${order.status}</div>
-					</div>
-				</c:forEach>
+			<h2 class="menu-title text-center mb-4"> Undelivered Orders</h2>
 
 
+			<div class="table-responsive">
+				
+				<table class="table table-bordered table-hover table-striped order-table">
+					
+					<thead class="thead-dark">
+						
+						<tr>
+						
+							<th>Order ID</th>
+							
+							<th>User Info</th>
+							
+							<th>Item Info</th>
+							
+							<th>Total Price</th>
+							
+							<th>Delivery Info</th>
+							
+							<th>Status</th>
+							
+						</tr>
+						
+					</thead>
+					
+					
+					<tbody>
+					
+						<c:forEach var="order" items="${sessionScope.retrievedOrders}">
+						
+							<tr>
+							
+								<td><strong>${order.orderId}</strong></td>
+								
+								<td>
+								
+									<div class="dropdown">
+									
+										
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">
+											    
+											    User Info
+											    
+									    </button>
+									    
+										<div class="dropdown-menu p-2">
+											
+											<div>
+											
+												<strong>User ID:</strong> ${order.userId}
+												
+											</div>
+											
+											<div>
+											
+												<strong>Phone:</strong> ${order.userPhoneNo}
+												
+											</div>
+											
+										</div>
+										
+									</div>
+									
+									
+								</td>
+								
+								<td>
+									<div class="dropdown">
+										
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">Item Info</button>
+										
+										<div class="dropdown-menu p-2">
+											
+											<div>
+												<strong>Item ID:</strong> ${order.itemId}
+											</div>
+											
+											<div>
+												<strong>Name:</strong> ${order.itemName}
+											</div>
+											
+											<div>
+												<strong>Qty:</strong> ${order.selectedQuantity}
+											</div>
+											
+										</div>
+										
+									</div>
+									
+								</td>
+								
+								
+								<td class="text-center text-danger font-weight-bold price-cell"> ${order.itemPriceSum}  IQD  </td>
+								
+								
+								<td>
+								
+									<div class="dropdown">
+									
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">
+											    
+											    Delivery Info
+											    
+									    </button>
+									    
+										<div class="dropdown-menu p-2">
+											
+											<div>
+											
+												<strong>Location:</strong> ${order.location}
+												
+											</div>
+											
+											<div>
+											
+												<strong>Address:</strong> ${order.deliveryAddress}
+												
+											</div>
+											
+										</div>
+										
+									</div>
+									
+								</td>
+								
+								<td class="text-center">
+                                   
+                                    <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#statusModal${order.orderId}">
+    
+                                      ${order.status}
   
-    
- </main>
+                                    </button>
+                               
+                               </td>
 
+								
+							</tr>
+
+
+
+
+
+							<!-- Status Update Modal for this order -->
+							<div class="modal fade" id="statusModal${order.orderId}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel${order.orderId}" aria-hidden="true">
+								
+								<div class="modal-dialog" role="document">
+									
+									<div class="modal-content">
+
+										<div class="modal-header bg-light">
+											
+											<h5 class="modal-title" id="statusModalLabel${order.orderId}">
+											
+											    Update Order Status (ID: ${order.orderId})
+											
+											</h5>
+											
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												
+												<span aria-hidden="true">&times;</span>
+												
+											</button>
+											
+										</div>
+
+
+										
+										<form action="updateOrderStatus" method="post">
+											
+											<div class="modal-body">
+
+												
+												<input type="hidden" name="orderId" value="${order.orderId}" />
+												<input type="hidden" name="userId" value="${order.userId}" />
+												
+
+												
+												<div class="form-group">
+													
+													<label for="newStatus${order.orderId}"> Select New Status </label> 
+						
+						                            <select class="form-control" id="newStatus${order.orderId}" name="status">
+														
+														<option value="pending">pending</option>
+														<option value="processing">processing</option>
+														<option value="on way">onway</option>
+														<option value="delivered">delivered</option>
+														<option value="cancelled">cancelled</option>
+														
+													</select>
+													
+												</div>
+
+											</div>
+
+											<div class="modal-footer">
+											
+												<button type="submit" class="btn btn-success">
+												   
+												   Update Status
+												   
+												</button>
+												
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+												
+												    Cancel
+												    
+												</button>
+												
+											</div>
+											
+										</form>
+
+									</div>
+									
+								</div>
+								
+							</div>
+
+						</c:forEach>
+						
+					</tbody>
+					
+				</table>
+				
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+		</main>
+
+
+
+
+
+	</div> <!-- Closing brace of the main -->
+
+
+<script>
+
+ //This Java-script method below adds a ' , ' in the Price number (e.g. 1750 IQD -> 1,750 IQD)
+  document.addEventListener("DOMContentLoaded", function () {
+     
+	                                                          const priceCells = document.querySelectorAll(".price-cell");
+
+                                                              priceCells.forEach( cell => {
+    	
+                                                                                            let rawText = cell.textContent.trim().replace("IQD", "").trim();
+      
+                                                                                            let number = parseInt(rawText);
+      
+                                                                                             if (!isNaN(number)) {
+    	  
+                                                                                                                   // Formating with commas
+                                                                                                                   cell.textContent = number.toLocaleString("en-US") + " IQD";
+        
+                                                                                                                 }
+      
+                                                                                            });
     
-   
-   
-    </div> <!-- Closing brace of the main -->
+                                                            });
+ 
+ 
+</script>
 
 
 

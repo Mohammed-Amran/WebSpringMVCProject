@@ -207,7 +207,33 @@ public List<Orders> getAllOrders() throws SQLException {
  
  
  
+ //======================================================================
  
+ public boolean updateOrderStatus(int orderId, int userId, String newStatus) throws SQLException {
+	    
+	 String sql = "UPDATE orders SET status = ? WHERE orderId = ? AND userId = ?";
+	    
+	    try ( Connection conn = getConnection();
+	    		
+	          PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        
+	             
+	    	      stmt.setString(1, newStatus);
+	              
+	    	      stmt.setInt(2, orderId);
+	       
+	    	      stmt.setInt(3, userId);
+	        
+	          
+	    	   int rowsAffected = stmt.executeUpdate();
+	        
+	    	   
+	        // Return true if exactly one row was updated
+	        return rowsAffected == 1;
+	        
+	    }
+	    
+	}//closing brace of the 'updateOrderStatus()' method
  
 	
 	
