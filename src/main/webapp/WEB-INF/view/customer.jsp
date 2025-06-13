@@ -547,177 +547,180 @@ font-size:19px;
 
 
 
-    <!-- Update user-info modal -->
-   <!-- Modal(pop-up window) for the User Info -->
+   
+   
+	<!-- Modal for Editing User Info -->
 	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-
-		<div class="modal-dialog" role="document" >
-
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
 			<div class="modal-content">
-
-                
-
-				<div class="modal-header" style="background: #C9B194;">
-
-					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Edit Profile</h5>
-
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Edit Profile
+						
+				    </h5>
+				    
 				</div>
 
-				<div class="modal-body">
-
-                   <table class="table table-bordered">
+				<div class="modal-body" style="padding: 25px;">
+					
+					<table class="table table-bordered" style="font-size: 16px;">
+						
+						<thead>
+						
+							<tr class="table-light">
 							
-							<thead>
+								<th style="padding: 15px; font-size: 18px;">Field</th>
 								
-								<tr class="table-light">
-									
-									<th>Field</th>
-									
-									<th>Current Data</th>
-									
-									<th>Update To</th>
+								<th style="padding: 15px; font-size: 18px;">Current Data</th>
 								
-								</tr>
+								<th style="padding: 15px; font-size: 18px;">Update To</th>
+								
+							</tr>
 							
-							</thead>
-							
-							<tbody>
+						</thead>
+						
+						<tbody>
+						
+							<tr>
+								<td style="padding: 15px;">Full Name</td>
 								
-								<tr>
-									
-									<td>Full Name</td>
-									
-									<td>${sessionScope.fullName}</td>
-									
-									<td>
-									
-									<form action="${pageContext.request.contextPath}/updateUserFullName" method="post">
-									    
-									    <input type="text" name="newfullName" class="form-control" value="${requestScope.newFullName}" required/>
-									    
-									    <button type="submit" class="reload-img">
-                                          
-                                           <img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" id="reloadImage" alt="Reload" style="width: 40px; height: 40px;">
-                                        
-                                        </button>
+								<td style="padding: 15px;">${sessionScope.fullName}</td>
+								
+								<td style="padding: 15px;">
+								
+									<form action="${pageContext.request.contextPath}/updateUserFullName" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newfullName" class="form-control" value="${requestScope.newFullName}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
 									
 									</form>
-									    
-									</td>
-									
-								</tr>
 								
-								
-								<tr>
-								
-									<td>Email</td>
-									
-									<td>${sessionScope.email}</td>
-									
-									<td>
-									     
-									     <form action="${pageContext.request.contextPath}/updateUserEmail" method="post">
-									     
-									     <input type="email" name="newEmail" class="form-control" value="${requestScope.newEmail}" required/>
-									     <c:if test="${not empty emailError}">
-                
-                                           <div style="color:red;">${emailError}</div> <br>
-                   
-                                         </c:if>
-                                         
-                                         <button type="submit" class="reload-img">
-                                          
-                                           <img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" id="reloadImage" alt="Reload" style="width: 40px; height: 40px;">
-                                        
-                                        </button>
-                                         
-                                         
-                                         </form>
-                                         
-									</td>
-									
-								</tr>
-								
-								
-								<tr>
-								
-									<td>Password</td>
-									
-									<td>sessionScope.password</td>
-									
-									<td>
-									
-									    <form action="${pageContext.request.contextPath}/updateUserPassword" method="post">
-									
-									    <input type="password" name="newPassword" class="form-control" value="${requestScope.newPassword}" required/>
-									    
-									    <button type="submit" class="reload-img">
-                                          
-                                           <img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" id="reloadImage" alt="Reload" style="width: 40px; height: 40px;">
-                                        
-                                        </button>
-									    
-									    </form>
-									    
-									</td>
-									
-								</tr>
-								
-								
-								<tr>
-								
-									<td>Phone No</td>
-									
-									<td>${sessionScope.phoneNo}</td>
-									
-									<td>
-									
-									     <form action="${pageContext.request.contextPath}/updateUserPhoneNo" method="post">
-									
-									     <input type="text" name="newPhoneNo" class="form-control" value="${requestScope.newPhoneNo}" required/>
-									     <c:if test="${not empty phoneError}">
-                
-                                            <div style="color:red;">${phoneError}</div> <br>
-                  
-                                         </c:if>
-                                         
-                                         <button type="submit" class="reload-img">
-                                          
-                                           <img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" id="reloadImage" alt="Reload" style="width: 40px; height: 40px;">
-                                        
-                                        </button>
-                                         
-                                         </form>
-                                         
-									</td>
-									
-								</tr>
-								
-							</tbody>
+								</td>
 							
-						</table>
-                   
-
-				</div> <!-- closing tag of the modal-body -->
-
-
-				<div class="modal-footer" style="display: flex; justify-content: space-between;">
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Email</td>
+								
+								<td style="padding: 15px;">${sessionScope.email}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserEmail" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="email" name="newEmail" class="form-control" value="${requestScope.newEmail}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<c:if test="${not empty emailError}">
+											
+											<div style="color: red; font-size: 15px; margin-top: 5px;">${emailError}</div>
+										
+										</c:if>
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Password</td>
+																
+								<td style="padding: 15px;">sessionScope.password</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserPassword" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="password" name="newPassword" class="form-control" value="${requestScope.newPassword}" required  style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Phone No</td>
+								
+								<td style="padding: 15px;">${sessionScope.phoneNo}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserPhoneNo" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newPhoneNo" class="form-control" value="${requestScope.newPhoneNo}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<c:if test="${not empty phoneError}">
+											
+											<div style="color: red; font-size: 15px; margin-top: 5px;">${phoneError}</div>
+										
+										</c:if>
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
 						
-				    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+						
+						</tbody>
 					
-				</div> <!-- closing tag of the modal footer -->
+					</table>
+				
+				</div>
 
-
-           
-
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
+				</div>
+			
 			</div>
-
+		
 		</div>
-
+	
 	</div> <!-- Closing tag of the User-info Modal -->
 
 
-<script>
+	<script>
 document.querySelectorAll('.reload-img').forEach(button => {
     const img = button.querySelector('img');
     const originalSrc = img.src; // Static image
