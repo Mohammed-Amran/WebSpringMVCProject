@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -161,6 +162,244 @@ public class CustomerController {
 		
 	}//closing brace of the 'logOutUser()' method.
 	
+	
+	
+//##############################################################################################
+	
+	//This method updates the user-fullName
+	@PostMapping("/updateUserFullName")
+	protected String updateUserFullName(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+		
+		String destination = "";
+		
+		//Retrieving the new fullName.
+		String newFullName = input.get("newFullName");
+		
+		//Instantiating a session object
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			
+			//Retrieving the userId from the session scope:
+			int userId = (Integer) session.getAttribute("userId");
+			
+			//Instantiating an object from the 'DaoUsers' class.
+			DaoUsers daoUsersObj = new DaoUsers();
+			
+			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
+			boolean isNewFullNameUpdated = daoUsersObj.updateUserFullName(userId, newFullName);
+			
+			if(isNewFullNameUpdated) {
+				
+				String successUserUpdateMessage = "FullName Successfully updated";
+				
+				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
+			}
+			else {
+				
+                String failureUserUpdateMessage = "FullName failed to be updated";
+				
+				model.addAttribute("failureUserUpdateMessage", failureUserUpdateMessage);
+			}
+			
+			
+			destination = "view/customer";
+			
+		}
+		else {
+			
+			String sessionExpiredMessage = "Your session is expired!";
+			
+			model.addAttribute("sessionExpiredMessage", sessionExpiredMessage);
+			
+			destination = "view/login";
+		}
+		
+		
+		
+		
+		
+		return destination;
+		
+	}//closing brace of the 'updateUserFullName()' method
+	
+	
+	
+	//This method updates the user-email
+	@PostMapping("/updateUserEmail")
+	protected String updateUserEmail(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+			
+         String destination = "";
+		
+		//Retrieving the new email.
+		String newEmail = input.get("newEmail");
+		
+		//Instantiating a session object
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			
+			//Retrieving the userId from the session scope:
+			int userId = (Integer) session.getAttribute("userId");
+			
+			//Instantiating an object from the 'DaoUsers' class.
+			DaoUsers daoUsersObj = new DaoUsers();
+			
+			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
+			boolean isNewEmailUpdated = daoUsersObj.updateUserEmail(userId, newEmail);
+			
+			if(isNewEmailUpdated) {
+				
+				String successUserUpdateMessage = "Email Successfully updated";
+				
+				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
+			}
+			else {
+				
+                String failureUserUpdateMessage = "Email failed to be updated";
+				
+				model.addAttribute("failureUserUpdateMessage", failureUserUpdateMessage);
+			}
+			
+			
+			destination = "view/customer";
+			
+		}
+		else {
+			
+			String sessionExpiredMessage = "Your session is expired!";
+			
+			model.addAttribute("sessionExpiredMessage", sessionExpiredMessage);
+			
+			destination = "view/login";
+		}
+		
+		
+		
+		
+		
+		return destination;
+			
+		}//closing brace of the 'updateUserEmail()' method
+	
 
+	
+	//This method updates the user-password
+	@PostMapping("/updateUserPassword")
+	protected String updateUserPassword(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+			
+        String destination = "";
+		
+		//Retrieving the new password.
+		String newPassword = input.get("newPassword");
+		
+		//Instantiating a session object
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			
+			//Retrieving the userId from the session scope:
+			int userId = (Integer) session.getAttribute("userId");
+			
+			//Instantiating an object from the 'DaoUsers' class.
+			DaoUsers daoUsersObj = new DaoUsers();
+			
+			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
+			boolean isNewPasswordUpdated = daoUsersObj.updateUserPassword(userId, newPassword);
+			
+			if(isNewPasswordUpdated) {
+				
+				String successUserUpdateMessage = "FullName Successfully updated";
+				
+				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
+			}
+			else {
+				
+                String failureUserUpdateMessage = "FullName failed to be updated";
+				
+				model.addAttribute("failureUserUpdateMessage", failureUserUpdateMessage);
+			}
+			
+			
+			destination = "view/customer";
+			
+		}
+		else {
+			
+			String sessionExpiredMessage = "Your session is expired!";
+			
+			model.addAttribute("sessionExpiredMessage", sessionExpiredMessage);
+			
+			destination = "view/login";
+		}
+		
+		
+		
+		
+		
+		return destination;
+			
+		}//closing brace of the 'updateUserPassword()' method
+	
+	
+	
+	//This method updates the user-phoneNo
+	@PostMapping("/updateUserPhoneNo")
+	protected String updateUserPhoneNo(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+			
+         String destination = "";
+		
+		//Retrieving the new phoneNo.
+		String newPhoneNo = input.get("newPhoneNo");
+		
+		//Instantiating a session object
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			
+			//Retrieving the userId from the session scope:
+			int userId = (Integer) session.getAttribute("userId");
+			
+			//Instantiating an object from the 'DaoUsers' class.
+			DaoUsers daoUsersObj = new DaoUsers();
+			
+			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
+			boolean isNewFullNameUpdated = daoUsersObj.updateUserphoneNo(userId, newPhoneNo);
+			
+			if(isNewFullNameUpdated) {
+				
+				String successUserUpdateMessage = "phoneNo Successfully updated";
+				
+				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
+			}
+			else {
+				
+                String failureUserUpdateMessage = "phoneNo failed to be updated";
+				
+				model.addAttribute("failureUserUpdateMessage", failureUserUpdateMessage);
+			}
+			
+			
+			destination = "view/customer";
+			
+		}
+		else {
+			
+			String sessionExpiredMessage = "Your session is expired!";
+			
+			model.addAttribute("sessionExpiredMessage", sessionExpiredMessage);
+			
+			destination = "view/login";
+		}
+		
+		
+		
+		
+		
+		return destination;
+			
+		}//closing brace of the 'updateUserPhoneNo()' method
+	
+	
 	
 }//closing brace of the class.

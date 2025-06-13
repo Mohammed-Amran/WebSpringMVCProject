@@ -138,6 +138,7 @@ public class RegisterController {
 			    	//Setting the essential user-info's into the session object! we'll require them for further steps:
 			    	session.setAttribute("fullName", fullName);
 			    	session.setAttribute("email", email);
+			    	session.setAttribute("password", password);
 			    	session.setAttribute("phoneNo", phoneNo);
 			    	
 			    	

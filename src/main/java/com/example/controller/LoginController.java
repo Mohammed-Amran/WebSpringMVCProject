@@ -84,6 +84,7 @@ public class LoginController {
 		    	session.setAttribute("fullName", fullName);
 		    	session.setAttribute("userId", userId);
 		    	session.setAttribute("email", email);
+		    	session.setAttribute("password", password);
 		    	session.setAttribute("phoneNo", phoneNo);
 				
 		    	

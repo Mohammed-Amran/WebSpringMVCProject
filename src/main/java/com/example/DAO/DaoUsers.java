@@ -229,5 +229,135 @@ public int retrieveId(String email) {
   
 //==================================================================================================================
 	
+//============================- THIS METHODS BELOW ARE FOR UPDATING THE USERS TABLE FIELDS -========================
+
+//Method to update the fullName of a user by their userId
+public boolean updateUserFullName(int userId, String newFullName) {
+	
+   String sql = "UPDATE users SET fullName = ? WHERE userId = ?";
+ 
+   try (Connection conn = getConnection();
+        
+		PreparedStatement stmt = conn.prepareStatement(sql)) {
+     
+        stmt.setString(1, newFullName);
+        stmt.setInt(2, userId);
+     
+        int rowsAffected = stmt.executeUpdate();
+     
+     // Return true if exactly 1 row was updated
+     return rowsAffected == 1;
+     
+    } 
+    catch (SQLException e) {
+    	
+     e.printStackTrace();
+     return false;
+     
+ }
+   
+}//closing brace of the 'updateUserFullName()' method
+
+
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+//Method to update the email of a user by their userId
+public boolean updateUserEmail(int userId, String newEmail) {
+	
+ String sql = "UPDATE users SET email = ? WHERE userId = ?";
+
+ try (Connection conn = getConnection();
+      
+		PreparedStatement stmt = conn.prepareStatement(sql)) {
+   
+      stmt.setString(1, newEmail);
+      stmt.setInt(2, userId);
+   
+      int rowsAffected = stmt.executeUpdate();
+   
+   // Return true if exactly 1 row was updated
+   return rowsAffected == 1;
+   
+  } 
+  catch (SQLException e) {
+  	
+   e.printStackTrace();
+   return false;
+   
+}
+ 
+}//closing brace of the 'updateUserEmail()' method
+
+
+
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+//Method to update the password of a user by their userId
+public boolean updateUserPassword(int userId, String newPassword) {
+	
+String sql = "UPDATE users SET pass = ? WHERE userId = ?";
+
+try (Connection conn = getConnection();
+    
+		PreparedStatement stmt = conn.prepareStatement(sql)) {
+ 
+    stmt.setString(1, newPassword);
+    stmt.setInt(2, userId);
+ 
+    int rowsAffected = stmt.executeUpdate();
+ 
+ // Return true if exactly 1 row was updated
+ return rowsAffected == 1;
+ 
+} 
+catch (SQLException e) {
+	
+ e.printStackTrace();
+ return false;
+ 
+}
+
+}//closing brace of the 'updateUserPassword()' method
+
+
+
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+//Method to update the phoneNo of a user by their userId
+public boolean updateUserphoneNo(int userId, String newPhoneNo) {
+	
+String sql = "UPDATE users SET phoneNo = ? WHERE userId = ?";
+
+try (Connection conn = getConnection();
+    
+	 PreparedStatement stmt = conn.prepareStatement(sql)) {
+ 
+    stmt.setString(1, newPhoneNo);
+    stmt.setInt(2, userId);
+ 
+    int rowsAffected = stmt.executeUpdate();
+ 
+ // Return true if exactly 1 row was updated
+ return rowsAffected == 1;
+ 
+} 
+catch (SQLException e) {
+	
+ e.printStackTrace();
+ return false;
+ 
+}
+
+}//closing brace of the 'updateUserPhoneNo()' method
+
+
+
+
 	
 }//closing curly brace of the class.

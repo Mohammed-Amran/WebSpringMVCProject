@@ -133,7 +133,7 @@ input[type="password"]:hover {
 
  
 <!-- If session expired! the 'SessionExpired-alert' pop-up window will be shown --> 
-<c:if test="${not empty param.sessionExpiredMessage}">
+<c:if test="${not empty requestScope.sessionExpiredMessage}">
 
   <script type="text/javascript">
   
