@@ -767,34 +767,56 @@ font-size:19px;
 <script>
 
 document.querySelectorAll('.reload-img').forEach(button => {
-  const img = button.querySelector('img');
-  const originalSrc = img.src;
-  const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif';
+ 
+	const img = button.querySelector('img');
+  
+	const originalSrc = img.src;
+  
+	const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif';
 
-  button.addEventListener('click', function (e) {
-    e.preventDefault(); // Stop form submission
+ 
+	button.addEventListener('click', function (e) {
+    
+		e.preventDefault(); // Stop form submission until the GIF animates
 
-    // Show reload GIF on button
-    img.src = clickedSrc;
+   
+		// Show reload GIF on button
+        img.src = clickedSrc;
 
-    // Step 1: Show the reload GIF for ~500ms
-    setTimeout(() => {
-      // Step 2: Display full-screen strike GIF
-      document.getElementById('strikeOverlay').style.display = 'flex';
+   
+		// Step 1: Show the reload GIF for ~500ms
+        setTimeout(() => {
+      
+        	
+        // Step 2: Display full-screen strike GIF
+        const overlay = document.getElementById('strikeOverlay');
+        
+        overlay.style.display = 'flex';
+        
+        setTimeout(() => { overlay.style.opacity = '1';  overlay.style.visibility = 'visible'; }, 10); // slight delay to trigger transition
 
-      // Step 3: Keep strike GIF for ~1.5s, then submit form
-      setTimeout(() => {
-        document.getElementById('strikeOverlay').style.display = 'none';
 
-        const form = button.closest('form');
-        if (form) {
-          form.submit();
-        }
+        
+       // Step 3: Keep strike GIF for ~1.5s, then submit form
+       setTimeout(() => {
+                         
+    	                overlay.style.opacity = '0';
+    	                overlay.style.visibility = 'hidden';
 
-      }, 1500); // Length of strike.gif
+    	                setTimeout(() => { overlay.style.display = 'none'; }, 500); // match transition time
 
-    }, 500); // Delay before showing strike
-  });
+
+                          const form = button.closest('form');
+       
+                          if (form) { form.submit(); }
+
+                         }, 2600); // Length of strike.gif
+
+   
+           }, 500); // Delay before showing strike
+  
+	});
+
 });
 </script>
 
@@ -838,20 +860,28 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 <!-- Rocket Strike GIF modal -->
 
+
 <!-- Strike GIF Overlay Modal -->
-<div id="strikeOverlay" style=" display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.2);
-     
+<div id="strikeOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.2);
+    
      backdrop-filter: blur(6px);
-  
+ 
      z-index: 9999;
  
-    justify-content: center;
+     justify-content: center;
   
-    align-items: center; ">
+     align-items: center;
 
-  <img src="${pageContext.request.contextPath}/images/gifs/strike.gif" alt="Reloading..." style="width: 400px; height: 400px;" />
+     opacity: 0;
+  
+     visibility: hidden;
+ 
+     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; ">
+ 
+     <img src="${pageContext.request.contextPath}/images/gifs/PrimaryRocketLauncch.gif" alt="Reloading..." style="width: 250px; height: 250px;" />
   
 </div>
+
 
 
 <!-- / / / / / / / / / / / / / /  ------------ Temporary Construction site Ends Here ------------ / / / / / / / / / / / / / / -->
