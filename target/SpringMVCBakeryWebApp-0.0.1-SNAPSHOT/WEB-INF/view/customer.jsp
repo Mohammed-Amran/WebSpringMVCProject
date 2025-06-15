@@ -64,7 +64,9 @@ if(session == null || session.getAttribute("fullName") == null){
  
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-	
+
+ 
+
 	
 <style type="text/css">
 
@@ -391,6 +393,8 @@ font-size:19px;
 
 
 
+
+
 </style>
 
 
@@ -416,12 +420,6 @@ font-size:19px;
 
 
 
-
-
-
-
-
-
 <!-- if adding item into the Cart failed! this message will be shown -->
 <c:if test="${not empty sessionScope.addToCartErrorMessage}">
 
@@ -432,10 +430,6 @@ font-size:19px;
     </script>
 
 </c:if>
-
-
-
-
 
 
 
@@ -459,6 +453,10 @@ font-size:19px;
 
 <!-- =========================================================================================================================== -->
 <!-- ==============================================MODAL'S(POP-UP WINDOWS)====================================================== -->
+
+
+
+<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction Site Starts Here ------------ / / / / / / / / / / / / / / -->
 
 
 <!-- ========- USER INFO MODAL -======= -->
@@ -514,16 +512,41 @@ font-size:19px;
 				</div>
 
 
-				<div class="modal-footer">
+				<div class="modal-footer" style="display: flex; justify-content: space-between;">
 
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                 <form name="logOutForm" method="get" action="${pageContext.request.contextPath}/logout" style="display:inline;">
+                    <form method="get" action="${pageContext.request.contextPath}/openEditUserProfileModal">
+                                           
+                           <button type="submit" class="btn btn-primary" title="Edit Profile" style="position: relative; left: -97px;">
+						
+						      <i class="fas fa-pencil-alt"></i>
+						
+					       </button>
+                                       
+                    </form>
 
-					<button type="submit" class="btn btn-danger"> Logout </button>
 					
-				</form>	
 
+					<div style="margin-right: -97px; display: flex; gap: 10px;">
+					
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						
+						     Close
+						     
+						</button>
+
+						<form name="logOutForm" method="get" action="${pageContext.request.contextPath}/logout" style="display: inline;">
+						
+							<button type="submit" class="btn btn-danger">
+							   
+							   Logout
+							
+							</button>
+							
+						</form>
+						
+					</div>
+					
 				</div>
 
 
@@ -535,7 +558,241 @@ font-size:19px;
 
 
 
-<!-- ################################################################################################################################ -->
+   <!-- This JS Code opens the Edit User Profile Modal -->
+   <c:if test="${openEditModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#editProfileModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+   
+   
+   
+	<!-- Modal for Editing User Info -->
+	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
+			<div class="modal-content">
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Edit Profile
+						
+				    </h5>
+				    
+				</div>
+
+				<div class="modal-body" style="padding: 25px;">
+					
+					<table class="table table-bordered" style="font-size: 16px;">
+						
+						<thead>
+						
+							<tr class="table-light">
+							
+								<th style="padding: 15px; font-size: 18px;">Field</th>
+								
+								<th style="padding: 15px; font-size: 18px;">Current Data</th>
+								
+								<th style="padding: 15px; font-size: 18px;">Update To</th>
+								
+							</tr>
+							
+						</thead>
+						
+						<tbody>
+						
+							<tr>
+								<td style="padding: 15px;">Full Name</td>
+								
+								<td style="padding: 15px;">${requestScope.retrievedFullName}</td>
+								
+								<td style="padding: 15px;">
+								
+									<form action="${pageContext.request.contextPath}/updateUserFullName" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newFullName" class="form-control" value="${requestScope.newFullName}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Email</td>
+								
+								<td style="padding: 15px;">${requestScope.retrievedEmail}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserEmail" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="email" name="newEmail" class="form-control" value="${requestScope.newEmail}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<c:if test="${not empty emailError}">
+											
+											<div style="color: red; font-size: 15px; margin-top: 5px;">${emailError}</div>
+										
+										</c:if>
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Password</td>
+																
+								<td style="padding: 15px;">${requestScope.retrievedPassword}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserPassword" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="password" name="newPassword" class="form-control" value="${requestScope.newPassword}" required  style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Phone No</td>
+								
+								<td style="padding: 15px;">${requestScope.retrievedPhoneNo}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateUserPhoneNo" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newPhoneNo" class="form-control" value="${requestScope.newPhoneNo}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<c:if test="${not empty phoneError}">
+											
+											<div style="color: red; font-size: 15px; margin-top: 5px;">${phoneError}</div>
+										
+										</c:if>
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+						
+						
+						</tbody>
+					
+					</table>
+				
+				</div>
+
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div> <!-- Closing tag of the User-info Modal -->
+
+
+<script>
+
+  document.querySelectorAll('.reload-img').forEach(button => {
+	  
+    const img = button.querySelector('img');
+    
+    const originalSrc = img.src; // Static image
+    
+    const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif'; // GIF on click
+
+    let isClicked = false;
+
+    button.addEventListener('click', (e) => {
+    	
+                                             
+        
+                                              if (!isClicked) {
+           
+                                            	                img.src = clickedSrc; // Show GIF on first click
+           
+                                            	                 isClicked = true;
+            
+           
+                                            	                // Optional: Revert after GIF finishes (if finite)
+            
+                                            	                setTimeout(() => {
+               
+                                            	                	               img.src = originalSrc;
+               
+                                            	                	               isClicked = false;
+           
+                                            	                                  }, 2000); // Adjust duration to match GIF length
+      
+                                                               }
+   
+    
+                                            });
+    
+                                });
+  
+</script>
+  
+	
+
+
+
+<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction site Ends Here ------------ / / / / / / / / / / / / / / -->
+
+
+
+	<!-- ################################################################################################################################ -->
 
 
 
@@ -622,6 +879,40 @@ font-size:19px;
 										
 										<span style="width: 20%; text-align: center;">${o.status}</span>
 
+                                        <c:choose>
+                                        
+                                          <c:when test="${o.status eq 'pending' }">
+                                          
+                                              <img src="${pageContext.request.contextPath}/images/gifs/pending.gif" alt="Inbox" style="width: 40px; height: 40px;">
+                                          
+                                          </c:when>
+                                          
+                                          <c:when test="${o.status eq 'processing' }">
+                                          
+                                              <img src="${pageContext.request.contextPath}/images/gifs/baking.gif" alt="Inbox" style="width: 40px; height: 40px;">
+                                          
+                                          </c:when>
+                                          
+                                          
+                                          <c:when test="${o.status eq 'onway' }">
+                                          
+                                              <img src="${pageContext.request.contextPath}/images/gifs/onway.gif" alt="Inbox" style="width: 40px; height: 40px;">
+                                          
+                                          </c:when>
+                                          
+                                          <c:when test="${o.status eq 'delivered' }">
+                                          
+                                              <img src="${pageContext.request.contextPath}/images/gifs/delivered.gif" alt="Inbox" style="width: 40px; height: 40px;">
+                                          
+                                          </c:when>
+                                          
+                                          <c:when test="${o.status eq 'cancelled' }">
+                                          
+                                              <img src="${pageContext.request.contextPath}/images/gifs/cancelled.gif" alt="Inbox" style="width: 40px; height: 40px;">
+                                          
+                                          </c:when>
+                                        
+                                        </c:choose>
 
 									</div>
 
@@ -676,11 +967,12 @@ font-size:19px;
 
 
 <c:if test="${not empty sessionScope.openCartModal}">
+    
     <script>
 					$(document).ready(function() {
 						$('#cart').modal('show');
 					});
-				</script>
+	</script>
 
     <c:remove var="openCartModal" scope="session" />
 </c:if>
@@ -2067,7 +2359,6 @@ font-size:19px;
 		</div>
 
 	</div>
-
 
 
 

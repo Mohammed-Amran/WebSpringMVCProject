@@ -455,6 +455,10 @@ font-size:19px;
 <!-- ==============================================MODAL'S(POP-UP WINDOWS)====================================================== -->
 
 
+
+<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction Site Starts Here ------------ / / / / / / / / / / / / / / -->
+
+
 <!-- ========- USER INFO MODAL -======= -->
 
 	<!-- Modal(pop-up window) for the User Info -->
@@ -510,11 +514,18 @@ font-size:19px;
 
 				<div class="modal-footer" style="display: flex; justify-content: space-between;">
 
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal" data-dismiss="modal" title="Edit Profile" style="position: relative; left: -97px;">
+
+                    <form method="get" action="${pageContext.request.contextPath}/openEditUserProfileModal">
+                                           
+                           <button type="submit" class="btn btn-primary" title="Edit Profile" style="position: relative; left: -97px;">
 						
-						<i class="fas fa-pencil-alt"></i>
+						      <i class="fas fa-pencil-alt"></i>
 						
-					</button>
+					       </button>
+                                       
+                    </form>
+
+					
 
 					<div style="margin-right: -97px; display: flex; gap: 10px;">
 					
@@ -547,6 +558,17 @@ font-size:19px;
 
 
 
+   <!-- This JS Code opens the Edit User Profile Modal -->
+   <c:if test="${openEditModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#editProfileModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+   
    
    
 	<!-- Modal for Editing User Info -->
@@ -589,13 +611,13 @@ font-size:19px;
 							<tr>
 								<td style="padding: 15px;">Full Name</td>
 								
-								<td style="padding: 15px;">${sessionScope.fullName}</td>
+								<td style="padding: 15px;">${requestScope.retrievedFullName}</td>
 								
 								<td style="padding: 15px;">
 								
 									<form action="${pageContext.request.contextPath}/updateUserFullName" method="post" style="display: flex; gap: 10px; align-items: center;">
 										
-										<input type="text" name="newfullName" class="form-control" value="${requestScope.newFullName}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										<input type="text" name="newFullName" class="form-control" value="${requestScope.newFullName}" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
 										
 										<button type="submit" class="reload-img" style="margin-top: 0px;">
 											
@@ -614,7 +636,7 @@ font-size:19px;
 								
 								<td style="padding: 15px;">Email</td>
 								
-								<td style="padding: 15px;">${sessionScope.email}</td>
+								<td style="padding: 15px;">${requestScope.retrievedEmail}</td>
 								
 								<td style="padding: 15px;">
 									
@@ -645,7 +667,7 @@ font-size:19px;
 								
 								<td style="padding: 15px;">Password</td>
 																
-								<td style="padding: 15px;">sessionScope.password</td>
+								<td style="padding: 15px;">${requestScope.retrievedPassword}</td>
 								
 								<td style="padding: 15px;">
 									
@@ -670,7 +692,7 @@ font-size:19px;
 								
 								<td style="padding: 15px;">Phone No</td>
 								
-								<td style="padding: 15px;">${sessionScope.phoneNo}</td>
+								<td style="padding: 15px;">${requestScope.retrievedPhoneNo}</td>
 								
 								<td style="padding: 15px;">
 									
@@ -720,32 +742,54 @@ font-size:19px;
 	</div> <!-- Closing tag of the User-info Modal -->
 
 
-	<script>
-document.querySelectorAll('.reload-img').forEach(button => {
+<script>
+
+  document.querySelectorAll('.reload-img').forEach(button => {
+	  
     const img = button.querySelector('img');
+    
     const originalSrc = img.src; // Static image
+    
     const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif'; // GIF on click
 
     let isClicked = false;
 
     button.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent form submission if button is type="submit"
+    	
+                                             
         
-        if (!isClicked) {
-            img.src = clickedSrc; // Show GIF on first click
-            isClicked = true;
+                                              if (!isClicked) {
+           
+                                            	                img.src = clickedSrc; // Show GIF on first click
+           
+                                            	                 isClicked = true;
             
-            // Optional: Revert after GIF finishes (if finite)
-            setTimeout(() => {
-                img.src = originalSrc;
-                isClicked = false;
-            }, 2000); // Adjust duration to match GIF length
-        }
-    });
-});
+           
+                                            	                // Optional: Revert after GIF finishes (if finite)
+            
+                                            	                setTimeout(() => {
+               
+                                            	                	               img.src = originalSrc;
+               
+                                            	                	               isClicked = false;
+           
+                                            	                                  }, 2000); // Adjust duration to match GIF length
+      
+                                                               }
+   
+    
+                                            });
+    
+                                });
+  
 </script>
   
 	
+
+
+
+<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction site Ends Here ------------ / / / / / / / / / / / / / / -->
+
 
 
 	<!-- ################################################################################################################################ -->

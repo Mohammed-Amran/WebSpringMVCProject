@@ -229,6 +229,10 @@ public int retrieveId(String email) {
   
 //==================================================================================================================
 	
+
+
+
+
 //============================- THIS METHODS BELOW ARE FOR UPDATING THE USERS TABLE FIELDS -========================
 
 //Method to update the fullName of a user by their userId
@@ -355,6 +359,169 @@ catch (SQLException e) {
 }
 
 }//closing brace of the 'updateUserPhoneNo()' method
+
+
+//================================================================================================================== 
+
+
+
+//Retrieving the Fullname of user.
+public String retrieveFullName(int userId) {
+	
+	
+	String sql = "SELECT fullName FROM users WHERE userId = ?";
+	
+	
+	try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+         stmt.setInt(1, userId);
+       
+
+        try (ResultSet rs = stmt.executeQuery()) {
+        	
+            if (rs.next()) {
+            	
+                return rs.getString("fullName");
+                
+                
+            }
+            
+        }
+
+    } 
+	catch (SQLException e) {
+		
+        e.printStackTrace();
+    }
+	
+
+    return "Unknown Name"; // return Unknown Name if not found or error occurs
+	
+	
+
+}//closing brace of the 'retrieveFullName()' method.
+
+
+
+//================================================================================================================== 
+
+
+//Retrieving the email of user.
+public String retrieveEmail(int userId) {
+	
+	
+	String sql = "SELECT email FROM users WHERE userId = ?";
+	
+	
+	try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+         stmt.setInt(1, userId);
+     
+
+      try (ResultSet rs = stmt.executeQuery()) {
+      	
+          if (rs.next()) {
+          	
+              return rs.getString("email");
+              
+          }
+          
+      }
+
+  } 
+	catch (SQLException e) {
+		
+      e.printStackTrace();
+  }
+	
+
+  return "Unknown Email"; // return Unknown Name if not found or error occurs
+	
+	
+
+}//closing brace of the 'retrieveEmail()' method.
+
+
+//==================================================================================================================   
+
+
+//Retrieving the password of user.
+public String retrievePassword(int userId) {
+	
+	
+	String sql = "SELECT pass FROM users WHERE userId = ?";
+	
+	
+	try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+    stmt.setInt(1, userId);
+   
+
+    try (ResultSet rs = stmt.executeQuery()) {
+    	
+        if (rs.next()) {
+        	
+            return rs.getString("pass");
+            
+        }
+        
+    }
+
+} 
+	catch (SQLException e) {
+		
+    e.printStackTrace();
+}
+	
+
+return "Unknown pass"; // return Unknown Name if not found or error occurs
+	
+	
+
+}//closing brace of the 'retrievePassword()' method.
+
+
+
+//==================================================================================================================   
+
+
+//Retrieving the phoneNo of user.
+public String retrievePhoneNo(int userId) {
+	
+	
+	String sql = "SELECT phoneNo FROM users WHERE userId = ?";
+	
+	
+	try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+         stmt.setInt(1, userId);
+ 
+
+  try (ResultSet rs = stmt.executeQuery()) {
+  	
+      if (rs.next()) {
+      	
+          return rs.getString("phoneNo");
+          
+      }
+      
+  }
+
+} 
+	catch (SQLException e) {
+		
+  e.printStackTrace();
+}
+	
+
+return "Unknown phoneNo"; // return Unknown Name if not found or error occurs
+	
+	
+
+}//closing brace of the 'retrievePassword()' method.
+
+
+
 
 
 

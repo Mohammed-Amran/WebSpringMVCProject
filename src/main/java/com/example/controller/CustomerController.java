@@ -165,37 +165,106 @@ public class CustomerController {
 	
 	
 //##############################################################################################
+
+//-------------------- ALL METHODS BELOW ARE RESPONSIBLE FOR THE "EDIT USER PROFILE" -----------
+	
+//##############################################################################################	
+	
+	//This Method opens the Edit user profile modal.
+	@GetMapping("/openEditUserProfileModal")
+	public String openEditUserProfileModal(Model model, HttpServletRequest req) {
+		
+		
+		//Retrieving the already saved userInfo's in the session Scope.
+		
+		//1. Instantiating a session object:
+		HttpSession session = req.getSession(false);
+		
+		
+		//2. Retrieving the 'fullName', "email", "pass" & "phoneNo" from the session scope:
+		String retrievedFullName = (String) session.getAttribute("fullName");
+		String retrievedEmail = (String) session.getAttribute("email");
+		String retrievedPassword = (String) session.getAttribute("password");
+		String retrievedPhoneNo = (String) session.getAttribute("phoneNo");
+		
+		
+		//3. Wrapping & Forwarding the retrieved user info's to the editUserProfile Modal:
+		model.addAttribute("retrievedFullName", retrievedFullName);
+		
+		model.addAttribute("retrievedEmail", retrievedEmail);
+		
+		model.addAttribute("retrievedPassword", retrievedPassword);
+		
+		model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
+		
+		
+		
+		
+		
+		//This Triggers opening the Edit User-Profile Modal
+		model.addAttribute("openEditModal", true);
+		
+		
+		return "view/customer";
+		
+	}//closing brace of the 'openEditUserProfileModal()'method.
+	
+	
+	
+	
+	
+	
 	
 	//This method updates the user-fullName
 	@PostMapping("/updateUserFullName")
-	protected String updateUserFullName(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+	public String updateUserFullName(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
 		
 		String destination = "";
 		
 		//Retrieving the new fullName.
 		String newFullName = input.get("newFullName");
 		
+		System.out.print("newFullName recieved");
+		
 		//Instantiating a session object
 		HttpSession session = req.getSession(false);
 		
 		if(session != null) {
 			
+			System.out.print("session IS NOT NULL - FINE");
+			
 			//Retrieving the userId from the session scope:
 			int userId = (Integer) session.getAttribute("userId");
+			
+			System.out.print("userId retrieved: " + userId);
 			
 			//Instantiating an object from the 'DaoUsers' class.
 			DaoUsers daoUsersObj = new DaoUsers();
 			
+			System.out.print("an object from the 'DaoUsers' class instantiated");
+			
 			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
 			boolean isNewFullNameUpdated = daoUsersObj.updateUserFullName(userId, newFullName);
 			
+			
 			if(isNewFullNameUpdated) {
+				
+				//Retrieving the new FullName from the DB & re-saving it into the request Scope. 
+				
+				//1. Calling the 'retrieveFullName()' method from the 'DaoUsers' class.
+				String retrievedFullName = daoUsersObj.retrieveFullName(userId);
+				 
+				//2. Wrapping & forwarding the 'retrievedFullName' into request scope:
+				model.addAttribute("retrievedFullName", retrievedFullName);
+				
 				
 				String successUserUpdateMessage = "FullName Successfully updated";
 				
 				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
 			}
 			else {
+				
+				System.out.print("The fullName failed to update");
 				
                 String failureUserUpdateMessage = "FullName failed to be updated";
 				
@@ -217,8 +286,7 @@ public class CustomerController {
 		
 		
 		
-		
-		
+				
 		return destination;
 		
 	}//closing brace of the 'updateUserFullName()' method
@@ -227,7 +295,7 @@ public class CustomerController {
 	
 	//This method updates the user-email
 	@PostMapping("/updateUserEmail")
-	protected String updateUserEmail(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+	public String updateUserEmail(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
 			
          String destination = "";
 		
@@ -249,6 +317,15 @@ public class CustomerController {
 			boolean isNewEmailUpdated = daoUsersObj.updateUserEmail(userId, newEmail);
 			
 			if(isNewEmailUpdated) {
+				
+                //Retrieving the new Email from the DB & re-saving it into the request Scope. 
+				
+				//1. Calling the 'retrieveEmail()' method from the 'DaoUsers' class.
+				String retrievedEmail = daoUsersObj.retrieveEmail(userId);
+				 
+				//2. Wrapping & forwarding the 'retrievedEmail' into request scope:
+				model.addAttribute("retrievedEmail", retrievedEmail);
+				
 				
 				String successUserUpdateMessage = "Email Successfully updated";
 				
@@ -286,7 +363,7 @@ public class CustomerController {
 	
 	//This method updates the user-password
 	@PostMapping("/updateUserPassword")
-	protected String updateUserPassword(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+	public String updateUserPassword(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
 			
         String destination = "";
 		
@@ -308,6 +385,14 @@ public class CustomerController {
 			boolean isNewPasswordUpdated = daoUsersObj.updateUserPassword(userId, newPassword);
 			
 			if(isNewPasswordUpdated) {
+				
+                //Retrieving the new Password from the DB & re-saving it into the request Scope. 
+				
+				//1. Calling the 'retrievePassword()' method from the 'DaoUsers' class.
+				String retrievedPassword = daoUsersObj.retrievePassword(userId);
+				 
+				//2. Wrapping & forwarding the 'retrievedPassword' into request scope:
+				model.addAttribute("retrievedPassword", retrievedPassword);
 				
 				String successUserUpdateMessage = "FullName Successfully updated";
 				
@@ -345,7 +430,7 @@ public class CustomerController {
 	
 	//This method updates the user-phoneNo
 	@PostMapping("/updateUserPhoneNo")
-	protected String updateUserPhoneNo(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+	public String updateUserPhoneNo(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
 			
          String destination = "";
 		
@@ -367,6 +452,14 @@ public class CustomerController {
 			boolean isNewFullNameUpdated = daoUsersObj.updateUserphoneNo(userId, newPhoneNo);
 			
 			if(isNewFullNameUpdated) {
+				
+                //Retrieving the new phoneNo from the DB & re-saving it into the request Scope. 
+				
+				//1. Calling the 'retrievePhoneNo()' method from the 'DaoUsers' class.
+				String retrievedPhoneNo = daoUsersObj.retrievePhoneNo(userId);
+				 
+				//2. Wrapping & forwarding the 'retrievedPhoneNo' into request scope:
+				model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
 				
 				String successUserUpdateMessage = "phoneNo Successfully updated";
 				

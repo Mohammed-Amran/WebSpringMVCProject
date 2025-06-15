@@ -457,8 +457,14 @@ font-size:19px;
             <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
 			
             
-            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
-
+           <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox">
+              
+              <img src="${pageContext.request.contextPath}/images/gifs/deliveredOrders.gif" alt="Inbox" style="width: 40px; height: 40px;">
+ 
+             <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span>
+        
+           </a>
+		
 		</div>
 
 
@@ -577,85 +583,168 @@ font-size:19px;
 				</div>
 
 				<div class="modal-body" style="display: flex; justify-content: space-between; gap: 20px;">
- 
- 
-					<!-- Left Section: Cart Items -->
-					<div style="width: 100%;">
-
-						<h5>Your Ordered Items</h5>
-
-						<div class="checkout-cart-body">
-
-
-							<!-- Table Header -->
-							<div class="cart-item-header" style="display: flex; justify-content: space-between; padding: 12px 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; font-weight: bold; margin-bottom: 10px;">
-
-
-								<span style="width: 50%;">Item Name</span> 
-								
-								<span style="width: 20%; text-align: center;">Quantity</span>
-								
-								<span style="width: 30%; text-align: right;">Sum</span>
-								
-								<span style="width: 30%; text-align: right;">Status</span>
-
-
-							</div>
-
-
-							<!-- Initialize total price -->
-							<c:set var="total" value="0" />
 
 
 
-							<div class="items-list">
-
-								<!-- Loop through ordered items -->
-								<c:forEach var="o" items="${sessionScope.retrievedOrderedItems}">
-
-
-									<c:set var="itemTotal" value="${o.itemPriceSum}" />
-
-									<c:set var="total" value="${total + itemTotal}" />
-
-
-									<div class="cart-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
-
-
-										<span style="width: 50%; font-weight: 500;">${o.itemName}</span>
-
-										<span style="width: 20%; text-align: center;">${o.selectedQuantity}</span>
-
-										<span style="width: 30%; text-align: right; color: #D5451B;">${o.itemPriceSum} IQD</span>
-										
-										<span style="width: 20%; text-align: center;">${o.status}</span>
-
-
-									</div>
-
-
-								</c:forEach>
-
-
-							</div>
-
-
-							<!-- Total price display -->
-							<div style="margin-top: 25px; text-align: right; padding: 15px 20px; background-color: #f8f9fa; border-top: 1px solid #dee2e6; font-size: 18px;">
-
-								<strong>Total Price: </strong> 
-								
-								<span id="checkoutTotalPrice" style="color: #D5451B; font-weight: bold;">${total}</span> IQD
-
-							</div>
-
-
-						</div> 
-
-
-					</div>
+                   <div class="table-responsive">
+				
+				<table class="table table-bordered table-hover table-striped order-table">
 					
-				</div>
+					<thead class="thead-dark">
+						
+						<tr>
+						
+							<th>Order ID</th>
+							
+							<th>User Info</th>
+							
+							<th>Item Info</th>
+							
+							<th>Total Price</th>
+							
+							<th>Delivery Info</th>
+							
+							<th>Status</th>
+							
+						</tr>
+						
+					</thead>
+					
+					
+					<tbody>
+					
+						<c:forEach var="order" items="${sessionScope.retrievedOrders}">
+						
+						 <c:if test="${order.status eq 'delivered'}">
+						
+							<tr>
+							
+								<td><strong>${order.orderId}</strong></td>
+								
+								<td>
+								
+									<div class="dropdown">
+									
+										
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">
+											    
+											    User Info
+											    
+									    </button>
+									    
+										<div class="dropdown-menu p-2">
+											
+											<div>
+											
+												<strong>User ID:</strong> ${order.userId}
+												
+											</div>
+											
+											<div>
+											
+												<strong>Phone:</strong> ${order.userPhoneNo}
+												
+											</div>
+											
+										</div>
+										
+									</div>
+									
+									
+								</td>
+								
+								<td>
+									<div class="dropdown">
+										
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">Item Info</button>
+										
+										<div class="dropdown-menu p-2">
+											
+											<div>
+												<strong>Item ID:</strong> ${order.itemId}
+											</div>
+											
+											<div>
+												<strong>Name:</strong> ${order.itemName}
+											</div>
+											
+											<div>
+												<strong>Qty:</strong> ${order.selectedQuantity}
+											</div>
+											
+										</div>
+										
+									</div>
+									
+								</td>
+								
+								
+								<td class="text-center text-danger font-weight-bold price-cell"> ${order.itemPriceSum}  IQD  </td>
+								
+								
+								<td>
+								
+									<div class="dropdown">
+									
+										<button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100"
+											    type="button" data-toggle="dropdown">
+											    
+											    Delivery Info
+											    
+									    </button>
+									    
+										<div class="dropdown-menu p-2">
+											
+											<div>
+											
+												<strong>Location:</strong> ${order.location}
+												
+											</div>
+											
+											<div>
+											
+												<strong>Address:</strong> ${order.deliveryAddress}
+												
+											</div>
+											
+										</div>
+										
+									</div>
+									
+								</td>
+								
+								<td class="text-center">
+  
+                                      ${order.status}
+                                              
+                                 <img src="${pageContext.request.contextPath}/images/gifs/delivered.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                  
+                                    
+                                    
+                               </td>
+
+								
+							</tr> 
+							
+							</c:if>
+
+
+					
+
+						</c:forEach>
+						
+					</tbody>
+					
+				</table>
+				
+			</div>
+					
+					
+
+				</div> <!-- closing tag of the modal body -->
 
 
 				<div class="modal-footer">
@@ -726,6 +815,8 @@ font-size:19px;
 					<tbody>
 					
 						<c:forEach var="order" items="${sessionScope.retrievedOrders}">
+						
+						 <c:if test="${order.status ne 'cancelled' && order.status ne 'delivered'}">
 						
 							<tr>
 							
@@ -832,11 +923,39 @@ font-size:19px;
                                       ${order.status}
   
                                     </button>
-                               
+                                    
+                                    
+                                    <c:choose>
+                                    
+                                       <c:when test="${order.status eq 'pending'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/pending.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       <c:when test="${order.status eq 'processing'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/baking.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       <c:when test="${order.status eq 'onway'}">
+                                       
+                                          <img src="${pageContext.request.contextPath}/images/gifs/onway.gif" alt="Inbox" style="width: 40px; height: 40px;">                              
+                                        
+                                       </c:when>
+                                       
+                                       
+                                    
+                                    </c:choose>
+                                    
+                                    
                                </td>
 
 								
-							</tr>
+							</tr> 
+							
+							</c:if>
 
 
 
@@ -885,7 +1004,7 @@ font-size:19px;
 														
 														<option value="pending">pending</option>
 														<option value="processing">processing</option>
-														<option value="on way">onway</option>
+														<option value="onway">onway</option>
 														<option value="delivered">delivered</option>
 														<option value="cancelled">cancelled</option>
 														
