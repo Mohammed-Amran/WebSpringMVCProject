@@ -3,6 +3,8 @@
 	
 <!-- Below is Taglib directive -->	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 
 
@@ -64,6 +66,7 @@ if(session == null || session.getAttribute("fullName") == null){
  
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
  
 
@@ -666,9 +669,27 @@ font-size:19px;
 							<tr>
 								
 								<td style="padding: 15px;">Password</td>
-																
-								<td style="padding: 15px;">${requestScope.retrievedPassword}</td>
+
+								<td style="padding: 15px;">
 								
+								    <span id="hiddenPassword" style="letter-spacing: 2px;">
+                                    
+                                    <c:forEach begin="1" end="${fn:length(requestScope.retrievedPassword)}">•</c:forEach>
+
+                                    </span>
+ 
+								
+								    <span id="realPassword" style="display: none;">${requestScope.retrievedPassword}</span>
+
+									<button onclick="togglePassword()" style="border: none; background: none; cursor: pointer;">
+										
+										<i id="eyeIcon" class="fa-solid fa-eye"></i>
+									
+									</button>
+									
+							    </td>
+
+
 								<td style="padding: 15px;">
 									
 									<form action="${pageContext.request.contextPath}/updateUserPassword" method="post" style="display: flex; gap: 10px; align-items: center;">
@@ -742,6 +763,7 @@ font-size:19px;
 	</div> <!-- Closing tag of the User-info Modal -->
 
 
+<!-- This JS below replaces the static reload IMG with the reload GIF onClick -->
 <script>
 
   document.querySelectorAll('.reload-img').forEach(button => {
@@ -785,6 +807,34 @@ font-size:19px;
 </script>
   
 	
+
+<!-- ------------------------------------------------------------ -->
+
+
+<!-- This JS code below is used to hide & un hide the password -->
+<script>
+  let isVisible = false;
+
+  function togglePassword() {
+    const hiddenSpan = document.getElementById("hiddenPassword");
+    const realSpan = document.getElementById("realPassword");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (isVisible) {
+      realSpan.style.display = "none";
+      hiddenSpan.style.display = "inline";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    } else {
+      realSpan.style.display = "inline";
+      hiddenSpan.style.display = "none";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    }
+
+    isVisible = !isVisible;
+  }
+</script>
 
 
 

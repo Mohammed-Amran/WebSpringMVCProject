@@ -224,24 +224,20 @@ public class CustomerController {
 		//Retrieving the new fullName.
 		String newFullName = input.get("newFullName");
 		
-		System.out.print("newFullName recieved");
-		
+				
 		//Instantiating a session object
 		HttpSession session = req.getSession(false);
 		
 		if(session != null) {
 			
-			System.out.print("session IS NOT NULL - FINE");
-			
+						
 			//Retrieving the userId from the session scope:
 			int userId = (Integer) session.getAttribute("userId");
 			
-			System.out.print("userId retrieved: " + userId);
-			
+						
 			//Instantiating an object from the 'DaoUsers' class.
 			DaoUsers daoUsersObj = new DaoUsers();
 			
-			System.out.print("an object from the 'DaoUsers' class instantiated");
 			
 			//calling the 'updateUserFullName()' method via the 'daoUsersObj' object:
 			boolean isNewFullNameUpdated = daoUsersObj.updateUserFullName(userId, newFullName);
@@ -254,9 +250,30 @@ public class CustomerController {
 				//1. Calling the 'retrieveFullName()' method from the 'DaoUsers' class.
 				String retrievedFullName = daoUsersObj.retrieveFullName(userId);
 				 
-				//2. Wrapping & forwarding the 'retrievedFullName' into request scope:
+				//2. Re-saving the retrieved fullName back into the session scope:
+				session.setAttribute("fullName", retrievedFullName);
+				
+				//3. Wrapping & forwarding the 'retrievedFullName' into request scope:
 				model.addAttribute("retrievedFullName", retrievedFullName);
 				
+				
+				//3.1 - Retrieving the other 3 user-profile data's from the session Scope & forwarding them too!:
+				String retrievedEmail = (String) session.getAttribute("email");
+				
+				String retrievedPassword = (String) session.getAttribute("password");
+				
+				String retrievedPhoneNo = (String) session.getAttribute("phoneNo");
+				
+				//3.2 - Wrapping & forwarding this 3 into the request scope too!:
+				model.addAttribute("retrievedEmail", retrievedEmail);
+				
+				model.addAttribute("retrievedPassword", retrievedPassword);
+				
+				model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
+				
+				
+				//4. This keeps the Edit User-Profile Modal opened
+				model.addAttribute("openEditModal", true);
 				
 				String successUserUpdateMessage = "FullName Successfully updated";
 				
@@ -264,7 +281,6 @@ public class CustomerController {
 			}
 			else {
 				
-				System.out.print("The fullName failed to update");
 				
                 String failureUserUpdateMessage = "FullName failed to be updated";
 				
@@ -284,9 +300,7 @@ public class CustomerController {
 			destination = "view/login";
 		}
 		
-		
-		
-				
+						
 		return destination;
 		
 	}//closing brace of the 'updateUserFullName()' method
@@ -323,8 +337,30 @@ public class CustomerController {
 				//1. Calling the 'retrieveEmail()' method from the 'DaoUsers' class.
 				String retrievedEmail = daoUsersObj.retrieveEmail(userId);
 				 
-				//2. Wrapping & forwarding the 'retrievedEmail' into request scope:
+				//2. Re-saving the retrieved fullName back into the session scope:
+				session.setAttribute("email", retrievedEmail);
+				
+				//3. Wrapping & forwarding the 'retrievedFullName' into request scope:
 				model.addAttribute("retrievedEmail", retrievedEmail);
+				
+				
+				//3.1 - Retrieving the other 3 user-profile data's from the session Scope & forwarding them too!:
+				String retrievedFullName = (String) session.getAttribute("fullName");
+				
+				String retrievedPassword = (String) session.getAttribute("password");
+				
+				String retrievedPhoneNo = (String) session.getAttribute("phoneNo");
+				
+				//3.2 - Wrapping & forwarding this 3 into the request scope too!:
+				model.addAttribute("retrievedFullName", retrievedFullName);
+				
+				model.addAttribute("retrievedPassword", retrievedPassword);
+				
+				model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
+				
+				
+				//4. This keeps the Edit User-Profile Modal opened
+				model.addAttribute("openEditModal", true);
 				
 				
 				String successUserUpdateMessage = "Email Successfully updated";
@@ -391,16 +427,38 @@ public class CustomerController {
 				//1. Calling the 'retrievePassword()' method from the 'DaoUsers' class.
 				String retrievedPassword = daoUsersObj.retrievePassword(userId);
 				 
-				//2. Wrapping & forwarding the 'retrievedPassword' into request scope:
+				//2. Re-saving the retrieved fullName back into the session scope:
+				session.setAttribute("password", retrievedPassword);
+				
+				//3. Wrapping & forwarding the 'retrievedFullName' into request scope:
 				model.addAttribute("retrievedPassword", retrievedPassword);
 				
-				String successUserUpdateMessage = "FullName Successfully updated";
+				
+				//3.1 - Retrieving the other 3 user-profile data's from the session Scope & forwarding them too!:
+				String retrievedFullName = (String) session.getAttribute("fullName");
+				
+				String retrievedEmail = (String) session.getAttribute("email");
+				
+				String retrievedPhoneNo = (String) session.getAttribute("phoneNo");
+				
+				//3.2 - Wrapping & forwarding this 3 into the request scope too!:
+				model.addAttribute("retrievedFullName", retrievedFullName);
+				
+				model.addAttribute("retrievedEmail", retrievedEmail);
+				
+				model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
+				
+				
+				//4. This keeps the Edit User-Profile Modal opened
+				model.addAttribute("openEditModal", true);
+				
+				String successUserUpdateMessage = "Password Successfully updated";
 				
 				model.addAttribute("successUserUpdateMessage", successUserUpdateMessage);
 			}
 			else {
 				
-                String failureUserUpdateMessage = "FullName failed to be updated";
+                String failureUserUpdateMessage = "Password failed to be updated";
 				
 				model.addAttribute("failureUserUpdateMessage", failureUserUpdateMessage);
 			}
@@ -458,8 +516,30 @@ public class CustomerController {
 				//1. Calling the 'retrievePhoneNo()' method from the 'DaoUsers' class.
 				String retrievedPhoneNo = daoUsersObj.retrievePhoneNo(userId);
 				 
-				//2. Wrapping & forwarding the 'retrievedPhoneNo' into request scope:
+				//2. Re-saving the retrieved fullName back into the session scope:
+				session.setAttribute("phoneNo", retrievedPhoneNo);
+				
+				//3. Wrapping & forwarding the 'retrievedFullName' into request scope:
 				model.addAttribute("retrievedPhoneNo", retrievedPhoneNo);
+				
+				
+				//3.1 - Retrieving the other 3 user-profile data's from the session Scope & forwarding them too!:
+				String retrievedFullName = (String) session.getAttribute("fullName");
+				
+				String retrievedPassword = (String) session.getAttribute("password");
+				
+				String retrievedEmail = (String) session.getAttribute("email");
+				
+				//3.2 - Wrapping & forwarding this 3 into the request scope too!:
+				model.addAttribute("retrievedFullName", retrievedFullName);
+				
+				model.addAttribute("retrievedPassword", retrievedPassword);
+				
+				model.addAttribute("retrievedEmail", retrievedEmail);
+				
+				
+				//4. This keeps the Edit User-Profile Modal opened
+				model.addAttribute("openEditModal", true);
 				
 				String successUserUpdateMessage = "phoneNo Successfully updated";
 				
