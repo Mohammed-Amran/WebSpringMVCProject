@@ -766,45 +766,40 @@ font-size:19px;
 <!-- This JS below replaces the static reload IMG with the reload GIF onClick -->
 <script>
 
-  document.querySelectorAll('.reload-img').forEach(button => {
-	  
-    const img = button.querySelector('img');
-    
-    const originalSrc = img.src; // Static image
-    
-    const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif'; // GIF on click
+document.querySelectorAll('.reload-img').forEach(button => {
+  const img = button.querySelector('img');
+  const originalSrc = img.src;
+  const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif';
 
-    let isClicked = false;
+  button.addEventListener('click', function (e) {
+    e.preventDefault(); // Stop form submission
 
-    button.addEventListener('click', (e) => {
-    	
-                                             
-        
-                                              if (!isClicked) {
-           
-                                            	                img.src = clickedSrc; // Show GIF on first click
-           
-                                            	                 isClicked = true;
-            
-           
-                                            	                // Optional: Revert after GIF finishes (if finite)
-            
-                                            	                setTimeout(() => {
-               
-                                            	                	               img.src = originalSrc;
-               
-                                            	                	               isClicked = false;
-           
-                                            	                                  }, 2000); // Adjust duration to match GIF length
-      
-                                                               }
-   
-    
-                                            });
-    
-                                });
-  
+    // Show reload GIF on button
+    img.src = clickedSrc;
+
+    // Step 1: Show the reload GIF for ~500ms
+    setTimeout(() => {
+      // Step 2: Display full-screen strike GIF
+      document.getElementById('strikeOverlay').style.display = 'flex';
+
+      // Step 3: Keep strike GIF for ~1.5s, then submit form
+      setTimeout(() => {
+        document.getElementById('strikeOverlay').style.display = 'none';
+
+        const form = button.closest('form');
+        if (form) {
+          form.submit();
+        }
+
+      }, 1500); // Length of strike.gif
+
+    }, 500); // Delay before showing strike
+  });
+});
 </script>
+
+
+
   
 	
 
@@ -836,6 +831,27 @@ font-size:19px;
   }
 </script>
 
+
+
+<!-- //////// / / / / / / / / /  //////////////////////// -->
+
+
+<!-- Rocket Strike GIF modal -->
+
+<!-- Strike GIF Overlay Modal -->
+<div id="strikeOverlay" style=" display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.2);
+     
+     backdrop-filter: blur(6px);
+  
+     z-index: 9999;
+ 
+    justify-content: center;
+  
+    align-items: center; ">
+
+  <img src="${pageContext.request.contextPath}/images/gifs/strike.gif" alt="Reloading..." style="width: 400px; height: 400px;" />
+  
+</div>
 
 
 <!-- / / / / / / / / / / / / / /  ------------ Temporary Construction site Ends Here ------------ / / / / / / / / / / / / / / -->
