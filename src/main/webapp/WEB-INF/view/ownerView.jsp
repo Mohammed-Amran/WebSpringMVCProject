@@ -4,7 +4,7 @@
 <!-- Below is Taglib directive -->	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 
@@ -52,6 +52,39 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+ <!-- Load Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Prepare the chart -->
+    <script type="text/javascript">
+    
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Item Name', 'Count'],
+                <c:forEach var="item" items="${ordersListForAnalytics}" varStatus="status">
+                    ['${item.itemName}', ${item.itemCount}]${!status.last ? ',' : ''}
+                </c:forEach>
+            ]);
+            
+            var options = {
+                title: 'Items Ordered on Selected Date',
+                pieHole: 0.5,
+                width: 800,
+                height: 500
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+        
+    </script>
+
+
 
 	
 	
@@ -453,18 +486,27 @@ font-size:19px;
 
 
 		<div class="navtop" id="mynavTop" style="background-color: #C9B194;">
+		
 
-            <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
-			
-            
+          
            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox">
               
-              <img src="${pageContext.request.contextPath}/images/gifs/deliveredOrders.gif" alt="Inbox" style="width: 40px; height: 40px;">
+             <img src="${pageContext.request.contextPath}/images/gifs/deliveredOrders.gif" alt="Inbox" style="width: 40px; height: 40px;">
  
-             <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span>
+             <span class="inbox-items"> ( <c:if test="${empty requestScope.inboxCounter }"> 0 </c:if> ${requestScope.inboxCounter} ) </span>
         
            </a>
-		
+           
+  
+           
+           <a href="${pageContext.request.contextPath}/accessAnalytics" style="float: right;">
+           
+             <img src="${pageContext.request.contextPath}/images/gifs/charts.gif" alt="Inbox" style="width: 40px; height: 40px;">
+         
+           </a>
+
+           
+           		
 		</div>
 
 
@@ -475,77 +517,105 @@ font-size:19px;
 <!-- ==============================================MODAL'S(POP-UP WINDOWS)====================================================== -->
 
 
-<!-- ========- USER INFO MODAL -======= -->
+<!-- ============--- Analytics Modal ---============ -->
 
-	<!-- Modal(pop-up window) for the User Info -->
-	<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+<!-- This JS Code opens the Edit User Profile Modal -->
+   <c:if test="${openAnalyticsModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#openAnalyticsModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
 
-		<div class="modal-dialog" role="document" >
 
+
+
+    <!-- Modal for Editing User Info -->
+	<div class="modal fade" id="openAnalyticsModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
 			<div class="modal-content">
-
-				<div class="modal-header" style="background: #C9B194;">
-
-					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">User Information</h5>
-
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Sales Analytics
+						
+				    </h5>
+				    
 				</div>
 
-				<div class="modal-body">
+				<div class="modal-body" style="padding: 25px;">
 
-                   
-					<c:choose>
-					
-					<c:when test="${not empty sessionScope.fullName && not empty sessionScope.email && not empty sessionScope.phoneNo }">
-					
-					<p>
-						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Name:</strong>
-					    <span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.fullName}" /> </span>
-					</p>
-					
-					<p>
-						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Email:</strong>
-						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.email}" /> </span>
-					</p>
-					
-					<p>
-						<strong style="color: #4a403a; font-family: 'Pacifico', cursive; font-style: normal;">Phone:</strong>
-						<span style="font-weight: 600; color: #A08963;"> <c:out value="${sessionScope.phoneNo}" /> </span>
-					</p>
-					
-					</c:when>
 
-                    <c:otherwise>
-                     
-					   <p>User details not available.</p>
 
-                    </c:otherwise>
-                     
-                     
-					</c:choose>
+					<form id="analyticsForm" method="post" action="${pageContext.request.contextPath}/retrieveOrdersForAnalytics">
 
-                     
+						<label for="orderDate">Select Date:</label> 
+						
+						<input type="date" id="orderDate" name="orderDate" required pattern="\d{4}-\d{2}-\d{2}" title="Please use YYYY-MM-DD format">
+						
+						<button type="submit">Retrieve Orders</button>
+					
+					</form>
 
+
+
+					<div id="donutchart" style="width: 100%; height: 500px; margin: auto;"></div>
+							
+							
+									
+				
 				</div>
 
-
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                 <form name="logOutForm" method="get" action="${pageContext.request.contextPath}/logout" style="display:inline;">
-
-					<button type="submit" class="btn btn-danger"> Logout </button>
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
 					
-				</form>	
-
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
 				</div>
-
-
+			
 			</div>
-
+		
 		</div>
-
+	
 	</div> <!-- Closing tag of the User-info Modal -->
+
+
+
+<script>
+  document.getElementById('analyticsForm').addEventListener('submit', function (e) {
+    const input = document.getElementById('orderDate');
+    const value = input.value.trim(); // Avoid empty spaces
+
+    // Basic blank-check
+    if (!value || value === "--") {
+      alert("Please select a valid date before submitting.");
+      e.preventDefault(); // Stop form from submitting
+      return;
+    }
+
+    // If format is dd-mm-yyyy, convert it
+    const parts = value.split('-');
+    if (parts.length === 3 && parts[2].length === 4) {
+      const [dd, mm, yyyy] = parts;
+      if (yyyy.length === 4 && mm.length === 2 && dd.length === 2) {
+        input.value = `${yyyy}-${mm}-${dd}`;
+      }
+    }
+  });
+</script>
+
+
+
 
 
 

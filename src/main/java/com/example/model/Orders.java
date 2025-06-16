@@ -1,5 +1,8 @@
 package com.example.model;
 
+import java.time.LocalDate;
+
+
 public class Orders {
 
 	//Instance variables:
@@ -13,9 +16,33 @@ public class Orders {
 	private String location;
 	private String deliveryAddress;
 	private String status;
+	private LocalDate orderDate;
 	
+	//This instance variables are only for local use:
+	private int itemCount;
 	
 	public Orders() {}
+	
+	
+	public void setItemCount(int itemCount) {
+		
+		this.itemCount = itemCount;
+	}
+	
+	public int getItemCount() {
+		
+		return itemCount;
+	}
+	
+	public void setOrderDate(LocalDate orderDate) {
+		
+		this.orderDate = orderDate;
+	}
+	
+	public LocalDate getOrderDate() {
+		
+		return orderDate;
+	}
 
 
 	public int getOrderId() {

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,7 @@ public class DaoOrders {
          stmt.setDouble(6, itemPriceSum);
          stmt.setString(7, location);
          stmt.setString(8, deliveryAddress);
+        
 
          
          System.out.println("Trying to insert into cartItems: USER-ID=" + userId + ", userPhoneNo=" + userPhoneNo + ", itemId=" + itemId + ", itemName=" + itemName + ", selectedQuantity=" + selectedQuantity + ", itemPriceSum=" + itemPriceSum + ", location=" + location + ", deliveryAddress=" + deliveryAddress);
@@ -93,7 +95,7 @@ public class DaoOrders {
 	 //Creating an array list to save the the orders object:
      ArrayList<Orders> ordersList = new ArrayList<>();
 
-     String sql = "SELECT orderId, userId, userPhoneNo, itemId, itemName, selectedQuantity, itemPriceSum, location, deliveryAddress, status FROM orders WHERE userId = ?";
+     String sql = "SELECT orderId, userId, userPhoneNo, itemId, itemName, selectedQuantity, itemPriceSum, location, deliveryAddress, status, orderDate FROM orders WHERE userId = ?";
 
      try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
     	 
@@ -116,6 +118,7 @@ public class DaoOrders {
          	orderItem.setLocation(rs.getString("location"));
          	orderItem.setDeliveryAddress(rs.getString("deliveryAddress"));
          	orderItem.setStatus(rs.getString("status"));
+         	orderItem.setOrderDate(rs.getObject("orderDate", LocalDate.class));
 
              ordersList.add(orderItem);
          }
@@ -139,7 +142,7 @@ public List<Orders> getAllOrders() throws SQLException {
 	 //Creating an array list to save the the orders object:
     ArrayList<Orders> ordersList = new ArrayList<>();
 
-    String sql = "SELECT orderId, userId, userPhoneNo, itemId, itemName, selectedQuantity, itemPriceSum, location, deliveryAddress, status FROM orders";
+    String sql = "SELECT orderId, userId, userPhoneNo, itemId, itemName, selectedQuantity, itemPriceSum, location, deliveryAddress, status, orderDate FROM orders";
 
     try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -162,6 +165,7 @@ public List<Orders> getAllOrders() throws SQLException {
         	orderItem.setLocation(rs.getString("location"));
         	orderItem.setDeliveryAddress(rs.getString("deliveryAddress"));
         	orderItem.setStatus(rs.getString("status"));
+        	orderItem.setOrderDate(rs.getObject("orderDate", LocalDate.class));
 
             ordersList.add(orderItem);
         }
@@ -235,6 +239,60 @@ public List<Orders> getAllOrders() throws SQLException {
 	    
 	}//closing brace of the 'updateOrderStatus()' method
  
-	
+
+ 
+ 
+//===================================================================================================
+ 
+ 
+
+ public List<Orders> getAllOrdersForAnalytics(LocalDate orderDate) throws SQLException {
+	   
+	 ArrayList<Orders> ordersList = new ArrayList<>();
+
+	    String sql = "SELECT itemId, itemName, COUNT(*) as itemCount " +
+	                 "FROM orders " +
+	                 "WHERE orderDate = ? " +
+	                 "GROUP BY itemId, itemName";
+
+	    try (Connection conn = getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+	        // Set the LocalDate directly (JDBC handles conversion to SQL DATE)
+	        stmt.setObject(1, orderDate);
+
+	        ResultSet rs = stmt.executeQuery();
+
+	        while (rs.next()) {
+	        	
+	            Orders orderItem = new Orders();
+
+	            orderItem.setItemId(rs.getInt("itemId"));
+	            
+	            orderItem.setItemName(rs.getString("itemName"));
+	            
+	            orderItem.setItemCount(rs.getInt("itemCount"));
+	            
+	            orderItem.setOrderDate(orderDate); // Optional
+
+	            ordersList.add(orderItem);
+	            
+	        }
+	        
+	    }
+
+	    
+	    return ordersList;
+	    
+	}//closing brace of the 'getAllOrdersForAnalytics()' method.
+
+
+
+//=======================================================================================
+ 
+ 
+ 
+ 
+ 
 	
 }//closing brace of the class.

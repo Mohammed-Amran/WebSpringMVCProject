@@ -1,5 +1,9 @@
 package com.example.controller;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -171,6 +175,111 @@ public class ownerController {
 		return destination;
 		
 	}//closing brace of the 'updateOrderStatus()' method.
+	
+	
+	
+	
+	@GetMapping("/accessAnalytics")
+	protected String accessChartModal(HttpServletRequest req, Model model) {
+		
+		
+		
+		//This Triggers opening the Analytics Modal
+		model.addAttribute("openAnalyticsModal", true);
+		
+		
+		return "view/ownerView";
+		
+	}//closing brace of the 'accessChartModal()' method.
+	
+	
+	
+//= = = = = = = = = = = = - - - - - - - - - - = = = = = = = = = = = = - - - - - - - - - - - - - - 
+	
+	@PostMapping("/retrieveOrdersForAnalytics")
+	protected String retrieveOrdersForAnalytics(@RequestParam Map<String, String> input, Model model) {
+	    
+	    // 1st: Retrieving and validating the requested orderDate
+	    String rawOrderDate = input.get("orderDate");
+	    
+	    // Validate input
+	    if (rawOrderDate == null || rawOrderDate.isBlank() || rawOrderDate.equals("--")) {
+	    	
+	       
+	        
+	        model.addAttribute("openAnalyticsModal", true);
+	        
+	        return "view/ownerView";
+	    }
+	    
+	    LocalDate requestOrderDate;
+	    
+	    try {
+	    	
+	        // First try to parse as ISO format (YYYY-MM-DD)
+	        try {
+	        	
+	            requestOrderDate = LocalDate.parse(rawOrderDate);
+	            
+	        } 
+	        catch (DateTimeParseException e1) {
+	        	
+	            // If ISO format fails, try DD-MM-YYYY format
+	            try {
+	            	
+	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	                
+	                requestOrderDate = LocalDate.parse(rawOrderDate, formatter);
+	                
+	            }
+	            catch (DateTimeParseException e2) {
+	            	
+	                model.addAttribute("dateError", "Invalid date format. Please use either DD-MM-YYYY or YYYY-MM-DD format");
+	                
+	                model.addAttribute("openAnalyticsModal", true);
+	                
+	                return "view/ownerView";
+	                
+	            }
+	            
+	            
+	        }
+	        
+	        
+	        // 2nd: Instantiating an object from the 'DaoOrders' class:
+	        DaoOrders daoOrdersObject = new DaoOrders();
+	        
+	        
+	        // 3rd: Calling the 'getAllOrdersForAnalytics()' method via the daoOrdersObject:
+	        try {
+	        	
+	            List<Orders> retrievedOrdersForAnalytics = daoOrdersObject.getAllOrdersForAnalytics(requestOrderDate);
+	            
+	            model.addAttribute("ordersListForAnalytics", retrievedOrdersForAnalytics);
+	            
+	            
+	        } 
+	        catch (SQLException e) {
+
+	        	e.printStackTrace();
+	        }
+	        
+	    }
+	    catch (Exception e) {
+	    	
+	        
+	        
+	        e.printStackTrace();
+	    }
+	    
+	    
+	    // This Keeps the Analytics Modal Opened
+	    model.addAttribute("openAnalyticsModal", true);
+	    
+	    return "view/ownerView";
+	}
+	
+	
 	
 	
 	
