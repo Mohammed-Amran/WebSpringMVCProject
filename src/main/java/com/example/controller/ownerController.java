@@ -33,6 +33,7 @@ public class ownerController {
 	}//closing brace of the 'accessOwnerPage()' method.
 	
 	
+	
 	@PostMapping("/ownerloginController")
 	protected String ownerLoggingIn(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
 		
@@ -46,7 +47,7 @@ public class ownerController {
 		if(inputedEmail.equals(null) || inputedPassword.equals(null)) {
 			
 			  
-			loginErrorMessage = "Please input your email & password properly";
+			loginErrorMessage = "Please make sure your email & password are correct";
 			model.addAttribute("loginErrorMessage", loginErrorMessage);
 			
 			destination = "view/ownerLoginPage";
@@ -69,6 +70,14 @@ public class ownerController {
 				
 				session.setAttribute("retrievedOrders", retrievedOrders);
 				
+				
+				//Retrieving the inboxCounter:
+				int inboxCounter = daoOrdersObj.getDeliveredOrdersCount();
+				
+				//Saving the 'inboxCounter' into the session scope:
+				session.setAttribute("inboxCounter", inboxCounter);
+				
+				
 				destination = "view/ownerView";
 				
 			} catch (Exception e) {
@@ -76,7 +85,15 @@ public class ownerController {
 				e.printStackTrace();
 			}
 			
-		}//closing curly brace of the 'else if' part
+		}
+		else {
+			
+			loginErrorMessage = "Please make sure your email & password are correct";
+			model.addAttribute("loginErrorMessage", loginErrorMessage);
+			
+			destination = "view/ownerLoginPage";
+			
+		}
 		
 		
 		return destination;
@@ -129,13 +146,15 @@ public class ownerController {
 			
 			if(isStatusUpdated) {
 				
-				//Retrieving the updated version of the orders List & forwarding it back to the owner:
+				//Retrieving the updated version of the orders List & Re-Saving it into the session scope:
 				
-				//1st: Retrieving the ordersList from the session scope:
-				@SuppressWarnings("unchecked")
-				List<Orders> retrievedOrders = (List<Orders>) session.getAttribute("retrievedOrders");
+				
 				
 				try {
+					
+					
+					//1st: Initiating a list of type 'Orders' class:
+					List<Orders> retrievedOrders = new ArrayList<Orders>();
 					
 					//2nd: getting the updated orders:
 					retrievedOrders = ordersObj.getAllOrders();

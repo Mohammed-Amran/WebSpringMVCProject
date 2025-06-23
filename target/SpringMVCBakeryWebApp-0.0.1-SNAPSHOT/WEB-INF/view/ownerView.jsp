@@ -493,7 +493,7 @@ font-size:19px;
               
              <img src="${pageContext.request.contextPath}/images/gifs/deliveredOrders.gif" alt="Inbox" style="width: 40px; height: 40px;">
  
-             <span class="inbox-items"> ( <c:if test="${empty requestScope.inboxCounter }"> 0 </c:if> ${requestScope.inboxCounter} ) </span>
+             <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span>
         
            </a>
            
@@ -533,7 +533,7 @@ font-size:19px;
 
 
 
-    <!-- Modal for Editing User Info -->
+    <!-- Modal for seeing sales Info -->
 	<div class="modal fade" id="openAnalyticsModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
 		
 		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
@@ -648,7 +648,7 @@ font-size:19px;
 
 				<div class="modal-header">
 
-					<h3 class="modal-title" style="font-weight: bold;">Your Orders</h3>
+					<h3 class="modal-title" style="font-weight: bold;">Delivered Orders</h3>
 
 				</div>
 

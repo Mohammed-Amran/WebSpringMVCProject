@@ -121,7 +121,7 @@ input[type="password"]:hover {
 
 
 <!-- If login failed! the 'Login-Error' pop-up window will be shown -->
-<c:if test="${not empty loginError}">
+<c:if test="${not empty loginErrorMessage}">
 
   <script type="text/javascript">
   
@@ -131,20 +131,19 @@ input[type="password"]:hover {
   
 </c:if>
 
- 
 
-  
-<!-- If the user logged out! the 'Logout-alert' pop-up window will be shown -->  
-<c:if test="${not empty logOutMessage}">
-  
+<!-- If session Expired! the 'Session-Expired-Error' pop-up window will be shown -->
+<c:if test="${not empty sessionExpirationMessage}">
+
   <script type="text/javascript">
- 
-   $(document).ready(function () { $('#logoutModal').modal('show'); });
- 
-   </script>
   
-</c:if>
+    window.onload = function () { $('#sessionExpirationMessage').modal('show'); };
  
+  </script>
+  
+</c:if> 
+
+
   
   
 
@@ -225,43 +224,47 @@ input[type="password"]:hover {
 			
 		</div>
 		
-	</div>
-	<!-- closing brace of the error message pop-up modal -->
+	</div> <!-- closing brace of the error message pop-up modal -->
 
 
    
-
-
-   <!-- Logout Message Modal -->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+   <!-- Session Expiration Error Modal -->
+	<div class="modal fade" id="sessionExpirationMessage" tabindex="-1" role="dialog" aria-labelledby="loginErrorModalLabel" aria-hidden="true">
 		
 		<div class="modal-dialog" role="document">
-
+			
 			<div class="modal-content">
 
 				<div class="modal-header">
 				
-					<h5 class="modal-title" id="logoutModalLabel">Logged Out</h5>
+					<h5 class="modal-title" id="loginErrorModalLabel">Session Expired</h5>
 					
+						
 				</div>
+
 
 				<div class="modal-body">
-					
-					<p> <c:out value="${logOutMessage}" /> </p>
 				
+					<p> <c:out value="${sessionExpirationMessage}" /> </p>
+					
 				</div>
 
+
+
 				<div class="modal-footer">
-					
+				
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					
 				</div>
 
-			</div>
 
+			</div>
+			
 		</div>
 		
-	</div> <!-- Closing tag of the 'Logout Message' modal -->
+	</div> <!-- closing brace of the error message pop-up modal -->
+
+  
 
 
 

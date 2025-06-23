@@ -291,7 +291,31 @@ public List<Orders> getAllOrders() throws SQLException {
 //=======================================================================================
  
  
+ //This method below is only used in the ownerView!
  
+ //This method retrieves the count of orders where status = 'delivered'
+ public int getDeliveredOrdersCount() {
+  
+  String sql = "SELECT COUNT(*) FROM orders WHERE status = 'delivered'";
+
+  try (Connection conn = getConnection();
+      
+		  PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+          ResultSet rs = stmt.executeQuery();
+
+      if (rs.next()) {
+    	  
+          return rs.getInt(1);
+      }
+
+  } catch (SQLException e) {
+      e.printStackTrace();
+  }
+
+  return 0; // Return 0 if error occurs
+}
+
  
  
 	
