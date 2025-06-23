@@ -446,7 +446,7 @@ font-size:19px;
 			
             <a href="" id="cartBasket" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
-            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
+            <a href="${pageContext.request.contextPath}/accessInboxModal" id="box" style="float: right;" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
 
 		</div>
 
@@ -894,18 +894,20 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 <!-- ========- INBOX MODAL -=========== -->
 
-<!-- 
-<c:if test="${not empty sessionScope.showInboxModal}">
-    <script>
-        $(function() {
-            $('#Inbox').modal('show');
-        });
-    </script>
-    <c:remove var="showInboxModal" scope="session" />
-</c:if>
+
+ <!-- This JS Code opens the Edit User Profile Modal -->
+   <c:if test="${showInboxModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#Inbox').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
 
 
--->
+
 
 
 <!-- Inbox Modal -->

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.DAO.DaoOrders;
 import com.example.model.Orders;
@@ -104,97 +105,103 @@ public class ownerController {
 	
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
 	
+
 	
 	@PostMapping("/updateOrderStatus")
-	protected String updateOrderStatus(@RequestParam Map<String, String> input,HttpServletRequest req , Model model) {
+	protected String updateOrderStatus(@RequestParam Map<String, String> input, HttpServletRequest req, RedirectAttributes redirectAttrs) {
+
 		
-		String destination = "";
-		
-		HttpSession session = req.getSession(false);
-		
-		
-		if(session == null) {
-			
-			String sessionExpirationMessage = "Sorry! your session Expired";
-			
-			model.addAttribute("sessionExpirationMessage", sessionExpirationMessage);
-			
-			destination = "view/ownerLoginPage";
-			
-		}
-		else {
-			
-			int orderId = Integer.parseInt(input.get("orderId"));
-			int userId = Integer.parseInt(input.get("userId"));
-			String newStatus = input.get("status");
-			
-			boolean isStatusUpdated = false;
-			
-			//Instantiating an object from the 'DaoOrders' class:
-			DaoOrders ordersObj = new DaoOrders();
-			
-			try {
-				
-				//calling the 'updateOrderStatus()' method via the ordersObj:
-			    isStatusUpdated = ordersObj.updateOrderStatus(orderId, userId, newStatus);
-			   				
-			} 
-			catch (Exception e) {
-				
-				e.printStackTrace();			
-			}
-			
-			if(isStatusUpdated) {
-				
-				//Retrieving the updated version of the orders List & Re-Saving it into the session scope:
-				
-				
-				
-				try {
-					
-					
-					//1st: Initiating a list of type 'Orders' class:
-					List<Orders> retrievedOrders = new ArrayList<Orders>();
-					
-					//2nd: getting the updated orders:
-					retrievedOrders = ordersObj.getAllOrders();
-					
-					//3rd: re-saving the retrieved list back into the session scope:
-					session.setAttribute("retrievedOrders", retrievedOrders);
-					
-					
-					
-				}
-				catch (Exception e) {
-					
-					e.printStackTrace();
-				}
-				
-				
-				String successStatusUpdateMessage = "Status successfully updated";
-				
-				model.addAttribute("successStatusUpdateMessage", successStatusUpdateMessage);
-				
-				destination = "view/ownerView";
-			}
-			else {
-				
-	            String failedStatusUpdateMessage = "Status failed to update";
-				
-				model.addAttribute("failedStatusUpdateMessage", failedStatusUpdateMessage);
-				
-				destination = "view/ownerView";
-			}
-			
-			
-		}
-		
-		
-		
-		return destination;
-		
-	}//closing brace of the 'updateOrderStatus()' method.
+	    HttpSession session = req.getSession(false);
+
+	    
+	    if (session == null) {
+	    	
+	        redirectAttrs.addFlashAttribute("sessionExpirationMessage", "Sorry! your session expired");
+	        return "redirect:/accessOwnerLoginPage";
+	        
+	    }
+
+	    
+	    //Getting the inputs from the owner:
+	    //Getting the orderId:
+	    int orderId = Integer.parseInt(input.get("orderId"));
+	    //Getting the userId:
+	    int userId = Integer.parseInt(input.get("userId"));
+	    //Getting the newStatus:
+	    String newStatus = input.get("status");
+
+	    //Updating the order status:
+	    
+	    //I. Instantiating an object from 'DaoOrders' class:
+	    DaoOrders ordersObj = new DaoOrders();
+	    
+	    boolean isStatusUpdated = false;
+
+	    try {
+	    	
+	        isStatusUpdated = ordersObj.updateOrderStatus(orderId, userId, newStatus);
+	    } 
+	    catch (Exception e) {
+	    	
+	        e.printStackTrace();
+	    }
+
+	    if (isStatusUpdated) {
+	    	
+	        redirectAttrs.addFlashAttribute("successStatusUpdateMessage", "Status successfully updated");
+	        
+	    }
+	    else {
+	    	
+	        redirectAttrs.addFlashAttribute("failedStatusUpdateMessage", "Status failed to update");
+	    }
+
+	    return "redirect:/ownerView";
 	
+	
+   }//closing brace of the 'updateOrderStatus()' method.
+
+//============================================================================================================	
+	
+	
+	//This method would return back the owner to its view after updating the order status:
+	@GetMapping("/ownerView")
+	protected String showOwnerView(HttpServletRequest req, Model model) {
+
+	    HttpSession session = req.getSession(false);
+
+	    if (session == null) {
+	    	
+	        model.addAttribute("sessionExpirationMessage", "Session expired. Please login again.");
+	        
+	        return "view/ownerLoginPage";
+	        
+	    }
+
+	    try {
+	    	
+	        DaoOrders ordersObj = new DaoOrders();
+	        
+	       
+	        List<Orders> retrievedOrders = ordersObj.getAllOrders();
+	        
+	        session.setAttribute("retrievedOrders", retrievedOrders);
+	        
+	        	        
+	    } 
+	    catch (Exception e) {
+	    	
+	        e.printStackTrace();
+	    }
+
+	    
+	    return "view/ownerView";
+	    
+	} //closing brace of the 'showOwnerView()' method
+
+	
+	
+//----------------------------------------------------------------------------------------------------------------	
 	
 	
 	
