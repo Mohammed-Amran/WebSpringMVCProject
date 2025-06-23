@@ -45,7 +45,7 @@ public class ownerController {
 		
 		if(inputedEmail.equals(null) || inputedPassword.equals(null)) {
 			
-			
+			  
 			loginErrorMessage = "Please input your email & password properly";
 			model.addAttribute("loginErrorMessage", loginErrorMessage);
 			
