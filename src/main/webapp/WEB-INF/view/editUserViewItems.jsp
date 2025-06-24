@@ -4,7 +4,7 @@
 <!-- Below is Taglib directive -->	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 
 
@@ -211,7 +211,7 @@ color: #DBDBDB;
 
            <form method="get" action="getBackToOwnerView" style="float: left; margin: 0; padding: 0;">
             
-                 <button class="detailsBtn" type="submit" style="margin-top: 10px; margin-left: 4px; padding: 5px; font-size: 22px; border: none; background-color:  #8EA58C">       
+                 <button class="detailsBtn" type="submit" style="margin-top: 10px; margin-left: 4px; padding: 5px; font-size: 22px; border: none; ">       
              
                                <i class="fas fa-arrow-left"></i>                               
                  </button>
