@@ -170,9 +170,42 @@ color: #DBDBDB;
 /*=======================================================================*/
 
 
+.order-table-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  box-sizing: border-box;
+  clear: both;
+}
 
 
 
+.category-btn {
+  background-color: #fff;
+  border: 2px solid #885539;
+  color: #885539;
+  font-family: "Pacifico", cursive;
+  padding: 8px 16px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-btn:hover {
+  background-color: #885539;
+  color: white;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap; /* Optional: wrap on small screens */
+  margin-bottom: 30px;
+}
 
 
 
@@ -243,144 +276,161 @@ color: #DBDBDB;
 
 	<div id="main" style="margin-top: 40px;">
 
+
 		<!-- Main Content - Menu Section -->
 		<main class="order-table-wrapper">
 
+			<!-- Menu Container -->
+			<div class="menu-container" style="max-width: 600px; margin: 0 auto;">
 
-<!-- Menu Container -->
-<div class="menu-container">
+				<!-- Menu Title -->
+				<div class="menu-title">Items that are available in the Menu</div>
 
-    <!-- Menu Title -->
-    <div class="menu-title">Items that are available in the Menu</div>
+				<!-- Category Buttons -->
+				<div class="category-buttons">
 
-    <!-- Category Buttons -->
-    <div class="category-buttons">
-    
-        <form method="get" action="EditUserViewCategoryController">
-        
-        
-            <input type="hidden" name="category" value="Breads">
-            
-            <button type="submit" class="category-btn">Breads</button>
-            
-            
-        </form>
+					<form method="get" action="EditUserViewCategoryController">
 
+						<input type="hidden" name="category" value="Breads">
 
-        <form method="get" action="EditUserViewCategoryController">
-        
-        
-            <input type="hidden" name="category" value="Cakes">
-            
-            <button type="submit" class="category-btn">Cakes</button>
-            
-            
-        </form>
-        
-    </div>
+						<button type="submit" class="category-btn">Breads</button>
+
+					</form>
+
+					<form method="get" action="EditUserViewCategoryController">
+
+						<input type="hidden" name="category" value="Cakes">
+
+						<button type="submit" class="category-btn">Cakes</button>
+
+					</form>
+
+				</div>
 
 
-    <!-- Items List -->
-    <div class="menu-items">
+				<!-- Items List -->
+				<div class="menu-items">
 
-        <div class="menu-grid" style="flex-direction: column; width: 100%;">
+					<div class="menu-grid" style="flex-direction: column; width: 100%;">
 
-            <c:choose>
+						<c:choose>
 
-                <c:when test="${showCategory == 'Breads' || empty showCategory }">
+							<c:when test="${showCategory == 'Breads' || empty showCategory }">
 
-                    <c:forEach var="bread" items="${retrievedBreads}">
-                       
-                        <div style=" display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px;
-                                     
-                                     border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 16px;
-                                   
-                                     transition: transform 0.3s ease; ">
+								<!-- Table Header Row -->
+								<div style="display: flex; justify-content: space-between; align-items: center; background: #8D6E63; padding: 12px 25px; border-radius: 8px; border: 2px solid #A08963; color: white; font-weight: bold; margin-bottom: 10px;">
 
-                            <div style="display: flex; align-items: center; gap: 20px;">
-                            
-                                <span style="font-weight: bold; font-size: 20px; color: #4a403a;">${bread.breadsId}</span>
-                                
-                                <span style="font-size: 20px; color: #4a403a;">${bread.itemName}</span>
-                                
-                            </div>
+									<div style="display: flex; align-items: center; gap: 60px;">
+									
+										<span style="width: 80px;">Item ID</span>
+										
+										 <span style="width: 200px;">Item Name</span>
+									
+									</div>
 
-                            <div style="display: flex; gap: 10px;">
-                            
-                                <button style="background: none; border: none; cursor: pointer;" title="Edit">
-                                
-                                    <i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
-                                    
-                                </button>
-                                
-                                <button style="background: none; border: none; cursor: pointer;" title="Delete">
-                                
-                                    <i class="fas fa-times" style="color: #d9534f; font-size: 22px;"></i>
-                                    
-                                </button>
-                                
-                            </div>
+									<div style="width: 100px; text-align: center;">Actions</div>
+							
+								</div>
+
+								<c:forEach var="bread" items="${retrievedBreads}">
+									
+									<div style="display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px; border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 16px; transition: transform 0.3s ease;">
+										
+										<div style="display: flex; align-items: center; gap: 60px;">
+										
+											<span style="font-weight: bold; font-size: 20px; color: #4a403a;"> ${bread.breadsId} </span>
+											
+											<span style="font-size: 20px; color: #4a403a;">${bread.itemName}</span>
+										
+										</div>
+
+										<div style="display: flex; gap: 16px;">
+											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Edit">
+												
+												<i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
+											
+											</button>
+											
+											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Delete">
+												<i class="fas fa-times" style="color: #d9534f; font-size: 22px;"></i>
+											
+											</button>
+										
+										</div>
+									
+									</div>
+								
+								</c:forEach>
+							
+							</c:when>
+
+							<c:when test="${showCategory == 'Cakes'}">
+
+								<!-- Table Header Row -->
+								<div style="display: flex; justify-content: space-between; align-items: center; background: #8D6E63; padding: 12px 25px; border-radius: 8px; border: 2px solid #A08963; color: white; font-weight: bold; margin-bottom: 10px;">
+
+									<div style="display: flex; align-items: center; gap: 60px;">
+										
+										<span style="width: 80px;">Item ID</span>
+										
+										<span style="width: 200px;">Item Name</span>
+									
+									</div>
+
+									<div style="width: 100px; text-align: center;">Actions</div>
+								
+								</div>
+
+								<c:forEach var="desert" items="${retrievedDeserts}">
+								
+									<div style="display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px; border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 16px; transition: transform 0.3s ease;">
+										
+										<div style="display: flex; align-items: center; gap: 60px;">
+											
+											<span style="font-weight: bold; font-size: 20px; color: #4a403a;">${desert.desertsId}</span>
+										
+											<span style="font-size: 20px; color: #4a403a;">${desert.itemName}</span>
+										
+										</div>
+
+										<div style="display: flex; gap: 16px;">
+										
+											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Edit">
+												
+												<i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
+											
+											</button>
+											
+											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Delete">
+												
+												<i class="fas fa-times"	style="color: #d9534f; font-size: 22px;"></i>
+											
+											</button>
+										
+										</div>
+									
+									</div>
+								
+								</c:forEach>
+							
+							</c:when>
+
+						</c:choose>
+
+					</div>
+				
+				</div>
+
+			</div>
+
+		</main>
 
 
-                        </div>
-                        
-                    </c:forEach>
-
-                </c:when>
-
-
-                <c:when test="${showCategory == 'Cakes'}">
-
-                    <c:forEach var="desert" items="${retrievedDeserts}">
-                       
-                        <div style=" display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px;
-                                     
-                                     border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 16px;
-                                    
-                                     transition: transform 0.3s ease; ">
-
-                            <div style="display: flex; align-items: center; gap: 20px;">
-                            
-                                <span style="font-weight: bold; font-size: 20px; color: #4a403a;">${desert.desertsId}</span>
-                                <span style="font-size: 20px; color: #4a403a;">${desert.itemName}</span>
-                                
-                            </div>
-
-                            <div style="display: flex; gap: 10px;">
-                            
-                                <button style="background: none; border: none; cursor: pointer;" title="Edit">
-                                    <i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
-                                </button>
-                                
-                                <button style="background: none; border: none; cursor: pointer;" title="Delete">
-                                    <i class="fas fa-times" style="color: #d9534f; font-size: 22px;"></i>
-                                </button>
-                                
-                            </div>
-
-                        </div>
-                        
-                    </c:forEach>
-
-                </c:when>
-
-            </c:choose>
-
-        </div>
-
-    </div>
-
- </div>
-
-
-
-</main>
 
 
 
 
-
-	</div> 
+	</div>
 
 
 
