@@ -459,7 +459,7 @@ font-size:19px;
 
 
 
-<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction Site Starts Here ------------ / / / / / / / / / / / / / / -->
+
 
 
 <!-- ========- USER INFO MODAL -======= -->
@@ -855,7 +855,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- //////// / / / / / / / / /  //////////////////////// -->
+
 
 
 <!-- Rocket Strike GIF modal -->
@@ -1568,79 +1568,112 @@ document.querySelectorAll('.reload-img').forEach(button => {
        
        <div class="menu-grid" style="margin-top: 40px;">
        
-        <c:choose>
+       <c:choose>
+
     
-          
-           <c:when test="${showCategory == 'Breads' || empty showCategory }">
-       
-               <c:forEach var="bread" items="${retrievedBreads}">
-      
-                  <div class="card">
-       
-                       <div class="card-content">
-           
-                            <img src="${bread.imgURL}" class="item-img" />
+    <c:when test="${showCategory == 'Breads' || empty showCategory }">
+        <c:forEach var="bread" items="${retrievedBreads}">
+            <div class="card">
+                <div class="card-content">
+                    <img src="${bread.imgURL}" class="item-img" />
+                    <h1>${bread.itemName}</h1>
+                </div>
+                <div class="card-action">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${bread.id}">
+                        Select
+                    </button>
+                </div>
+            </div>
+
             
-                            <h1>${bread.itemName}</h1>
-               
-                       </div>
-       
-       
-                       <div class="card-action">
-          
-                           <button class="btn btn-primary" onclick="openModal('${bread.id}', '${bread.itemName}', '${bread.itemDesc}')">
-                              
-                              Select
-                   
-                           </button>
-            
-                       </div>
-        
-                   </div>
-     
-                 </c:forEach>
-  
-          </c:when>
-       
-       
-          
-          <c:when test="${showCategory == 'Cakes'}">
-       
-       
-                 <c:forEach var="desert" items="${retrievedDeserts}">
-      
-                      <div class="card" >
-       
-       
-                            <div class="card-content" >
-           
-                                <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
-            
-                                <h1>${desert.itemName}</h1>
-               
+            <div class="modal fade" id="modal_${bread.id}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="font-family: 'Pacifico', cursive; font-style: normal;">
+                                ${bread.itemName}
+                            </h5>
+                        </div>
+
+                        <form method="post" action="${pageContext.request.contextPath}/addToCartController" autocomplete="off">
+                            <div class="modal-body">
+                                <p>${bread.itemDesc}</p>
+                                <select class="price-dropdown" name="selectedQuantity">
+                                    <option value="2">2 pieces ~ 250iqd</option>
+                                    <option value="4">4 pieces ~ 500iqd</option>
+                                    <option value="8">8 pieces ~ 1000iqd</option>
+                                    <option value="12">12 pieces ~ 1500iqd</option>
+                                </select>
                             </div>
-       
-       
-                            <div class="card-action" >
-          
-                                 <button class="btn btn-primary" onclick="openModal('${desert.id}', '${desert.itemName}', '${desert.itemDesc}')">
-                      
-                                        Select
-                    
-                                 </button>
-            
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="hidden" name="itemName" value="${bread.itemName}">
+                                <input type="hidden" name="itemType" value="Bread">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
                             </div>
-        
-        
-                      </div>
-     
-                 </c:forEach>
-       
-       
-         </c:when>
-       
-       
-      </c:choose>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </c:when>
+
+   
+    <c:when test="${showCategory == 'Cakes'}">
+        <c:forEach var="desert" items="${retrievedDeserts}">
+            <div class="card">
+                <div class="card-content">
+                    <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+                    <h1>${desert.itemName}</h1>
+                </div>
+                <div class="card-action">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${desert.id}">
+                        Select
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="modal fade" id="modal_${desert.id}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="font-family: 'Pacifico', cursive; font-style: normal;">
+                                ${desert.itemName}
+                            </h5>
+                        </div>
+
+                        <form method="post" action="${pageContext.request.contextPath}/addToCartController" autocomplete="off">
+                            <div class="modal-body">
+                                <p>${desert.itemDesc}</p>
+                                <select class="price-dropdown" name="selectedQuantity">
+                                    <option value="2">2 pieces ~ 250iqd</option>
+                                    <option value="4">4 pieces ~ 500iqd</option>
+                                    <option value="8">8 pieces ~ 1000iqd</option>
+                                    <option value="12">12 pieces ~ 1500iqd</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="hidden" name="itemName" value="${desert.itemName}">
+                                <input type="hidden" name="itemType" value="Cake">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </c:when>
+
+</c:choose>
+
        
    </div>
        

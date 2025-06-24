@@ -489,6 +489,9 @@ font-size:19px;
 		
 
           
+
+
+          
            <a href="" id="box" style="float: right;" data-toggle="modal" data-target="#Inbox">
               
              <img src="${pageContext.request.contextPath}/images/gifs/deliveredOrders.gif" alt="Inbox" style="width: 40px; height: 40px;">
@@ -502,6 +505,14 @@ font-size:19px;
            <a href="${pageContext.request.contextPath}/accessAnalytics" style="float: right;">
            
              <img src="${pageContext.request.contextPath}/images/gifs/charts.gif" alt="Inbox" style="width: 40px; height: 40px;">
+         
+           </a>
+
+
+
+           <a href="${pageContext.request.contextPath}/accessEditUserViewItems" style="float: right;">
+           
+             <img src="${pageContext.request.contextPath}/images/gifs/editItems.gif" alt="Inbox" style="width: 40px; height: 40px;">
          
            </a>
 
