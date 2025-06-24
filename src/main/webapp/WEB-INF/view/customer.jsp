@@ -1525,7 +1525,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
     <h2 class="menu-title" style="font-family: 'Pacifico', cursive; font-style: normal; font-weight: bold; font-size: 46px; color: #4a403a;">  Our Menu </h2>
     
     
-    
+  
     
     <!-- Category Buttons -->
      <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 8px;">
@@ -1742,7 +1742,13 @@ document.querySelectorAll('.reload-img').forEach(button => {
    </div>
        
        
-    </div>
+    </div> 
+    
+    
+    
+    
+  
+    
     
     </div>
     

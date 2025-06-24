@@ -60,7 +60,7 @@ public class DaoDeserts {
            while (rs.next()) {
                Deserts item = new Deserts();
 
-               item.setId(rs.getInt("desertsId"));
+               item.setDesertsId(rs.getInt("desertsId"));
                item.setItemName(rs.getString("itemName"));
                item.setItemPrice(rs.getDouble("itemPrice"));
                item.setImgURL(rs.getString("imgURL"));

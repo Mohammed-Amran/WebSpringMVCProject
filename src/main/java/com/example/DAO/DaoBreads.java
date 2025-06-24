@@ -66,7 +66,7 @@ public class DaoBreads {
 	            	//Instantiating an object from the 'breads' class.
 	            	Breads item = new Breads();
 
-	                item.setId(rs.getInt("breadsId"));
+	                item.setBreadsId(rs.getInt("breadsId"));
 	                item.setItemName(rs.getString("itemName"));
 	                item.setItemPrice(rs.getDouble("itemPrice"));
 	                item.setImgURL(rs.getString("imgURL"));

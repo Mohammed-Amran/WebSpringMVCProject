@@ -1525,7 +1525,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
     <h2 class="menu-title" style="font-family: 'Pacifico', cursive; font-style: normal; font-weight: bold; font-size: 46px; color: #4a403a;">  Our Menu </h2>
     
     
-    
+  
     
     <!-- Category Buttons -->
      <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 8px;">
@@ -1572,104 +1572,168 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
     
     <c:when test="${showCategory == 'Breads' || empty showCategory }">
+    
         <c:forEach var="bread" items="${retrievedBreads}">
+        
             <div class="card">
+            
                 <div class="card-content">
+                
                     <img src="${bread.imgURL}" class="item-img" />
+                    
                     <h1>${bread.itemName}</h1>
+                    
                 </div>
+                
                 <div class="card-action">
+                
                     <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${bread.id}">
                         Select
                     </button>
+                    
                 </div>
+                
             </div>
 
             
             <div class="modal fade" id="modal_${bread.id}" tabindex="-1" role="dialog" aria-hidden="true">
+            
                 <div class="modal-dialog" role="document">
+                
                     <div class="modal-content">
 
                         <div class="modal-header">
+                        
                             <h5 class="modal-title" style="font-family: 'Pacifico', cursive; font-style: normal;">
                                 ${bread.itemName}
+                                
                             </h5>
+                            
                         </div>
 
                         <form method="post" action="${pageContext.request.contextPath}/addToCartController" autocomplete="off">
+                        
                             <div class="modal-body">
+                            
                                 <p>${bread.itemDesc}</p>
+                                
                                 <select class="price-dropdown" name="selectedQuantity">
+                                
                                     <option value="2">2 pieces ~ 250iqd</option>
                                     <option value="4">4 pieces ~ 500iqd</option>
                                     <option value="8">8 pieces ~ 1000iqd</option>
                                     <option value="12">12 pieces ~ 1500iqd</option>
+                                    
                                 </select>
+                                
                             </div>
 
                             <div class="modal-footer">
+                            
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <input type="hidden" name="itemName" value="${bread.itemName}">
+                                
                                 <input type="hidden" name="itemType" value="Bread">
+                                
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                
                             </div>
+                            
                         </form>
 
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </c:forEach>
+        
     </c:when>
 
    
     <c:when test="${showCategory == 'Cakes'}">
+    
         <c:forEach var="desert" items="${retrievedDeserts}">
+        
             <div class="card">
+            
                 <div class="card-content">
+                
                     <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+                    
                     <h1>${desert.itemName}</h1>
+                    
                 </div>
+                
                 <div class="card-action">
+                
                     <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${desert.id}">
+                    
                         Select
+                        
                     </button>
+                    
                 </div>
+                
             </div>
 
             
             <div class="modal fade" id="modal_${desert.id}" tabindex="-1" role="dialog" aria-hidden="true">
+            
                 <div class="modal-dialog" role="document">
+                
                     <div class="modal-content">
 
                         <div class="modal-header">
+                        
                             <h5 class="modal-title" style="font-family: 'Pacifico', cursive; font-style: normal;">
+                            
                                 ${desert.itemName}
+                                
                             </h5>
+                            
                         </div>
 
                         <form method="post" action="${pageContext.request.contextPath}/addToCartController" autocomplete="off">
+                        
                             <div class="modal-body">
+                            
                                 <p>${desert.itemDesc}</p>
+                                
                                 <select class="price-dropdown" name="selectedQuantity">
+                                
                                     <option value="2">2 pieces ~ 250iqd</option>
                                     <option value="4">4 pieces ~ 500iqd</option>
                                     <option value="8">8 pieces ~ 1000iqd</option>
                                     <option value="12">12 pieces ~ 1500iqd</option>
+                                    
                                 </select>
+                                
                             </div>
 
                             <div class="modal-footer">
+                            
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                
                                 <input type="hidden" name="itemName" value="${desert.itemName}">
-                                <input type="hidden" name="itemType" value="Cake">
+                                
+                                <input type="hidden" name="itemType" value="Desert">
+                                
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                
                             </div>
+                            
                         </form>
 
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </c:forEach>
+        
     </c:when>
 
 </c:choose>
@@ -1678,7 +1742,13 @@ document.querySelectorAll('.reload-img').forEach(button => {
    </div>
        
        
-    </div>
+    </div> 
+    
+    
+    
+    
+  
+    
     
     </div>
     
@@ -1692,724 +1762,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- All Modals (placed at the bottom of the page) -->
-
-<!-- Bread Modals -->
-
-<!-- Modal 1 -->
-<div class="modal fade" id="itemModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    
-    <div class="modal-dialog" role="document">
-       
-        <div class="modal-content">
-        
-            <div class="modal-header">
-            
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-                
-            </div>
-            
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm1" autocomplete="off">
-                
-                <div class="modal-body">
-                
-                    <p id="itemDescription"></p>
-                    
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                        
-                    </select>
-                    
-                </div>
-                
-                <div class="modal-footer">
-                
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
-                    <input type="hidden" name="itemName" value="Baguette Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                   
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    
-                </div>
-                
-            </form>
-            
-        </div>
-        
-    </div>
-    
-</div>
-
-<!-- Modal 2 -->
-<div class="modal fade" id="itemModal2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm2" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Brioche Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                  
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 3 -->
-<div class="modal fade" id="itemModal3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm3" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Ciabatta Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                   
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 4 -->
-<div class="modal fade" id="itemModal4" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm4" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Multigrain Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 5 -->
-<div class="modal fade" id="itemModal5" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm5" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Whole Wheat">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 6 -->
-<div class="modal fade" id="itemModal6" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm6" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Lavash Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 7 -->
-<div class="modal fade" id="itemModal7" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm7" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Thin Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                  
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 8 -->
-<div class="modal fade" id="itemModal8" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm8" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Naan Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                  
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 9 -->
-<div class="modal fade" id="itemModal9" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm9" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Tortilla">
-                    <input type="hidden" name="itemType" value="Bread">
-                   
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 10 -->
-<div class="modal fade" id="itemModal10" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm10" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Crispy Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 21 -->
-<div class="modal fade" id="itemModal21" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm21" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Kurdish Bread">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 22 -->
-<div class="modal fade" id="itemModal22" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm22" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Kulera">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 30 -->
-<div class="modal fade" id="itemModal30" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm30" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="German Breads">
-                    <input type="hidden" name="itemType" value="Bread">
-                   
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 31 -->
-<div class="modal fade" id="itemModal31" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm31" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="2">2 pieces ~ 250iqd</option>
-                        <option value="4">4 pieces ~ 500iqd</option>
-                        <option value="8">8 pieces ~ 1000iqd</option>
-                        <option value="12">12 pieces ~ 1500iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Crotian Breads">
-                    <input type="hidden" name="itemType" value="Bread">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Cake Modals -->
-<!-- Modal 11 -->
-<div class="modal fade" id="itemModal11" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm11" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 6,000iqd</option>
-                        <option value="2">2 pieces ~ 12,000iqd</option>
-                        <option value="3">3 pieces ~ 18,000iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Kunafa">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 12 -->
-<div class="modal fade" id="itemModal12" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm12" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 8,000iqd</option>
-                        <option value="2">2 pieces ~ 16,000iqd</option>
-                        
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Cherry Cake">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 13 -->
-<div class="modal fade" id="itemModal13" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm13" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                       
-                        <option value="1">1 piece ~ 5,000iqd</option>
-                        <option value="2">2 pieces ~ 10,000iqd</option>
-                        
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Lemon Cake">
-                    <input type="hidden" name="itemType" value="Desert">
-                   
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 14 -->
-<div class="modal fade" id="itemModal14" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm14" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 7,000iqd</option>
-                        <option value="2">2 pieces ~ 14,000iqd</option>
-                        
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Strawberry Cake">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 15 -->
-<div class="modal fade" id="itemModal15" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm15" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 2,500iqd</option>
-                        <option value="2">2 pieces ~ 5,000iqd</option>
-                        <option value="4">4 pieces ~ 10,000iqd</option>
-                        <option value="8">8 pieces ~ 20,000iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Donut">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 16 -->
-<div class="modal fade" id="itemModal16" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm16" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 2,000iqd</option>
-                        <option value="2">2 pieces ~ 4,000iqd</option>
-                        <option value="4">4 pieces ~ 6,000iqd</option>
-                        <option value="6">6 pieces ~ 8,000iqd</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Criossant">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 17 -->
-<div class="modal fade" id="itemModal17" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm17" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 kg ~ 25,000iqd</option>
-                        <option value="2">2 kg's ~ 50,000iqd</option>
-                       
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Baklava">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 18 -->
-<div class="modal fade" id="itemModal18" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm18" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 8,000iqd</option>
-                        <option value="2">2 pieces ~ 16,000iqd</option>
-                       
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Apple Cake">
-                    <input type="hidden" name="itemType" value="Desert">
-                   
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 19 -->
-<div class="modal fade" id="itemModal19" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm19" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="4">4 pieces ~ 12,000iqd</option>
-                        <option value="8">8 pieces ~ 24,000iqd</option>
-                        <option value="12">12 pieces ~ 36,000iqd</option>
-                        
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Caramel Candy">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 20 -->
-<div class="modal fade" id="itemModal20" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="itemModalLabel" style="font-family: 'Pacifico', cursive; font-style: normal;"></h5>
-            </div>
-            <form name="AddtoCartForm" method="post" action="${pageContext.request.contextPath}/addToCartController" id="itemForm20" autocomplete="off">
-                <div class="modal-body">
-                    <p id="itemDescription"></p>
-                    <select id="itemDropdown" class="price-dropdown" name="selectedQuantity">
-                        <option value="1">1 piece ~ 8,000iqd</option>
-                        <option value="2">2 pieces ~ 16,000iqd</option>
-                        
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="itemName" value="Chocolate Cake">
-                    <input type="hidden" name="itemType" value="Desert">
-                    
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 
@@ -2444,14 +1796,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
 </script>
 
 	
-		
-
-
-<!--********************************************************************************************************-->
-
-
-
-
 
 
 	<!-- Footer -->

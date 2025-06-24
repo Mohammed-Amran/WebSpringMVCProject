@@ -25,12 +25,12 @@ public class Deserts {
 		return itemType;
 	}
 
-	public int getId() {
+	public int getDesertsId() {
 		return desertsId;
 	}
 
 
-	public void setId(int desertsId) {
+	public void setDesertsId(int desertsId) {
 		this.desertsId = desertsId;
 	}
 

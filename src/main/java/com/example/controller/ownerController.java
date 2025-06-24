@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.DAO.DaoOrders;
+
 import com.example.model.Orders;
 
 @Controller
@@ -308,26 +309,6 @@ public class ownerController {
 	
 	
 //-------------------------------------------------------------------------------------------------------------------
-	
-	
-	//This method below opens the 'editUserViewItems.jsp' page:
-	@GetMapping("/accessEditUserViewItems")
-	protected String accessEditUserViewItems() {
-			
-		
-			return "view/editUserViewItems";
-	}//closing brace of the 'accessEditUserViewItems()' method.	
-	
-	
-	
-	@GetMapping("/getBackToOwnerView")
-	protected String getBackToOwnerView(HttpServletRequest req, Model model) {
-		
-			
-		return "view/ownerView";
-		
-	}//closing brace of the 'getBackToOwnerView()' method.
-	
 	
 	
 	

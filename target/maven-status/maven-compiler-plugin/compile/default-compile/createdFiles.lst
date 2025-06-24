@@ -12,6 +12,7 @@ com\example\controller\ViewPageController.class
 com\example\model\Breads.class
 com\example\DAO\DaoBreads.class
 com\example\model\Deserts.class
+com\example\controller\EditUserViewItemsController.class
 com\example\DAO\DaoCart.class
 com\example\model\Auth.class
 com\example\controller\RegisterController.class

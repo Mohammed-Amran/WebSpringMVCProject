@@ -27,12 +27,12 @@ public void setItemType(String itemType) {
 
 
 
-public int getId() {
+public int getBreadsId() {
 	return breadsId;
 }
 
 
-public void setId(int breadsId) {
+public void setBreadsId(int breadsId) {
 	this.breadsId = breadsId;
 }
 
