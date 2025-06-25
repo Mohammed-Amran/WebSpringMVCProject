@@ -387,4 +387,64 @@ public class DaoDeserts {
 			}
 		
 	
+		
+		//----------------------------------------------------------------------------
+		
+				public boolean deleteDesertById(int desertsId) {
+				    
+				    String sql = "DELETE FROM deserts WHERE desertsId = ?";
+				    
+				    try (Connection conn = getConnection();
+				         PreparedStatement stmt = conn.prepareStatement(sql)) {
+				        
+				        stmt.setInt(1, desertsId);
+				        
+				        int rowsAffected = stmt.executeUpdate();
+				        
+				        // Return true if exactly 1 row was deleted
+				        return rowsAffected == 1;
+				        
+				    } catch (SQLException e) {
+				        e.printStackTrace();
+				        return false;
+				    }
+				}
+		
+		
+				
+				//=====================================================================================
+				
+			    //This method adds item into the deserts table:	
+			    public boolean insertItemIntoDeserts(String itemName, double itemPrice, String imgURL, String itemDesc, String itemType) {
+					      
+					      String sql = "INSERT INTO deserts (itemName, itemPrice, imgURL, itemDesc, itemType) VALUES (?, ?, ?, ?, ?)";
+
+					      try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+					          
+					          stmt.setString(1, itemName);
+					          stmt.setDouble(2, itemPrice);
+					          stmt.setString(3, imgURL);
+					          stmt.setString(4, itemDesc);
+					          stmt.setString(5, itemType);
+
+					          
+					          
+					          int rowsInserted = stmt.executeUpdate();
+
+					          return rowsInserted > 0; // return true if insertion was successful
+
+					      }
+					      catch (SQLException e) {
+					      	
+					          e.printStackTrace();
+					          
+					          return false;
+					      }
+					      
+					      
+					  }		
+				
+				
+				
+		
 }//closing brace of the class.

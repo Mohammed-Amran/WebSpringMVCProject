@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -587,5 +588,205 @@ public class EditUserViewItemsController {
 	  }
 	  
 	
+	  
+// - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	  
+	  @GetMapping("/verifyDeleteItem")
+	  protected String verifyDeleteItem(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+		  
+		  HttpSession session = req.getSession(false);
+		  
+		  //Retrieve the itemType:
+		  String itemType = input.get("itemType"); 
+		  
+		  session.setAttribute("itemTypeForDeletion", itemType);
+
+		  
+		  //Retrieve the itemName:
+		  String itemName = input.get("itemName");
+		  
+		  session.setAttribute("itemNameForDeletion", itemName);
+		
+		  
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //Retrieve the itemId:
+			  int itemId = Integer.parseInt( input.get("breadsId") );
+			  
+			  session.setAttribute("itemIdForDeletion", itemId);
+			  
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  
+			  //Retrieve the itemId:
+			  int itemId = Integer.parseInt( input.get("desertId") );
+			  
+			  session.setAttribute("itemIdForDeletion", itemId);
+		  }
+		  
+		  
+		  
+		  model.addAttribute("openVerifyDeletionModal", true);
+		  
+		  
+		  return "view/editUserViewItems";
+	  }
+	  
+	  
+	  
+	  
+	  
+	  @GetMapping("/deleteItem")
+	  protected String deleteItem(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+		  
+		  System.out.println("deleteItem method called!");
+		  
+		  HttpSession session = req.getSession(false);
+		  
+          String itemType = (String) session.getAttribute("itemTypeForDeletion");
+		  
+		  int itemId = (Integer) session.getAttribute("itemIdForDeletion");
+		  
+		  
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //update imgURL in breads table
+			  DaoBreads obj = new DaoBreads();
+			  
+			  obj.deleteBreadById(itemId);
+			  
+			  System.out.println("item deleted");
+			  
+			  
+			  try {
+				
+				  List<Breads> retrievedBreads = obj.getBreads();
+				  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+			} 
+			 catch (Exception e) {
+				
+				 e.printStackTrace();
+			}		  
+			  
+			  
+			  
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  //update imgURL in deserts table
+			  DaoDeserts obj = new DaoDeserts();
+			  
+			  obj.deleteDesertById(itemId);	
+			  
+			  System.out.println("item deleted");
+			  
+			  try {
+				
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+			     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+			} 
+			  catch (Exception e) {
+				
+				  e.printStackTrace();
+			}
+			  
+			  
+		  }
+		  
+		  
+		  
+		  return "view/editUserViewItems";
+		  
+	  }//closing brace of the 'deleteItem()' method.
+	  
+	  
+	  
+	  
+	  //==========================================================================================
+	  
+	 
+	  @GetMapping("/AddItem")
+	  protected String AddItem(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+		  
+  
+		  model.addAttribute("openAddItemModal", true);
+		  
+		  
+		  return "view/editUserViewItems";
+	  }
+	  
+	  
+	 @PostMapping("/AddItemIntoTable")
+	 protected String AddItemIntoTable(@RequestParam Map<String, String> input, HttpServletRequest req, Model model) {
+		 
+		 HttpSession session = req.getSession(false);
+		 
+		 //Retrieve the inputs from the owner:
+		 String itemType = input.get("itemType");
+		 
+		 String itemName = input.get("itemName");
+		 
+		 double itemPrice = Double.parseDouble( input.get("itemPrice") );
+		 
+		 String imgURL = input.get("imgURL");
+		 
+		 String itemDesc = input.get("itemDesc");
+		 
+		 
+		 if("breads".equals(itemType)) {
+			 
+			 //Instantiate an object from the 'DaoBreads' class:
+			 DaoBreads obj = new DaoBreads();
+			 
+			 obj.insertItemIntoBreads(itemName, itemPrice, imgURL, itemDesc, itemType);
+			 
+			 try {
+					
+				  List<Breads> retrievedBreads = obj.getBreads();
+				  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+			} 
+			 catch (Exception e) {
+				
+				 e.printStackTrace();
+			}
+			 
+		 }
+		 else if("deserts".equals(itemType)) {
+			 
+			 //Instantiate an object from the 'DaoDeserts' class:
+			 DaoDeserts obj = new DaoDeserts();
+			 
+			 obj.insertItemIntoDeserts(itemName, itemPrice, imgURL, itemDesc, itemType);
+			 
+			 
+			 try {
+					
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+			     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+			} 
+			  catch (Exception e) {
+				
+				  e.printStackTrace();
+			}
+			 
+		 }
+		 
+		 
+		 return "view/editUserViewItems";
+	 }
+	  
+	  
+	  
+	  
+	  
 	
 }//closing brace of the class

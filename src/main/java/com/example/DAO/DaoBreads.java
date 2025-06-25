@@ -395,5 +395,64 @@ public class DaoBreads {
 			}
 		
 	
+		
+		//----------------------------------------------------------------------------
+		
+		public boolean deleteBreadById(int breadsId) {
+		    
+		    String sql = "DELETE FROM breads WHERE breadsId = ?";
+		    
+		    try (Connection conn = getConnection();
+		         PreparedStatement stmt = conn.prepareStatement(sql)) {
+		        
+		        stmt.setInt(1, breadsId);
+		        
+		        int rowsAffected = stmt.executeUpdate();
+		        
+		        // Return true if exactly 1 row was deleted
+		        return rowsAffected == 1;
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        return false;
+		    }
+		}
+
+		
+	//=====================================================================================
+	
+    //This method adds item into the Breads table:	
+    public boolean insertItemIntoBreads(String itemName, double itemPrice, String imgURL, String itemDesc, String itemType) {
+		      
+		      String sql = "INSERT INTO breads (itemName, itemPrice, imgURL, itemDesc, itemType) VALUES (?, ?, ?, ?, ?)";
+
+		      try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		          
+		          stmt.setString(1, itemName);
+		          stmt.setDouble(2, itemPrice);
+		          stmt.setString(3, imgURL);
+		          stmt.setString(4, itemDesc);
+		          stmt.setString(5, itemType);
+
+		          
+		          
+		          int rowsInserted = stmt.executeUpdate();
+
+		          return rowsInserted > 0; // return true if insertion was successful
+
+		      }
+		      catch (SQLException e) {
+		      	
+		          e.printStackTrace();
+		          
+		          return false;
+		      }
+		      
+		      
+		  }
+		
+		
+		
+		
 	
 }//closing brace of the class.

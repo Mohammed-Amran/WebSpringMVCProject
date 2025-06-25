@@ -1579,7 +1579,17 @@ document.querySelectorAll('.reload-img').forEach(button => {
             
                 <div class="card-content">
                 
-                    <img src="${bread.imgURL}" class="item-img" />
+                    <c:if test="${fn:startsWith(bread.imgURL, '/images/bread/')}">
+											
+							<img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+											
+					</c:if>
+
+					<c:if test="${not fn:startsWith(bread.imgURL, '/images/bread/')}">
+												
+							<img src="${desert.imgURL}" class="item-img" />
+											
+					</c:if>
                     
                     <h1>${bread.itemName}</h1>
                     
@@ -1659,10 +1669,21 @@ document.querySelectorAll('.reload-img').forEach(button => {
             <div class="card">
             
                 <div class="card-content">
-                
-                    <img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
-                    
-                    <h1>${desert.itemName}</h1>
+
+											<c:if test="${fn:startsWith(desert.imgURL, '/images/cakes/')}">
+											
+												<img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+											
+											</c:if>
+
+											<c:if test="${not fn:startsWith(desert.imgURL, '/images/cakes/')}">
+												
+												<img src="${desert.imgURL}" class="item-img" />
+											
+											</c:if>
+
+
+											<h1>${desert.itemName}</h1>
                     
                 </div>
                 

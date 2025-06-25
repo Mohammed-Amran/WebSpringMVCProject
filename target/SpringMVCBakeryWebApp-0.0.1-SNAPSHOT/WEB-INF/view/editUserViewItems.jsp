@@ -252,6 +252,7 @@ color: #DBDBDB;
             </form>
 
            
+           
            		
 		</div>
 
@@ -318,7 +319,22 @@ color: #DBDBDB;
 				</div>
 
 
-				
+				<div style="display: flex; justify-content: center; margin-bottom: 30px;">
+					
+					<form method="get" action="${pageContext.request.contextPath}/AddItem">
+						
+						<button type="submit" style="font-family: 'Pacifico', cursive; background-color: #00b300; color: white; border: none; border-radius: 8px; padding: 12px 30px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">
+							 
+							 Add Item
+							 
+					    </button>
+					    
+					</form>
+					
+				</div>
+
+
+
 				<div class="menu-items" style="background-color: #F2F3F1; padding: 20px; border-radius: 10px;">
 					
 					<div class="menu-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
@@ -326,9 +342,7 @@ color: #DBDBDB;
 
 
 						<c:choose>
-
-				
-										
+									
 							<c:when test="${showCategory == 'Breads' || empty showCategory }">
 								
 								
@@ -362,7 +376,17 @@ color: #DBDBDB;
 											
 											</form>
 
-											<button class="btn btn-danger">Delete</button>
+											<form method="get" action="${pageContext.request.contextPath}/verifyDeleteItem">
+ 
+                                                <input type="hidden" name="breadsId" value="${bread.breadsId}"> 
+												
+											    <input type="hidden" name="itemType" value="${bread.itemType}">
+											    
+											    <input type="hidden" name="itemName" value="${bread.itemName}">
+                                               
+											  <button type="submit" class="btn btn-danger">Delete</button>
+
+                                            </form>
 
 										</div>
 
@@ -375,11 +399,7 @@ color: #DBDBDB;
 								
 								
 							</c:when>
-
-							
-							
-			
-							
+						
 							
 							<c:when test="${showCategory == 'Cakes'}">
 							
@@ -411,9 +431,17 @@ color: #DBDBDB;
 											
 											</form>
 
+                                            <form method="get" action="${pageContext.request.contextPath}/verifyDeleteItem">
+ 
+                                                <input type="hidden" name="desertId" value="${desert.desertsId}"> 
+												
+											    <input type="hidden" name="itemType" value="${desert.itemType}">
+											    
+											    <input type="hidden" name="itemName" value="${desert.itemName}">
+                                               
+											  <button type="submit" class="btn btn-danger">Delete</button>
 
-											<button class="btn btn-danger">Delete</button>
-
+                                            </form>
 
 										</div>
 
@@ -452,9 +480,8 @@ color: #DBDBDB;
    </c:if>
    
   
-   
-   
-   
+  
+  
 	<!-- Modal for Editing Item Info -->
 	<div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
 		
@@ -715,7 +742,252 @@ document.querySelectorAll('.reload-img').forEach(button => {
 </div>
 
 
+
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+<!-- This JS Code opens the Verify Deletion Modal -->
+   <c:if test="${openVerifyDeletionModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#deleteItemModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+
+
+  <!-- Modal for Verifying Item Deletion -->
+	<div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
+			<div class="modal-content">
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Delete Item !?
+						
+				    </h5>
+				    
+				</div>
+
+				<div class="modal-body" style="padding: 25px;">
+					
+					Are you sure to delete <c:out value="${sessionScope.itemNameForDeletion}" />
+				
+				</div>
+
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
+					
+					<form method="get" action="${pageContext.request.contextPath}/deleteItem">
+					
+					    <button type="submit" class="btn btn-default" style="padding: 8px 20px; font-size: 16px;">
+					
+					        Delete
+					   
+					    </button>
+					
+					</form>
+					
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div> <!-- Closing tag of the User-info Modal -->
+
+
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- This JS Code opens the Add Item Modal -->
+   <c:if test="${openAddItemModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#AddItemModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+
+
+
+  <!-- Modal for Adding Item -->
+	<div class="modal fade" id="AddItemModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
+		
+		 <form method="post" action="${pageContext.request.contextPath}/AddItemIntoTable">	
+			
+			<div class="modal-content">
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Add Item
+						
+				    </h5>
+				    
+				</div>
+
+				<div class="modal-body" style="padding: 25px;">
+					
+					<table class="table table-bordered" style="font-size: 16px;">
+						
+						<thead>
+						
+							<tr class="table-light">
+							
+								<th style="padding: 15px; font-size: 18px;">Field</th>
+								
+								<th style="padding: 15px; font-size: 18px;">Input Data</th>
+								
+															
+							</tr>
+							
+						</thead>
+						
+						<tbody>
+						
+						   
+						    <tr>
+							
+								<td style="padding: 15px;">Item Category</td>
+								
+																
+								<td style="padding: 15px;">
+								
+										
+										<select class="price-dropdown" name="itemType">
+                                
+                                          <option value="breads">Bread</option>
+                                          
+                                          <option value="deserts">Desert</option>
+                                                                           
+                                       </select>
+							
+								</td>
+							
+							</tr>
+						
+						
+						
+							<tr>
+							
+								<td style="padding: 15px;">Item Name</td>
+								
+																
+								<td style="padding: 15px;">
+								
+										
+										<input type="text" name="itemName" class="form-control"  required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+							
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Item Price</td>
+								
+							
+								
+								<td style="padding: 15px;">
+									
+										
+										<input type="text" name="itemPrice" class="form-control" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+     
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Img URL</td>
+
+								
+
+
+								<td style="padding: 15px;">
+									
+									<input type="text" name="imgURL" class="form-control" required  style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Item Desc</td>
+								
+								 
+								   
+								
+								<td style="padding: 15px;">
+									
+									<textarea rows="5" cols="30" name="itemDesc" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;">
+										
+									</textarea>
+								
+								</td>
+							
+							</tr>
+						
+						
+						</tbody>
+					
+					</table>
+				
+				
+				
+				</div>
+
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
+					
+					<button type="submit" class="btn btn-default"  style="padding: 8px 20px; font-size: 16px;">
+					
+					   Add Item
+					   
+					</button>
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
+				</div>
+			
+			</div>
+			
+			</form>
+		
+		</div>
+	
+	</div> 
+
+
 
 
 
