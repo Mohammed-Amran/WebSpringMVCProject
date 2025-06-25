@@ -892,10 +892,10 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- ========- INBOX MODAL -=========== -->
 
 
- <!-- This JS Code opens the Edit User Profile Modal -->
+
+ <!-- This JS Code opens the Inbox Modal -->
    <c:if test="${showInboxModal}">
      
      <script>
@@ -1587,7 +1587,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
                 
                 <div class="card-action">
                 
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${bread.id}">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${bread.breadsId}">
                         Select
                     </button>
                     
@@ -1596,7 +1596,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
             </div>
 
             
-            <div class="modal fade" id="modal_${bread.id}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="modal_${bread.breadsId}" tabindex="-1" role="dialog" aria-hidden="true">
             
                 <div class="modal-dialog" role="document">
                 
@@ -1668,7 +1668,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
                 
                 <div class="card-action">
                 
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${desert.id}">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_${desert.desertsId}">
                     
                         Select
                         
@@ -1679,7 +1679,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
             </div>
 
             
-            <div class="modal fade" id="modal_${desert.id}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="modal_${desert.desertsId}" tabindex="-1" role="dialog" aria-hidden="true">
             
                 <div class="modal-dialog" role="document">
                 

@@ -277,153 +277,442 @@ color: #DBDBDB;
 	<div id="main" style="margin-top: 40px;">
 
 
-		<!-- Main Content - Menu Section -->
-		<main class="order-table-wrapper">
+		<main class="menu-container" style="background-color: #C9B194; padding: 30px;">
 
-			<!-- Menu Container -->
-			<div class="menu-container" style="max-width: 600px; margin: 0 auto;">
+			<div>
+			
+				<h2 class="menu-title" style="font-family: 'Pacifico', cursive; font-style: normal; font-weight: bold; font-size: 46px; color: #4a403a;">Items
+					
+					Available in the Menu
+					
+				</h2>
 
-				<!-- Menu Title -->
-				<div class="menu-title">Items that are available in the Menu</div>
-
-				<!-- Category Buttons -->
-				<div class="category-buttons">
-
+			
+				<div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px;">
+					
 					<form method="get" action="EditUserViewCategoryController">
-
+						
 						<input type="hidden" name="category" value="Breads">
-
-						<button type="submit" class="category-btn">Breads</button>
-
+						
+						<button type="submit" class="category-btn" style="font-family: 'Pacifico', cursive; background-color: white; color: #4a403a; border: 2px solid white; padding: 8px 20px; font-size: 18px; font-weight: bold; cursor: pointer;">
+							
+							Breads
+							
+					    </button>
+					    
 					</form>
+
 
 					<form method="get" action="EditUserViewCategoryController">
-
+						
 						<input type="hidden" name="category" value="Cakes">
-
-						<button type="submit" class="category-btn">Cakes</button>
-
+						
+						<button type="submit" class="category-btn" style="font-family: 'Pacifico', cursive; background-color: white; color: #4a403a; border: 2px solid white; padding: 8px 20px; font-size: 18px; font-weight: bold; cursor: pointer;">
+							
+							Cakes
+							
+						</button>
+						
 					</form>
-
+					
 				</div>
 
 
-				<!-- Items List -->
-				<div class="menu-items">
+				
+				<div class="menu-items" style="background-color: #F2F3F1; padding: 20px; border-radius: 10px;">
+					
+					<div class="menu-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
 
-					<div class="menu-grid" style="flex-direction: column; width: 100%;">
+
 
 						<c:choose>
 
+				
+										
 							<c:when test="${showCategory == 'Breads' || empty showCategory }">
-
-								<!-- Table Header Row -->
-								<div style="display: flex; justify-content: space-between; align-items: center; background: #8D6E63; padding: 12px 25px; border-radius: 8px; border: 2px solid #A08963; color: white; font-weight: bold; margin-bottom: 10px;">
-
-									<div style="display: flex; align-items: center; gap: 60px;">
-									
-										<span style="width: 80px;">Item ID</span>
-										
-										 <span style="width: 200px;">Item Name</span>
-									
-									</div>
-
-									<div style="width: 100px; text-align: center;">Actions</div>
-							
-								</div>
-
-								<c:forEach var="bread" items="${retrievedBreads}">
-									
-									<div style="display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px; border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 16px; transition: transform 0.3s ease;">
-										
-										<div style="display: flex; align-items: center; gap: 60px;">
-										
-											<span style="font-weight: bold; font-size: 20px; color: #4a403a;"> ${bread.breadsId} </span>
-											
-											<span style="font-size: 20px; color: #4a403a;">${bread.itemName}</span>
-										
-										</div>
-
-										<div style="display: flex; gap: 16px;">
-											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Edit">
-												
-												<i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
-											
-											</button>
-											
-											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Delete">
-												<i class="fas fa-times" style="color: #d9534f; font-size: 22px;"></i>
-											
-											</button>
-										
-										</div>
-									
-									</div>
 								
+								
+								<c:forEach var="bread" items="${sessionScope.retrievedBreads}">
+									
+									<div class="card" style="background: white; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 260px; text-align: center; overflow: hidden;">
+										
+										
+										<div class="card-content" style="padding: 15px;">
+											
+											<img src="${bread.imgURL}" alt="Bread Image" class="item-img"
+												
+												style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px;">
+											
+											<h1 style="font-size: 20px; color: #4a403a; margin-top: 10px;">${bread.itemName}</h1>
+											
+											<p style="font-size: 16px; color: #6d5c54;">ID: ${bread.breadsId} </p>
+										
+										</div>
+
+
+										<div class="card-action"
+											style="padding: 10px; display: flex; justify-content: center; gap: 10px; align-items: center;">
+
+											<form method="get"
+												action="${pageContext.request.contextPath}/openEditItemModal"
+												style="margin: 0;">
+												<input type="hidden" name="breadsId"
+													value="${bread.breadsId}"> <input type="hidden"
+													name="itemType" value="${bread.itemType}">
+												<button type="submit" class="btn btn-primary">Edit</button>
+											</form>
+
+											<button class="btn btn-danger">Delete</button>
+
+										</div>
+
+
+
+									</div>
+									
+									
 								</c:forEach>
-							
+								
+								
 							</c:when>
 
-							<c:when test="${showCategory == 'Cakes'}">
-
-								<!-- Table Header Row -->
-								<div style="display: flex; justify-content: space-between; align-items: center; background: #8D6E63; padding: 12px 25px; border-radius: 8px; border: 2px solid #A08963; color: white; font-weight: bold; margin-bottom: 10px;">
-
-									<div style="display: flex; align-items: center; gap: 60px;">
-										
-										<span style="width: 80px;">Item ID</span>
-										
-										<span style="width: 200px;">Item Name</span>
-									
-									</div>
-
-									<div style="width: 100px; text-align: center;">Actions</div>
-								
-								</div>
-
-								<c:forEach var="desert" items="${retrievedDeserts}">
-								
-									<div style="display: flex; justify-content: space-between; align-items: center; background: #C9B194; padding: 15px 25px; border-radius: 8px; border: 2px solid #A08963; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 16px; transition: transform 0.3s ease;">
-										
-										<div style="display: flex; align-items: center; gap: 60px;">
-											
-											<span style="font-weight: bold; font-size: 20px; color: #4a403a;">${desert.desertsId}</span>
-										
-											<span style="font-size: 20px; color: #4a403a;">${desert.itemName}</span>
-										
-										</div>
-
-										<div style="display: flex; gap: 16px;">
-										
-											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Edit">
-												
-												<i class="fas fa-pencil-alt" style="color: #4a403a; font-size: 20px;"></i>
-											
-											</button>
-											
-											<button style="background: none; border: none; cursor: pointer; padding: 6px;" title="Delete">
-												
-												<i class="fas fa-times"	style="color: #d9534f; font-size: 22px;"></i>
-											
-											</button>
-										
-										</div>
-									
-									</div>
-								
-								</c:forEach>
 							
+							
+			
+							
+							
+							<c:when test="${showCategory == 'Cakes'}">
+							
+								
+								<c:forEach var="desert" items="${sessionScope.retrievedDeserts}">
+									
+									<div class="card" style="background: white; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 260px; text-align: center; overflow: hidden;">
+										
+										<div class="card-content" style="padding: 15px;">
+											
+											<img src="${pageContext.request.contextPath}${desert.imgURL}" alt="Cake Image" class="item-img" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px;">
+											
+											<h1 style="font-size: 20px; color: #4a403a; margin-top: 10px;">${desert.itemName}</h1>
+											
+											<p style="font-size: 16px; color: #6d5c54;">ID: ${desert.desertsId} </p>
+										
+										</div>
+
+										<div class="card-action"
+											style="padding: 10px; justify-content: center; display: flex; gap: 10px; align-items: center;">
+
+											<form method="get"
+												action="${pageContext.request.contextPath}/openEditItemModal"
+												style="margin: 0;">
+												<input type="hidden" name="desertId"
+													value="${desert.desertsId}"> <input type="hidden"
+													name="itemType" value="${desert.itemType}">
+												<button type="submit" class="btn btn-primary">Edit</button>
+											</form>
+
+											<button class="btn btn-danger">Delete</button>
+
+										</div>
+
+
+									</div>
+									
+								</c:forEach>
+								
+								
 							</c:when>
 
 						</c:choose>
-
+						
 					</div>
+					
+				</div>
+				
+			</div>
+			
+		</main>
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+
+ <!-- This JS Code opens the Edit User Profile Modal -->
+   <c:if test="${openEditItemModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#editItemModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+   
+  
+   
+   
+   
+	<!-- Modal for Editing Item Info -->
+	<div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+			
+			<div class="modal-content">
+				
+				<div class="modal-header" style="background: #C9B194; padding: 20px;">
+					
+					<h5 class="modal-title" id="userModalLabel" style="color: #4a403a; font-family: 'Pacifico', cursive; font-size: 24px;">
+					
+					   Edit Item
+						
+				    </h5>
+				    
+				</div>
+
+				<div class="modal-body" style="padding: 25px;">
+					
+					<table class="table table-bordered" style="font-size: 16px;">
+						
+						<thead>
+						
+							<tr class="table-light">
+							
+								<th style="padding: 15px; font-size: 18px;">Field</th>
+								
+								<th style="padding: 15px; font-size: 18px;">Current Data</th>
+								
+								<th style="padding: 15px; font-size: 18px;">Update To</th>
+								
+							</tr>
+							
+						</thead>
+						
+						<tbody>
+						
+							<tr>
+								<td style="padding: 15px;">Item Name</td>
+								
+								<td style="padding: 15px;">${sessionScope.retrievedItemName}</td>
+								
+								<td style="padding: 15px;">
+								
+									<form action="${pageContext.request.contextPath}/updateItemName" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newItemName" class="form-control"  required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<input type="hidden" name="itemType" value="${sessionScope.itemType}">
+										
+										<input type="hidden" name="itemId" value="${sessionScope.itemId}">
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Item Price</td>
+								
+								<td style="padding: 15px;">${sessionScope.retrievedItemPrice}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateItemPrice" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newItemPrice" class="form-control" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+								        <input type="hidden" name="itemType" value="${sessionScope.itemType}">
+										
+										<input type="hidden" name="itemId" value="${sessionScope.itemId}">
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Img URL</td>
+
+								<td style="padding: 15px;"> ${sessionScope.retrievedImgURL} </td>
+
+
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateImgURL" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										<input type="text" name="newImgURL" class="form-control" required  style="padding: 10px; font-size: 16px; height: 45px; flex: 1;" />
+										
+										<input type="hidden" name="itemType" value="${sessionScope.itemType}">
+										
+										<input type="hidden" name="itemId" value="${sessionScope.itemId}">
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+							
+							
+							<tr>
+								
+								<td style="padding: 15px;">Item Desc</td>
+								
+								<td style="padding: 15px;">${sessionScope.retrievedItemDesc}</td>
+								
+								<td style="padding: 15px;">
+									
+									<form action="${pageContext.request.contextPath}/updateItemDesc" method="post" style="display: flex; gap: 10px; align-items: center;">
+										
+										
+										<textarea rows="5" cols="30" name="newItemDesc" required style="padding: 10px; font-size: 16px; height: 45px; flex: 1;">
+										
+										</textarea>
+										
+										<input type="hidden" name="itemType" value="${sessionScope.itemType}">
+										
+										<input type="hidden" name="itemId" value="${sessionScope.itemId}">
+										
+										
+										<button type="submit" class="reload-img" style="margin-top: 0px;">
+											
+											<img src="${pageContext.request.contextPath}/images/primaryStaticReload.png" alt="Reload" style="width: 45px; height: 45px;">
+										
+										</button>
+									
+									</form>
+								
+								</td>
+							
+							</tr>
+						
+						
+						</tbody>
+					
+					</table>
 				
 				</div>
 
+				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding: 8px 20px; font-size: 16px;">
+					
+					   Cancel
+					   
+					</button>
+				
+				</div>
+			
 			</div>
+		
+		</div>
+	
+	</div> <!-- Closing tag of the User-info Modal -->
 
-		</main>
+
+<!-- This JS below replaces the static reload IMG with the reload GIF onClick -->
+<script>
+
+document.querySelectorAll('.reload-img').forEach(button => {
+ 
+	const img = button.querySelector('img');
+  
+	const originalSrc = img.src;
+  
+	const clickedSrc = '${pageContext.request.contextPath}/images/gifs/reloadGif.gif';
+
+ 
+	button.addEventListener('click', function (e) {
+    
+		e.preventDefault(); // Stop form submission until the GIF animates
+
+   
+		// Show reload GIF on button
+        img.src = clickedSrc;
+
+   
+		// Step 1: Show the reload GIF for ~500ms
+        setTimeout(() => {
+      
+        	
+        // Step 2: Display full-screen strike GIF
+        const overlay = document.getElementById('strikeOverlay');
+        
+        overlay.style.display = 'flex';
+        
+        setTimeout(() => { overlay.style.opacity = '1';  overlay.style.visibility = 'visible'; }, 10); // slight delay to trigger transition
+
+
+        
+       // Step 3: Keep strike GIF for ~1.5s, then submit form
+       setTimeout(() => {
+                         
+    	                overlay.style.opacity = '0';
+    	                overlay.style.visibility = 'hidden';
+
+    	                setTimeout(() => { overlay.style.display = 'none'; }, 500); // match transition time
+
+
+                          const form = button.closest('form');
+       
+                          if (form) { form.submit(); }
+
+                         }, 2600); // Length of strike.gif
+
+   
+           }, 500); // Delay before showing strike
+  
+	});
+
+});
+</script>
+
+
+<!-- Strike GIF Overlay Modal -->
+<div id="strikeOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.2);
+    
+     backdrop-filter: blur(6px);
+ 
+     z-index: 9999;
+ 
+     justify-content: center;
+  
+     align-items: center;
+
+     opacity: 0;
+  
+     visibility: hidden;
+ 
+     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; ">
+ 
+     <img src="${pageContext.request.contextPath}/images/gifs/PrimaryRocketLauncch.gif" alt="Reloading..." style="width: 250px; height: 250px;" />
+  
+</div>
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 
 

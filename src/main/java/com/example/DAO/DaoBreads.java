@@ -149,6 +149,250 @@ public class DaoBreads {
 		}//closing brace of the 'getBreadItemPrice()' method.	
 		
 	
+		
+//========================updating Bread items=========================================
+		
+//========================-- select methods --=========================================
+		
+		public String retrieveItemName(int breadsId) {
+			
+			
+			String sql = "SELECT itemName FROM breads WHERE breadsId = ?";
+			
+			try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		      stmt.setInt(1, breadsId);
+		     
+
+		      try (ResultSet rs = stmt.executeQuery()) {
+		      	
+		          if (rs.next()) {
+		          	
+		              return rs.getString("itemName");
+		              
+		          }
+		      }
+
+		  } 
+			catch (SQLException e) {
+				
+		      e.printStackTrace();
+		  }
+
+		return "Unkown name";
+						
+		}	
+		
+		
+		
+        public int retrieveItemPrice(int breadsId) {
+			
+			
+			String sql = "SELECT itemPrice FROM breads WHERE breadsId = ?";
+			
+			try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		      stmt.setInt(1, breadsId);
+		     
+
+		      try (ResultSet rs = stmt.executeQuery()) {
+		      	
+		          if (rs.next()) {
+		          	
+		              return rs.getInt("itemPrice");
+		              
+		          }
+		      }
+
+		  } 
+			catch (SQLException e) {
+				
+		      e.printStackTrace();
+		  }
+
+		  return -1; 
+						
+		}
+		
+		
+		
+        
+        
+      public String retrieveBreadsImgURL(int breadsId) {
+			
+			
+			String sql = "SELECT imgURL FROM breads WHERE breadsId = ?";
+			
+			try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		      stmt.setInt(1, breadsId);
+		     
+
+		      try (ResultSet rs = stmt.executeQuery()) {
+		      	
+		          if (rs.next()) {
+		          	
+		              return rs.getString("imgURL");
+		              
+		          }
+		      }
+
+		  } 
+			catch (SQLException e) {
+				
+		      e.printStackTrace();
+		  }
+
+		  return "empty"; 
+						
+		}
+		
+		
+      
+      public String retrieveItemDesc(int breadsId) {
+			
+			
+			String sql = "SELECT itemDesc FROM breads WHERE breadsId = ?";
+			
+			try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		      stmt.setInt(1, breadsId);
+		     
+
+		      try (ResultSet rs = stmt.executeQuery()) {
+		      	
+		          if (rs.next()) {
+		          	
+		              return rs.getString("itemDesc");
+		              
+		          }
+		      }
+
+		  } 
+			catch (SQLException e) {
+				
+		      e.printStackTrace();
+		  }
+
+		  return "empty"; 
+						
+		}
+      
+      
+      
+		
+//==========================-- update methods --========================================		
+		public boolean updateItemName(int breadsId, String newItemName) {
+			
+			   String sql = "UPDATE breads SET itemName = ? WHERE breadsId = ?";
+			 
+			   try (Connection conn = getConnection();
+			        
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+			     
+			        stmt.setString(1, newItemName);
+			        stmt.setInt(2, breadsId);
+			     
+			        int rowsAffected = stmt.executeUpdate();
+			     
+			     // Return true if exactly 1 row was updated
+			     return rowsAffected == 1;
+			     
+			    } 
+			    catch (SQLException e) {
+			    	
+			     e.printStackTrace();
+			     return false;
+			     
+			 }
+			   
+			}
+		
+		
+		
+	
+		public boolean updateItemPrice(int breadsId, String newItemPrice) {
+			
+			   String sql = "UPDATE breads SET itemPrice = ? WHERE breadsId = ?";
+			 
+			   try (Connection conn = getConnection();
+			        
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+			     
+			        stmt.setString(1, newItemPrice);
+			        stmt.setInt(2, breadsId);
+			     
+			        int rowsAffected = stmt.executeUpdate();
+			     
+			     // Return true if exactly 1 row was updated
+			     return rowsAffected == 1;
+			     
+			    } 
+			    catch (SQLException e) {
+			    	
+			     e.printStackTrace();
+			     return false;
+			     
+			 }
+			   
+			}
+		
+		
+		
+		public boolean updateImgURL(int breadsId, String newImgURL) {
+			
+			   String sql = "UPDATE breads SET imgURL = ? WHERE breadsId = ?";
+			 
+			   try (Connection conn = getConnection();
+			        
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+			     
+			        stmt.setString(1, newImgURL);
+			        stmt.setInt(2, breadsId);
+			     
+			        int rowsAffected = stmt.executeUpdate();
+			     
+			     // Return true if exactly 1 row was updated
+			     return rowsAffected == 1;
+			     
+			    } 
+			    catch (SQLException e) {
+			    	
+			     e.printStackTrace();
+			     return false;
+			     
+			 }
+			   
+			}
+		
+		
+		
+		public boolean updateItemDesc(int breadsId, String newItemDesc) {
+			
+			   String sql = "UPDATE breads SET itemDesc = ? WHERE breadsId = ?";
+			 
+			   try (Connection conn = getConnection();
+			        
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+			     
+			        stmt.setString(1, newItemDesc);
+			        stmt.setInt(2, breadsId);
+			     
+			        int rowsAffected = stmt.executeUpdate();
+			     
+			     // Return true if exactly 1 row was updated
+			     return rowsAffected == 1;
+			     
+			    } 
+			    catch (SQLException e) {
+			    	
+			     e.printStackTrace();
+			     return false;
+			     
+			 }
+			   
+			}
+		
 	
 	
 }//closing brace of the class.

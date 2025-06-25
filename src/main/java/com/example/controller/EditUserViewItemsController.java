@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,7 @@ import com.example.DAO.DaoBreads;
 import com.example.DAO.DaoDeserts;
 import com.example.model.Breads;
 import com.example.model.Deserts;
+
 
 @Controller
 public class EditUserViewItemsController {
@@ -148,13 +150,419 @@ public class EditUserViewItemsController {
 		
 		
 	
+	//===============================================================================================================================
+		
+		
+		//This Method opens the Edit item modal.
+		@GetMapping("/openEditItemModal")
+		public String openEditUserProfileModal(@RequestParam Map<String, String> input,Model model, HttpServletRequest req) {
+			
+			HttpSession session = req.getSession(false);
+			
+			//Retrieving the itemId.
+			String itemType = input.get("itemType");
+			
+			if("breads".equals(itemType)) {
+				
+				int breadId = Integer.parseInt( input.get("breadId") );
+				
+				
+				session.setAttribute("itemId", breadId);
+				
+				DaoBreads daoBreadsObj = new DaoBreads();
+				
+				//Retrieve the itemName for the 'breads' table:
+				String retrievedItemName = daoBreadsObj.retrieveItemName(breadId);
+				
+				
+				session.setAttribute("retrievedItemName", retrievedItemName);
+				
+				//Retrieve the itemPrice for the 'breads' table:
+				int retrievedItemPrice = daoBreadsObj.retrieveItemPrice(breadId);
+				
+				
+				session.setAttribute("retrievedItemPrice", retrievedItemPrice);
+				
+				//Retrieve the imgURL for the 'breads' table:
+				String retrievedImgURL = daoBreadsObj.retrieveBreadsImgURL(breadId);
+				
+			
+				session.setAttribute("retrievedImgURL", retrievedImgURL);
+				
+				//Retrieve the itemDesc for the 'breads' table:
+				String retrievedItemDesc = daoBreadsObj.retrieveItemDesc(breadId);
+				
+				
+				session.setAttribute("retrievedItemDesc", retrievedItemDesc);
+				
+			}
+			else if("deserts".equals(itemType)) {
+				
+				int desertId = Integer.parseInt( input.get("desertId") );
+				
+				session.setAttribute("itemId", desertId);
+				
+				DaoDeserts daoDesertObj = new DaoDeserts();
+				
+				//Retrieve the itemName for the 'deserts' table:
+				String retrievedItemName = daoDesertObj.retrieveItemName(desertId);
+								
+				session.setAttribute("retrievedItemName", retrievedItemName);
+				
+				//Retrieve the itemPrice for the 'deserts' table:
+				int retrievedItemPrice = daoDesertObj.retrieveItemPrice(desertId);
+				
+				session.setAttribute("retrievedItemPrice", retrievedItemPrice);
+				
+				//Retrieve the imgURL for the 'deserts' table:
+				String retrievedImgURL = daoDesertObj.retrieveDesertsImgURL(desertId);
+				
+				session.setAttribute("retrievedImgURL", retrievedImgURL);
+				
+				//Retrieve the itemDesc for the 'deserts' table:
+				String retrievedItemDesc = daoDesertObj.retrieveItemDesc(desertId);
+				
+				session.setAttribute("retrievedItemDesc", retrievedItemDesc);
+				
+			}
+			
+			
+			
+			
+			
+			//This Triggers opening the Edit User-Profile Modal
+			model.addAttribute("openEditItemModal", true);
+			
+			
+			return "view/editUserViewItems";
+			
+		}//closing brace of the 'openEditUserProfileModal()'method.	
 	
 	
+		
+		
+	  @PostMapping("/updateItemName")
+	  protected String updateItemName(@RequestParam Map<String, String> input, Model model, HttpServletRequest req) {
+		  
+		  String itemType = input.get("itemType");
+		  
+		  int itemId = Integer.parseInt( input.get("itemId") );
+		  
+		  String newItemName = input.get("newItemName");
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //update itemName in breads table
+			  DaoBreads obj = new DaoBreads();
+			  
+			  obj.updateItemName(itemId, newItemName);
+			  
+			  try {
+				  
+				  HttpSession session = req.getSession(false);
+				
+				  List<Breads> retrievedBreads = obj.getBreads();
+				  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+				//Retrieve the itemName for the 'breads' table:
+				String retrievedItemName = obj.retrieveItemName(itemId);
+					
+				session.setAttribute("retrievedItemName", retrievedItemName);
+				  
+				  
+				  
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			  
+			  
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  //update itemName in deserts table
+			  DaoDeserts obj = new DaoDeserts();
+			  
+			  obj.updateItemName(itemId, newItemName);
+			  
+			  try {
+				
+				  HttpSession session = req.getSession(false);
+				  
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+				  
+	            //Retrieve the itemName for the 'deserts' table:
+					String retrievedItemName = obj.retrieveItemName(itemId);
+									
+					session.setAttribute("retrievedItemName", retrievedItemName);
+	              
+	              
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			  
+			
+			  
+		  }
+		  
+		  
+		  model.addAttribute("openEditModal", true);
+		  
+		  return "view/editUserViewItems";
+	  }
 	
 	
+	  //0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+	  
+	  
+	  
+	  @PostMapping("/updateItemPrice")
+	  protected String updateItemPrice(@RequestParam Map<String, String> input, Model model, HttpServletRequest req) {
+		  
+		  String itemType = input.get("itemType");
+		  
+		  int itemId = Integer.parseInt( input.get("itemId") );
+		  
+		  String newItemPrice = input.get("newItemPrice");
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //update itemPrice in breads table
+			  DaoBreads obj = new DaoBreads();
+			  
+			  obj.updateItemPrice(itemId, newItemPrice);
+			  
+             try {
+				  
+				  HttpSession session = req.getSession(false);
+				
+				  List<Breads> retrievedBreads = obj.getBreads();
+	  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+				  
+				//Retrieve the itemPrice for the 'breads' table:
+					int retrievedItemPrice = obj.retrieveItemPrice(itemId);
+					
+					
+					session.setAttribute("retrievedItemPrice", retrievedItemPrice);
+					
+				  
+				  
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			
+			  
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  //update itemPrice in deserts table
+			  DaoDeserts obj = new DaoDeserts();
+			  
+			  obj.updateItemPrice(itemId, newItemPrice);
+			  
+			  try {
+					
+				  HttpSession session = req.getSession(false);
+				  
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+				  
+	            //Retrieve the itemPrice for the 'deserts' table:
+					int retrievedItemPrice = obj.retrieveItemPrice(itemId);
+					
+					session.setAttribute("retrievedItemPrice", retrievedItemPrice);
+	              
+	              
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			  
+			  
+			  
+		  }
+		  
+		  model.addAttribute("openEditModal", true);
+		  
+		  return "view/editUserViewItems";
+	  }
 	
-	
-	
+	  
+	  
+//0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+	  
+	  
+	  
+	  @PostMapping("/updateImgURL")
+	  protected String updateImgURL(@RequestParam Map<String, String> input, Model model, HttpServletRequest req) {
+		  
+		  String itemType = input.get("itemType");
+		  
+		  int itemId = Integer.parseInt( input.get("itemId") );
+		  
+		  String newImgURL = input.get("newImgURL");
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //update imgURL in breads table
+			  DaoBreads obj = new DaoBreads();
+			  
+			  obj.updateImgURL(itemId, newImgURL);
+			  
+try {
+				  
+				  HttpSession session = req.getSession(false);
+				
+				  List<Breads> retrievedBreads = obj.getBreads();
+				  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+				//Retrieve the imgURL for the 'breads' table:
+					String retrievedImgURL = obj.retrieveBreadsImgURL(itemId);
+					
+				
+					session.setAttribute("retrievedImgURL", retrievedImgURL);
+				  
+				  
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  //update imgURL in deserts table
+			  DaoDeserts obj = new DaoDeserts();
+			  
+			  obj.updateImgURL(itemId, newImgURL);
+			  
+			  
+			  try {
+					
+				  HttpSession session = req.getSession(false);
+				  
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+				  
+	            //Retrieve the imgURL for the 'deserts' table:
+					String retrievedImgURL = obj.retrieveDesertsImgURL(itemId);
+					
+					session.setAttribute("retrievedImgURL", retrievedImgURL);
+	              
+	              
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			 
+		  }
+		  
+		  
+		  model.addAttribute("openEditModal", true);
+		  
+		  return "view/editUserViewItems";
+	  }
+	  
+	  
+
+//0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+	  
+	  
+	  
+	  @PostMapping("/updateItemDesc")
+	  protected String updateItemDesc(@RequestParam Map<String, String> input, Model model, HttpServletRequest req) {
+		  
+		  String itemType = input.get("itemType");
+		  
+		  int itemId = Integer.parseInt( input.get("itemId") );
+		  
+		  String newItemDesc = input.get("newItemDesc");
+		  
+		  if("breads".equals(itemType)) {
+			  
+			  //update itemDesc in breads table
+			  DaoBreads obj = new DaoBreads();
+			  
+			  obj.updateItemDesc(itemId, newItemDesc);
+			  
+			  
+try {
+				  
+				  HttpSession session = req.getSession(false);
+				
+				  List<Breads> retrievedBreads = obj.getBreads();
+				  
+				  session.setAttribute("retrievedBreads", retrievedBreads);
+				  
+				//Retrieve the itemDesc for the 'breads' table:
+					String retrievedItemDesc = obj.retrieveItemDesc(itemId);
+					
+					
+					session.setAttribute("retrievedItemDesc", retrievedItemDesc);
+				  
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			 
+		  }
+		  else if("deserts".equals(itemType)) {
+			  
+			  //update itemDesc in deserts table
+			  DaoDeserts obj = new DaoDeserts();
+			  
+			  obj.updateItemDesc(itemId, newItemDesc);
+			  
+			  try {
+					
+				  HttpSession session = req.getSession(false);
+				  
+				  List<Deserts> retrievedDeserts = obj.getDesert();
+     	
+	              session.setAttribute("retrievedDeserts" , retrievedDeserts);
+				  
+	            //Retrieve the itemDesc for the 'deserts' table:
+					String retrievedItemDesc = obj.retrieveItemDesc(itemId);
+					
+					session.setAttribute("retrievedItemDesc", retrievedItemDesc);
+	              
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			  
+			  
+			  
+			
+		  }
+		  
+		  model.addAttribute("openEditModal", true);
+		  
+		  return "view/editUserViewItems";
+	  }
+	  
 	
 	
 }//closing brace of the class

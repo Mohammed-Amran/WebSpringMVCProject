@@ -88,7 +88,7 @@ public class LoginController {
 		    	session.setAttribute("phoneNo", phoneNo);
 				
 		    	
-		    	destination = "view/customer";
+		    	
 		    	
 		    	
 		    	
