@@ -161,13 +161,17 @@ public class EditUserViewItemsController {
 			
 			//Retrieving the itemId.
 			String itemType = input.get("itemType");
+			session.setAttribute("itemType", itemType);
+			
+			System.out.println("Getted itemType: " + itemType);
 			
 			if("breads".equals(itemType)) {
 				
-				int breadId = Integer.parseInt( input.get("breadId") );
-				
+				int breadId = Integer.parseInt( input.get("breadsId") );
+				System.out.println("Getted breadId: " + breadId);
 				
 				session.setAttribute("itemId", breadId);
+				
 				
 				DaoBreads daoBreadsObj = new DaoBreads();
 				
@@ -191,9 +195,12 @@ public class EditUserViewItemsController {
 				
 				//Retrieve the itemDesc for the 'breads' table:
 				String retrievedItemDesc = daoBreadsObj.retrieveItemDesc(breadId);
-				
-				
+								
 				session.setAttribute("retrievedItemDesc", retrievedItemDesc);
+				
+				
+				//This Triggers opening the Edit User-Profile Modal
+				model.addAttribute("openEditItemModal", true);
 				
 			}
 			else if("deserts".equals(itemType)) {
@@ -224,14 +231,14 @@ public class EditUserViewItemsController {
 				
 				session.setAttribute("retrievedItemDesc", retrievedItemDesc);
 				
+				
+				//This Triggers opening the Edit User-Profile Modal
+				model.addAttribute("openEditItemModal", true);
+				
 			}
+		
 			
 			
-			
-			
-			
-			//This Triggers opening the Edit User-Profile Modal
-			model.addAttribute("openEditItemModal", true);
 			
 			
 			return "view/editUserViewItems";
@@ -246,9 +253,14 @@ public class EditUserViewItemsController {
 		  
 		  String itemType = input.get("itemType");
 		  
+		  System.out.println("Retrieved itemType: " + itemType);
+		  
 		  int itemId = Integer.parseInt( input.get("itemId") );
+		  System.out.println("Retrieved itemId: " + itemId);
 		  
 		  String newItemName = input.get("newItemName");
+		  System.out.println("Retrieved newItemName: " + newItemName);
+		  
 		  
 		  if("breads".equals(itemType)) {
 			  
@@ -270,7 +282,7 @@ public class EditUserViewItemsController {
 					
 				session.setAttribute("retrievedItemName", retrievedItemName);
 				  
-				  
+				model.addAttribute("openEditItemModal", true);
 				  
 			} catch (Exception e) {
 				
@@ -301,6 +313,7 @@ public class EditUserViewItemsController {
 									
 					session.setAttribute("retrievedItemName", retrievedItemName);
 	              
+					model.addAttribute("openEditItemModal", true);
 	              
 			} catch (Exception e) {
 				
@@ -314,7 +327,8 @@ public class EditUserViewItemsController {
 		  }
 		  
 		  
-		  model.addAttribute("openEditModal", true);
+		  model.addAttribute("openEditItemModal", true);
+		  
 		  
 		  return "view/editUserViewItems";
 	  }
@@ -355,7 +369,7 @@ public class EditUserViewItemsController {
 					
 					session.setAttribute("retrievedItemPrice", retrievedItemPrice);
 					
-				  
+					model.addAttribute("openEditItemModal", true);
 				  
 			} catch (Exception e) {
 				
@@ -386,6 +400,7 @@ public class EditUserViewItemsController {
 					
 					session.setAttribute("retrievedItemPrice", retrievedItemPrice);
 	              
+					model.addAttribute("openEditItemModal", true);
 	              
 			} catch (Exception e) {
 				
@@ -398,7 +413,7 @@ public class EditUserViewItemsController {
 			  
 		  }
 		  
-		  model.addAttribute("openEditModal", true);
+		  model.addAttribute("openEditItemModal", true);
 		  
 		  return "view/editUserViewItems";
 	  }
@@ -425,7 +440,8 @@ public class EditUserViewItemsController {
 			  
 			  obj.updateImgURL(itemId, newImgURL);
 			  
-try {
+           
+			  try {
 				  
 				  HttpSession session = req.getSession(false);
 				
@@ -439,7 +455,9 @@ try {
 				
 					session.setAttribute("retrievedImgURL", retrievedImgURL);
 				  
-				  
+					model.addAttribute("openEditItemModal", true);
+					
+					
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -468,6 +486,8 @@ try {
 					
 					session.setAttribute("retrievedImgURL", retrievedImgURL);
 	              
+					model.addAttribute("openEditItemModal", true);
+					
 	              
 			} catch (Exception e) {
 				
@@ -479,7 +499,7 @@ try {
 		  }
 		  
 		  
-		  model.addAttribute("openEditModal", true);
+		  model.addAttribute("openEditItemModal", true);
 		  
 		  return "view/editUserViewItems";
 	  }
@@ -507,7 +527,7 @@ try {
 			  obj.updateItemDesc(itemId, newItemDesc);
 			  
 			  
-try {
+             try {
 				  
 				  HttpSession session = req.getSession(false);
 				
@@ -517,10 +537,11 @@ try {
 				  
 				//Retrieve the itemDesc for the 'breads' table:
 					String retrievedItemDesc = obj.retrieveItemDesc(itemId);
-					
-					
+										
 					session.setAttribute("retrievedItemDesc", retrievedItemDesc);
 				  
+					model.addAttribute("openEditItemModal", true);
+					
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -548,6 +569,8 @@ try {
 					
 					session.setAttribute("retrievedItemDesc", retrievedItemDesc);
 	              
+					model.addAttribute("openEditItemModal", true);
+					
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -558,7 +581,7 @@ try {
 			
 		  }
 		  
-		  model.addAttribute("openEditModal", true);
+		  model.addAttribute("openEditItemModal", true);
 		  
 		  return "view/editUserViewItems";
 	  }

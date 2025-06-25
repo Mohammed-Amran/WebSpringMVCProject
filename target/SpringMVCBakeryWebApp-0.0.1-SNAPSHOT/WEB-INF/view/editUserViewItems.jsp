@@ -350,16 +350,16 @@ color: #DBDBDB;
 										</div>
 
 
-										<div class="card-action"
-											style="padding: 10px; display: flex; justify-content: center; gap: 10px; align-items: center;">
+										<div class="card-action" style="padding: 10px; display: flex; justify-content: center; gap: 10px; align-items: center;">
 
-											<form method="get"
-												action="${pageContext.request.contextPath}/openEditItemModal"
-												style="margin: 0;">
-												<input type="hidden" name="breadsId"
-													value="${bread.breadsId}"> <input type="hidden"
-													name="itemType" value="${bread.itemType}">
+											<form method="get" action="${pageContext.request.contextPath}/openEditItemModal" style="margin: 0;">
+												
+												<input type="hidden" name="breadsId" value="${bread.breadsId}">
+												
+												<input type="hidden" name="itemType" value="${bread.itemType}">
+																												
 												<button type="submit" class="btn btn-primary">Edit</button>
+											
 											</form>
 
 											<button class="btn btn-danger">Delete</button>
@@ -401,16 +401,19 @@ color: #DBDBDB;
 										<div class="card-action"
 											style="padding: 10px; justify-content: center; display: flex; gap: 10px; align-items: center;">
 
-											<form method="get"
-												action="${pageContext.request.contextPath}/openEditItemModal"
-												style="margin: 0;">
-												<input type="hidden" name="desertId"
-													value="${desert.desertsId}"> <input type="hidden"
-													name="itemType" value="${desert.itemType}">
+											<form method="get" action="${pageContext.request.contextPath}/openEditItemModal" style="margin: 0;">
+												
+												<input type="hidden" name="desertId" value="${desert.desertsId}"> 
+												
+												<input type="hidden" name="itemType" value="${desert.itemType}">
+												
 												<button type="submit" class="btn btn-primary">Edit</button>
+											
 											</form>
 
+
 											<button class="btn btn-danger">Delete</button>
+
 
 										</div>
 
@@ -447,6 +450,8 @@ color: #DBDBDB;
      </script>
      
    </c:if>
+   
+  
    
    
    
