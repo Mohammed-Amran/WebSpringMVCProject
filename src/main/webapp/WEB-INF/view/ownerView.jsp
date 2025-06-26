@@ -1074,7 +1074,8 @@ font-size:19px;
 												
 												<input type="hidden" name="orderId" value="${order.orderId}" />
 												<input type="hidden" name="userId" value="${order.userId}" />
-												
+												<input type="hidden" name="itemName" value="${order.itemName}" />
+												<input type="hidden" name="deliveryAddress" value="${order.deliveryAddress}" />
 
 												
 												<div class="form-group">

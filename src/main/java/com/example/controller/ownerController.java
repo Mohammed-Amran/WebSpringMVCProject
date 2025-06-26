@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.DAO.DaoNotifications;
 import com.example.DAO.DaoOrders;
 
 import com.example.model.Orders;
@@ -111,9 +112,10 @@ public class ownerController {
 	@PostMapping("/updateOrderStatus")
 	protected String updateOrderStatus(@RequestParam Map<String, String> input, HttpServletRequest req, RedirectAttributes redirectAttrs) {
 
-		
+		//Instantiating a session object:
 	    HttpSession session = req.getSession(false);
 
+	    
 	    
 	    if (session == null) {
 	    	
@@ -123,31 +125,59 @@ public class ownerController {
 	    }
 
 	    
-	    //Getting the inputs from the owner:
-	    //Getting the orderId:
+	    
+	    //1. Getting the inputs from the owner:
+	    
+	    //I.Getting the orderId:
 	    int orderId = Integer.parseInt(input.get("orderId"));
-	    //Getting the userId:
+	    
+	    
+	    //II.Getting the userId:
 	    int userId = Integer.parseInt(input.get("userId"));
-	    //Getting the newStatus:
+	    
+	    
+	    //III. Getting the newStatus:
 	    String newStatus = input.get("status");
 
-	    //Updating the order status:
+	    
+	    //2. Updating the order status:
+	    
 	    
 	    //I. Instantiating an object from 'DaoOrders' class:
 	    DaoOrders ordersObj = new DaoOrders();
 	    
 	    boolean isStatusUpdated = false;
 
+	    
 	    try {
 	    	
 	        isStatusUpdated = ordersObj.updateOrderStatus(orderId, userId, newStatus);
+	        
 	    } 
 	    catch (Exception e) {
 	    	
 	        e.printStackTrace();
 	    }
 
+	    
 	    if (isStatusUpdated) {
+	    	
+	    	
+	    	//Insert into 'notifications':
+	    	
+	    	//I. Instantiating an object from the 'DaoNotifications' class:
+	    	DaoNotifications notifObj = new DaoNotifications();
+	    	
+	    	//II. Retrieving the 'itemName' & 'deliveryAddress':
+	    	String itemName = input.get("itemName");
+	    	String deliveryAddress = input.get("deliveryAddress");
+	    	
+	    	//III. Calling the 'InsertIntoNotifications()' method:
+	    	//fields: 'userId', 'orderId', 'itemName', 'deliveryAddress', 'newStatus', 'isRead(should be false)' 
+	    	notifObj.insertIntoNotifications(userId, orderId, itemName, deliveryAddress, newStatus, false);
+	    	
+	    	
+	    	
 	    	
 	        redirectAttrs.addFlashAttribute("successStatusUpdateMessage", "Status successfully updated");
 	        
@@ -156,13 +186,22 @@ public class ownerController {
 	    	
 	        redirectAttrs.addFlashAttribute("failedStatusUpdateMessage", "Status failed to update");
 	    }
+	    
+	    
+	    
 
 	    return "redirect:/ownerView";
 	
 	
    }//closing brace of the 'updateOrderStatus()' method.
 
+	
+	
+	
+	
 //============================================================================================================	
+	
+	
 	
 	
 	//This method would return back the owner to its view after updating the order status:

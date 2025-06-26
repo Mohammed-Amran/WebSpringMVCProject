@@ -93,7 +93,33 @@ public class CustomerController {
 		
         
         
-        
+        try {
+			
+              int userId = (Integer) session.getAttribute("userId");
+	     	 //--------------Notifications------------------------------------------
+	     	 
+	     	 //I. Instantiating an object from the 'DaoNotifications' class:
+	     	 DaoNotifications notiObj = new DaoNotifications();
+	     	 
+	     	 
+	     	 //II. Calling the 'getUnReadNotifications()' method and saving into a list of type 'Notifications':
+	     	 List<Notifications> unReadNotifications = notiObj.getUnReadNotifications(userId, false);
+	     	 
+	     	 session.setAttribute("unReadNotificationsList", unReadNotifications);
+	     	 
+	     	 
+	     	 //III. Retrieve the 'unReadNotificationsCounter':
+	     	 int unReadNotificationsCounter = notiObj.getUnreadNotificationsCount(userId, false);
+	     	 
+	     	 session.setAttribute("unReadNotificationsCounter", unReadNotificationsCounter);
+	     	 
+	     	 //--------------------------------------------------------------------
+        	
+		} 
+        catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 				
 		

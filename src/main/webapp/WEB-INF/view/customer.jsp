@@ -441,12 +441,16 @@ font-size:19px;
 
 
 		<div class="navtop" id="mynavTop" style="background-color: #C9B194;">
+		
+		 
 
             <a href="" id="person" style="float: right;" data-toggle="modal" data-target="#userModal"> <i class="fas fa-user" ></i> </a> 
 			
             <a href="" id="cartBasket" style="float: right;" data-toggle="modal" data-target="#cart"> <i class="fas fa-shopping-cart"  ></i> <span class="cart-items"> (<c:if test="${empty sessionScope.cartCounter }"> 0 </c:if> ${sessionScope.cartCounter} ) </span> </a> 
 
             <a href="${pageContext.request.contextPath}/accessInboxModal" id="box" style="float: right;" > <i class="fas fa-box-open" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.inboxCounter }"> 0 </c:if> ${sessionScope.inboxCounter} ) </span> </a>
+
+            <a href="${pageContext.request.contextPath}/openNotificationModal" id="person" style="float: right;" > <i class="fas fa-bell" ></i> <span class="inbox-items"> ( <c:if test="${empty sessionScope.unReadNotificationsCounter }"> 0 </c:if> ${sessionScope.unReadNotificationsCounter} ) </span> </a>
 
 		</div>
 
@@ -457,6 +461,123 @@ font-size:19px;
 <!-- =========================================================================================================================== -->
 <!-- ==============================================MODAL'S(POP-UP WINDOWS)====================================================== -->
 
+
+
+<!-- ================-NOTIFICATION Modal ==========================-->
+
+
+     <!-- This JS Code opens the Notification Modal -->
+   <c:if test="${openNotificationModal}">
+     
+     <script>
+   
+          $(document).ready(function() { $('#notificationsModal').modal('show'); });
+ 
+     </script>
+     
+   </c:if>
+
+
+
+	<!-- Notification Modal -->
+	<div class="modal fade" id="notificationsModal" tabindex="-1" role="dialog" aria-hidden="true">
+		
+		<div class="modal-dialog modal-lg" role="document">
+
+			<div class="modal-content">
+			
+				<div class="modal-header" style="background-color: #C9B194;">
+			
+					<h3 class="modal-title" style="font-weight: bold; color: #4a403a; font-family: 'Pacifico', cursive;">Notifications</h3>
+				
+				</div>
+
+				<div class="modal-body">
+					
+					<div class="notification-body">
+
+						<c:choose>
+							
+							<c:when test="${not empty sessionScope.unReadNotificationsList}">
+								
+								<c:forEach var="n" items="${sessionScope.unReadNotificationsList}">
+
+									<div class="notification-item" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+
+										<div style="flex-grow: 1;">
+											
+											<p style="margin: 0;">
+												
+												<strong>Item:</strong> ${n.itemName}
+											
+											</p>
+											
+											<p style="margin: 0;">
+												
+												<strong>Address:</strong> ${n.deliveryAddress}
+											
+											</p>
+											
+											<p style="margin: 0;">
+												
+												<strong>Status:</strong> ${n.status}
+											
+											</p>
+										
+										</div>
+
+										
+										<form method="post" action="${pageContext.request.contextPath}/markNotificationAsRead">
+											
+											<input type="hidden" name="userId" value="${n.userId}" /> 
+											
+											<input type="hidden" name="orderId" value="${n.orderId}" />
+											
+											<button type="submit" class="btn btn-success">OK</button>
+											
+										</form>
+										
+									</div>
+
+								</c:forEach>
+								
+							</c:when>
+
+							<c:otherwise>
+								
+								<p style="text-align: center; padding: 20px;">No Notifications.</p>
+								
+							</c:otherwise>
+							
+						</c:choose>
+
+					</div>
+					
+				</div>
+
+				<div class="modal-footer">
+				
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					    
+					    Close
+					
+					</button>
+					
+				</div>
+				
+			</div>
+
+		</div>
+		
+	</div> <!-- Closing brace of the Notifications Modal -->
+
+
+
+
+
+
+
+	<!-- ===============================================================-->
 
 
 

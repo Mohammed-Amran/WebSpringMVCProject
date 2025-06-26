@@ -965,7 +965,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 				<div class="modal-footer" style="padding: 20px; display: flex; justify-content: flex-end;">
 					
-					<button type="submit" class="btn btn-default"  style="padding: 8px 20px; font-size: 16px;">
+					<button type="submit" class="btn btn-default"  style="background-color: #00b300; padding: 8px 20px; font-size: 16px;">
 					
 					   Add Item
 					   

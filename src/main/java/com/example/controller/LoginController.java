@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -159,6 +160,25 @@ public class LoginController {
 			     	 session.setAttribute("inboxCounter", orderedItemsCounter);
 		        	 
 		    		
+			     	 //--------------Notifications------------------------------------------
+			     	 
+			     	 //I. Instantiating an object from the 'DaoNotifications' class:
+			     	 DaoNotifications notiObj = new DaoNotifications();
+			     	 
+			     	 
+			     	 //II. Calling the 'getUnReadNotifications()' method and saving into a list of type 'Notifications':
+			     	 List<Notifications> unReadNotifications = notiObj.getUnReadNotifications(userId, false);
+			     	 
+			     	 session.setAttribute("unReadNotificationsList", unReadNotifications);
+			     	 
+			     	 
+			     	 //III. Retrieve the 'unReadNotificationsCounter':
+			     	 int unReadNotificationsCounter = notiObj.getUnreadNotificationsCount(userId, false);
+			     	 
+			     	 session.setAttribute("unReadNotificationsCounter", unReadNotificationsCounter);
+			     	 
+			     	 //--------------------------------------------------------------------
+			     	 
 		        	 destination = "view/customer";
 		        	 
 		    		
