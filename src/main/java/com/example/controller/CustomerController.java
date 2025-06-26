@@ -83,19 +83,8 @@ public class CustomerController {
     				
         	}
 			
-			
-			
-		} 
-		catch (Exception e) {
-		   
-			model.addObject("ErrorMessage", e);
-		}
-		
-        
-        
-        try {
-			
-              int userId = (Integer) session.getAttribute("userId");
+        	
+        	int userId = (Integer) session.getAttribute("userId");
 	     	 //--------------Notifications------------------------------------------
 	     	 
 	     	 //I. Instantiating an object from the 'DaoNotifications' class:
@@ -115,11 +104,17 @@ public class CustomerController {
 	     	 
 	     	 //--------------------------------------------------------------------
         	
-		} 
-        catch (Exception e) {
 			
-			e.printStackTrace();
+			
+		} 
+		catch (Exception e) {
+		   
+			model.addObject("ErrorMessage", e);
 		}
+		
+        
+        
+       
 		
 				
 		

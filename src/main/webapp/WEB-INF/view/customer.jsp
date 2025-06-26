@@ -1750,10 +1750,12 @@ document.querySelectorAll('.reload-img').forEach(button => {
                                 
                                 <select class="price-dropdown" name="selectedQuantity">
                                 
-                                    <option value="2">2 pieces ~ 250iqd</option>
-                                    <option value="4">4 pieces ~ 500iqd</option>
-                                    <option value="8">8 pieces ~ 1000iqd</option>
-                                    <option value="12">12 pieces ~ 1500iqd</option>
+                                    <option value="2">2 pieces ~ <c:out value="${2 * bread.itemPrice}" />iqd</option>
+                                    
+                                    <option value="4">4 pieces ~ <c:out value="${4 * bread.itemPrice}" />iqd</option>
+                                    
+                                    <option value="8">8 pieces ~ <c:out value="${8 * bread.itemPrice}" />iqd</option>
+                                    
                                     
                                 </select>
                                 
@@ -1845,11 +1847,12 @@ document.querySelectorAll('.reload-img').forEach(button => {
                                 
                                 <select class="price-dropdown" name="selectedQuantity">
                                 
-                                    <option value="2">2 pieces ~ 250iqd</option>
-                                    <option value="4">4 pieces ~ 500iqd</option>
-                                    <option value="8">8 pieces ~ 1000iqd</option>
-                                    <option value="12">12 pieces ~ 1500iqd</option>
+                                    <option value="2">2 pieces ~ <c:out value="${2 * desert.itemPrice}" />iqd</option>
                                     
+                                    <option value="4">4 pieces ~ <c:out value="${4 * desert.itemPrice}" />iqd</option>
+                                    
+                                    <option value="8">8 pieces ~ <c:out value="${8 * desert.itemPrice}" />iqd</option>
+                                                                    
                                 </select>
                                 
                             </div>
