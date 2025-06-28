@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,31 @@ public class addToCartController {
 	
 	//This method only redirects the user back to the same 'customer' page after successfully adding item into the cart!
 	//The benefit of this METHOD is to prevent: re-submiting the previous item accidently into the cart on page reloads. 
-	@GetMapping("/getBackToCustomerPage")
-	public String showCustomerPage(HttpServletRequest request) {
+
+//==============================================================================================	
+//Injecting Dependencies of 'DaoCart', 'DaoBreads' & 'DaoDeserts' - USING CONSTRCUTOR
+	
+  private final DaoCart cartObj;
+  private final DaoBreads breadsObj;
+  private final DaoDeserts desertsObj;
+  
+
+  
+@Autowired
+public addToCartController(DaoCart daoCartObj, DaoBreads daoBreadsObj, DaoDeserts daoDesertsObj) {
+       
+    	this.cartObj = daoCartObj;
+        this.breadsObj = daoBreadsObj;
+        this.desertsObj = daoDesertsObj;
+    	
+    }
+	
+
+//==============================================================================================
+
+	
+@GetMapping("/getBackToCustomerPage")
+public String showCustomerPage(HttpServletRequest request) {
 	    
 		
 	    return "view/customer";
@@ -104,12 +128,7 @@ public class addToCartController {
       
       String itemType = req.get("itemType");
 	 	  
-	  //Instantiating an object from the 'DaoBreads' class:  
-	  DaoBreads breadObj = new DaoBreads();
 	  
-	  
-	  //Instantiating an object from the 'DaoCakes' class:
-	  DaoDeserts desertObj = new DaoDeserts();
 		  
 	  
 		 int itemId = 0;
@@ -122,10 +141,10 @@ public class addToCartController {
 			 if("Bread".equals(itemType)) {
 				 
 				 //Then, retrieve the itemId of them item from the 'breads' table via the 'getBreadIdByName()' method.
-				 itemId = breadObj.getBreadIdByName(itemName);
+				 itemId = breadsObj.getBreadIdByName(itemName);
 				 
 				 /*----5-----= Retrieving the itemPrice =----------*/	
-				 itemPrice = breadObj.getBreadItemPrice(itemName);
+				 itemPrice = breadsObj.getBreadItemPrice(itemName);
 				 
 				 
 			 }
@@ -133,10 +152,10 @@ public class addToCartController {
 			 else if("Desert".equals(itemType)) {
 				 
 				 //Then, retrieve the itemId of them item from the 'deserts' table via the 'getDesertIdByName()' method.
-				 itemId = desertObj.getDesertIdByName(itemName);
+				 itemId = desertsObj.getDesertIdByName(itemName);
 				 
 				 /*----5-----= Retrieving the itemPrice =----------*/	
-				 itemPrice = desertObj.getDesertItemPrice(itemName);
+				 itemPrice = desertsObj.getDesertItemPrice(itemName);
 				 
 				 
 			 }
@@ -164,12 +183,11 @@ public class addToCartController {
 
 		//Inserting the (userId, itemId, itemName, selectedQuantity, itemPrice) into the 'cartItems' table.
         		  
-        //1st: Instantiating an object from the 'DoaAddToCart' class.
-        DaoCart daoAddToCartObj = new DaoCart();
+       
          
          
         //2nd: Inserting the item into the 'cartItems' table via the 'insertIntoCartItem()' method.
-        boolean isInserted = daoAddToCartObj.insertIntoCartItem(userId, itemId, itemName, intSelectedQuantity, itemPrice);
+        boolean isInserted = cartObj.insertIntoCartItem(userId, itemId, itemName, intSelectedQuantity, itemPrice);
 		
        
         //So, if the item successfully has inserted into the 'cartItems' table - this part below will run
@@ -179,12 +197,11 @@ public class addToCartController {
 			//1st: Retrieving the items number in the 'cartItems' table
 			
 			
-			//I: Instantiating an object from the daoCart class.
-			DaoCart daoCartObj = new DaoCart();
+			
 			
 			
 			//II: Retrieving the items number via the 'getCartItemCount()' method:
-			int itemsCount = daoCartObj.getCartItemCount(userId);
+			int itemsCount = cartObj.getCartItemCount(userId);
 			
 			
 			//III: Saving the retrieved items number into the session scope:
@@ -201,7 +218,7 @@ public class addToCartController {
 		    try {
 				
 		    	//I: Retrieving the items from the 'cartItems' table using specific userId via the 'getCartItemsByUserId()' method.
-		    	List<CartItems> retrievedItems = daoCartObj.getCartItemsByUserId(userId);
+		    	List<CartItems> retrievedItems = cartObj.getCartItemsByUserId(userId);
 		    	
 		    	
 		    	//II: Saving the retrieved items into the session scope:
@@ -289,8 +306,6 @@ public class addToCartController {
 /*----3-----= Incrementing the selectedQuantity of the item =----------*/
 		 
 		 
-		 //I. Instantiating an object from the 'daoCart' class.
-		 DaoCart cartObj = new DaoCart();
 			
 		 
 		 //II. Calling the 'IncrementUpdateCartItemQuantity()' method:
@@ -403,8 +418,7 @@ public class addToCartController {
 /*----3-----= Incrementing the selectedQuantity of the item =----------*/
 		 
 		 
-		         //I. Instantiating an object from the 'daoCart' class.
-				 DaoCart cartObj = new DaoCart();
+		         
 				 
 				 
 				 
@@ -515,8 +529,7 @@ public class addToCartController {
 	  /*----3-----= Removing the item from the 'cartItems' table =----------*/
 			 
 	  		 
-			 //I. Instantiating an object from the 'daoCart' class.
-			 DaoCart cartObj = new DaoCart();
+			 
 			 
 			 //II. Calling the 'removeCartItem()' method:
 			 boolean isRemoved = cartObj.removeCartItem(userId, intItemId); 

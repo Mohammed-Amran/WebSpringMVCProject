@@ -14,6 +14,8 @@
 
     <!-- Scanning for the @Controller classes -->
     <context:component-scan base-package="com.example.controller" />
+    <context:component-scan base-package="com.example.DAO" />
+    
 
     <!-- Enable annotation-driven controllers -->
     <mvc:annotation-driven />

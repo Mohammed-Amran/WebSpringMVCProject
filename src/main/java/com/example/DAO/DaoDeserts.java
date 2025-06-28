@@ -8,9 +8,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.example.model.Deserts;
 
-
+@Component
 public class DaoDeserts {
 
 
