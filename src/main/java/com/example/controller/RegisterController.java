@@ -134,6 +134,8 @@ public class RegisterController {
 			    	//Initializing a Session Object:
 			    	HttpSession session = request.getSession(true); //This is exactly same as: HttpSession session = req.getSession();
 			       
+			    	//Setting the session time-out to 2 hours:
+			    	session.setMaxInactiveInterval(2 * 60 * 60);
 			    	
 			    	//Setting the essential user-info's into the session object! we'll require them for further steps:
 			    	session.setAttribute("fullName", fullName);
@@ -150,11 +152,7 @@ public class RegisterController {
 			    	
 			    	session.setAttribute("userId", userId);
 			    	
-	    	
-			    	//Setting the session time-out to 2 hours:
-			    	session.setMaxInactiveInterval(2 * 60 * 60);
-			    	
-			    	
+    	
 			    	try {
 			    		
 			    	
@@ -166,11 +164,11 @@ public class RegisterController {
 			    		
 			    		
 			    		//II: getting the items-numbers via the 'getCartItemCount()' method.
-						int itemsCount = daoCartObj.getCartItemCount(userId);
+						int cartCount = daoCartObj.getCartItemCount(userId);
 						
 						
 						//III: saving the itemsCount into session Scope.
-						session.setAttribute("cartCounter", itemsCount); 
+						session.setAttribute("cartCounter", cartCount); 
 			    		
 			    	
 				//================================================================================================		
@@ -204,8 +202,14 @@ public class RegisterController {
 			        	 //III: saving the retrieved breads into the session scope:
 			        	 session.setAttribute("retrievedBreads", retrievedBreads);
 			        	 
+			        	 
+			        	 
+			        	 
 			        	 //IV: this allows the 'when' tag in the 'customer' page to loop through the 'retrievedBreads'
 			        	 session.setAttribute("showCategory", "Breads");
+			        	 
+			        	 
+			        	 
 			        	 
 			        	 
 			        	//Instantiating an object from the 'DaoUsers' class - in order to access the 'users' table.

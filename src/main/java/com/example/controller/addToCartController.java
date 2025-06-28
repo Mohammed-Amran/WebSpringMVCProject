@@ -34,7 +34,7 @@ public class addToCartController {
   private final DaoBreads breadsObj;
   private final DaoDeserts desertsObj;
   
-
+  
   
 @Autowired
 public addToCartController(DaoCart daoCartObj, DaoBreads daoBreadsObj, DaoDeserts daoDesertsObj) {
@@ -47,6 +47,7 @@ public addToCartController(DaoCart daoCartObj, DaoBreads daoBreadsObj, DaoDesert
 	
 
 //==============================================================================================
+
 
 	
 @GetMapping("/getBackToCustomerPage")
@@ -194,13 +195,7 @@ public String showCustomerPage(HttpServletRequest request) {
 		if(isInserted) {
 			
 			
-			//1st: Retrieving the items number in the 'cartItems' table
-			
-			
-			
-			
-			
-			//II: Retrieving the items number via the 'getCartItemCount()' method:
+          	//II: Retrieving the items number via the 'getCartItemCount()' method:
 			int itemsCount = cartObj.getCartItemCount(userId);
 			
 			
@@ -471,7 +466,7 @@ public String showCustomerPage(HttpServletRequest request) {
 			    	
 			    	 //If the item FAILED to be decremented!
 					 
-					 String decrementError = "Failed to deccrement item";	 
+					 String decrementError = "Failed to decrement item";	 
 					 model.addObject("decrementError",decrementError);
 			    	
 			    }

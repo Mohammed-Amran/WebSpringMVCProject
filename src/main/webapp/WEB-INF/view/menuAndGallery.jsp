@@ -2,6 +2,8 @@
 
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -204,310 +206,72 @@ transition: transform 0.2s ease;
        
        <div class="menu-grid" style="margin-top: 40px;">
        
-    <c:choose>
-    
-       <c:when test="${showCategory == 'Breads' || empty showCategory }">
-        
-       <!-- Item 1 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/baguette-bread-july222020-min-e1595406425983.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Baguette Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 2 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/brioche-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Brioche Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 3 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/ciabatta-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Ciabatta Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 4 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/multigrain-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Multigrain Bread</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 5 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/whole-wheat-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Whole Wheat</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 6 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/lavash-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Lavash Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-       
-        <!-- Item 7 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/matzo-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Thin Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 8 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/naan-bread-july222020-min.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Naan Bread</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 9 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="https://www.homestratosphere.com/wp-content/uploads/2020/07/tortilla-bread-july222020-min-e1595407483238.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Tortilla</h1>
-				
-			</div>
-			
-			
-		</div>
+         <c:choose>
 
-         <!-- Item 10 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/crispyBread.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Crispy Bread</h1>
-				
-			</div>
-			
-			
-		</div>       
-      
-      </c:when>
-      
-      
-      <c:when test="${showCategory == 'Cakes'}">
-      
-       <!-- Item 1 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/baklava2.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Kunafa</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 2 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/cherryCake.jpeg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Cherry Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 3 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/lemonCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Lemon Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 4 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/strawberyCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Strawberry Cake</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-       <!-- Item 5 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/donut.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Donut</h1>
-				
-			</div>
-			
-			
-			
-		</div>
-       
-        <!-- Item 6 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/criossant.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Criossant</h1>
-				
-			</div>
-			
-			
-		</div>
-       
-        <!-- Item 7 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/baklava.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Baklava</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 8 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/appleCake.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Apple Cake</h1>
-				
-			</div>
-			
-			
-		</div>
-		
-		 <!-- Item 9 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/caramel.jpg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Caramel candy</h1>
-				
-			</div>
-			
-			
-		</div>
+						<c:when test="${sessionScope.showCategory == 'Breads' || empty showCategory }">
+
+							<c:forEach var="bread" items="${retrievedBreads}">
+								
+								<div class="card">
+									
+									<div class="card-content">
+
+										<c:if test="${fn:startsWith(bread.imgURL, '/images/bread/')}">
+										
+											<img src="${pageContext.request.contextPath}${bread.imgURL}" class="item-img" />
+										
+										</c:if>
+
+										<c:if test="${not fn:startsWith(bread.imgURL, '/images/bread/')}">
+										
+											<img src="${bread.imgURL}" class="item-img" />
+											
+										</c:if>
+
+										<h1 style="margin-top: 78px;">${bread.itemName}</h1>
+
+									</div>
+									
+								</div>
+								
+							</c:forEach>
 
 
-         <!-- Item 10 -->
-		<div class="card">
-		
-			<div class="card-content">
-			
-				<img src="${pageContext.request.contextPath}/images/cakes/chocoloateCake.jpeg" class="item-img">
-				
-				<h1 style="margin-top: 78px;">Chocoloate Cake</h1>
-				
-			</div>
-			
-			
-		</div>
-              
-        
-      </c:when>
+
+						</c:when>
+
+
+						<c:when test="${sessionScope.showCategory == 'Cakes'}">
+
+							<c:forEach var="desert" items="${retrievedDeserts}">
+								
+								<div class="card">
+									
+									<div class="card-content">
+
+										<c:if test="${fn:startsWith(desert.imgURL, '/images/cakes/')}">
+											
+											<img src="${pageContext.request.contextPath}${desert.imgURL}" class="item-img" />
+										
+										</c:if>
+
+										<c:if test="${not fn:startsWith(desert.imgURL, '/images/cakes/')}">
+											
+											<img src="${desert.imgURL}" class="item-img" />
+										
+										</c:if>
+
+										<h1 style="margin-top: 78px;">${desert.itemName}</h1>
+									
+									</div>
+								
+								</div>
+							
+							</c:forEach>
+
+						</c:when>
       
-      </c:choose>
+           </c:choose>
        
        </div>
        

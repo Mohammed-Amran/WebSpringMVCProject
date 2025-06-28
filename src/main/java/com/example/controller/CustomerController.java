@@ -249,6 +249,7 @@ public class CustomerController {
 		//Instantiating a session object
 		HttpSession session = req.getSession(false);
 		
+		
 		if(session != null) {
 			
 						
@@ -266,7 +267,7 @@ public class CustomerController {
 			
 			if(isNewFullNameUpdated) {
 				
-				//Retrieving the new FullName from the DB & re-saving it into the request Scope. 
+				//Retrieving the new FullName from the DB & re-saving it into the session Scope. 
 				
 				//1. Calling the 'retrieveFullName()' method from the 'DaoUsers' class.
 				String retrievedFullName = daoUsersObj.retrieveFullName(userId);
@@ -295,6 +296,7 @@ public class CustomerController {
 				
 				//4. This keeps the Edit User-Profile Modal opened
 				model.addAttribute("openEditModal", true);
+				
 				
 				String successUserUpdateMessage = "FullName Successfully updated";
 				

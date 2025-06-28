@@ -204,6 +204,7 @@ public class DaoCart {
 	        return rowsUpdated > 0;
 
 	    } catch (SQLException e) {
+	    	
 	        e.printStackTrace();
 	        return false;
 	    }

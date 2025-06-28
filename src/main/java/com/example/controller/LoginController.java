@@ -88,12 +88,7 @@ public class LoginController {
 		    	session.setAttribute("password", password);
 		    	session.setAttribute("phoneNo", phoneNo);
 				
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
+	    	
 		    	try {
 		    		    
 		    		

@@ -1,7 +1,7 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<!-- Below is Taglib directive -->	
+	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -458,9 +458,9 @@ font-size:19px;
 	</div>
 
 
+
 <!-- =========================================================================================================================== -->
 <!-- ==============================================MODAL'S(POP-UP WINDOWS)====================================================== -->
-
 
 
 <!-- ================-NOTIFICATION Modal ==========================-->
@@ -570,16 +570,6 @@ font-size:19px;
 		</div>
 		
 	</div> <!-- Closing brace of the Notifications Modal -->
-
-
-
-
-
-
-
-	<!-- ===============================================================-->
-
-
 
 
 
@@ -943,12 +933,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-  
-	
-
-<!-- ------------------------------------------------------------ -->
-
-
+ 
 <!-- This JS code below is used to hide & un hide the password -->
 <script>
   let isVisible = false;
@@ -975,12 +960,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 </script>
 
 
-
-
-
-
 <!-- Rocket Strike GIF modal -->
-
 
 <!-- Strike GIF Overlay Modal -->
 <div id="strikeOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.2);
@@ -1004,17 +984,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 </div>
 
 
-
-<!-- / / / / / / / / / / / / / /  ------------ Temporary Construction site Ends Here ------------ / / / / / / / / / / / / / / -->
-
-
-
-	<!-- ################################################################################################################################ -->
-
-
-
-
-
+<!-- ============================---- The Inbox Modal ----========================================== -->
 
  <!-- This JS Code opens the Inbox Modal -->
    <c:if test="${showInboxModal}">
@@ -1026,8 +996,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
      </script>
      
    </c:if>
-
-
 
 
 
@@ -1181,8 +1149,8 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- ################################################################################################################################ -->
 
+<!-- ================================---- The Cart Modal ----============================================== -->
 
 
 <c:if test="${not empty sessionScope.openCartModal}">
@@ -1199,7 +1167,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- ========- CART MODAL -=========== -->
 
 <!-- Cart Modal -->
 	<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1443,11 +1410,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- ################################################################################################################################ -->
-
-
-
-
+<!-- ----========================================---- Checkout Modal ----============================================ -->
 
 <c:if test="${not empty sessionScope.showCheckoutModal}">
     <script>
@@ -1460,9 +1423,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
 </c:if>
 
 
-
-
-<!-- ========- CHECKOUT MODAL -=========== -->
 
 
 <!-- Checkout Modal -->
@@ -1617,12 +1577,6 @@ document.querySelectorAll('.reload-img').forEach(button => {
 
 
 
-<!-- =========================================================================================================================== -->
-<!-- =========================================================================================================================== -->
-
-
-
-
 
 
 	<!--=========================--  M A I N   C O N T E N T  --====================-->
@@ -1639,7 +1593,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
 	<div id="main" style="margin-top: 40px;">
 
    <!-- Main Content - Menu Section -->
-<main class="menu-container" style="background-color: #C9B194;">
+   <main class="menu-container" style="background-color: #C9B194;">
 
  <div >
  
@@ -1689,7 +1643,7 @@ document.querySelectorAll('.reload-img').forEach(button => {
        
        <div class="menu-grid" style="margin-top: 40px;">
        
-       <c:choose>
+  <c:choose>
 
     
     <c:when test="${showCategory == 'Breads' || empty showCategory }">
